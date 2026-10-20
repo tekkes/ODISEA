@@ -1,0 +1,45 @@
+// Two-Column Magazine Layout (.ulss)
+$font-body = "Charter"
+$font-title = "Avenir Next"
+$grid-unit = 14pt
+
+document-settings {
+    page-size: "A4"
+    margin-top: 20mm
+    margin-bottom: 20mm
+    margin-left: 18mm
+    margin-right: 18mm
+    column-count: 2
+    column-spacing-width: 6mm
+    baseline-grid: $grid-unit
+}
+
+defaults {
+    font-family: $font-body
+    font-size: 9.5pt
+    line-height: $grid-unit
+    text-alignment: justified
+    hyphenation: yes
+}
+
+heading-1 {
+    font-family: $font-title
+    font-size: 28pt
+    line-height: 32pt
+    font-weight: bold
+    margin-top: 18pt
+    margin-bottom: 14pt
+    column-span: all
+}
+
+heading-2 {
+    font-family: $font-title
+    font-size: 13pt
+    font-weight: bold
+    margin-top: 12pt
+    margin-bottom: 4pt
+}
+
+paragraph + paragraph {
+    first-line-indent: 12pt
+}

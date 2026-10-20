@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="odiseaBlueGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0A84FF" />
+      <stop offset="100%" stop-color="#0066E6" />
+    </linearGradient>
+  </defs>
+  <!-- Background: Blanco sólido -->
+  <rect width="512" height="512" rx="96" fill="#ffffff" />
+  <!-- Letra O mayúscula AZUL en trazo grueso -->
+  <path fill-rule="evenodd" clip-rule="evenodd" d="
+    M 256 64
+    C 362 64 448 150 448 256
+    C 448 362 362 448 256 448
+    C 150 448 64 362 64 256
+    C 64 150 150 64 256 64
+    Z
+    M 256 160
+    C 203 160 160 203 160 256
+    C 160 309 203 352 256 352
+    C 309 352 352 309 352 256
+    C 352 203 309 160 256 160
+    Z
+  " fill="url(#odiseaBlueGrad)" />
+</svg>

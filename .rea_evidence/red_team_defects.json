@@ -1,0 +1,107 @@
+{
+  "_meta": {
+    "title": "Odisea Adversarial QA / Red Team Defects Ledger",
+    "version": "1.0.0",
+    "last_updated": "2026-10-19T22:58:00Z",
+    "orchestrator": "Orchestrator-Loop-Master / Antigravity IDE",
+    "status": "CERTIFIED_ZERO_DEFECTS",
+    "consecutive_clean_iterations": 2
+  },
+  "metrics": {
+    "total_defects_logged": 4,
+    "critical_defects": 0,
+    "high_defects": 0,
+    "medium_defects": 0,
+    "low_defects": 0,
+    "open_defects": 0,
+    "remediated_and_verified": 4
+  },
+  "defects": [
+    {
+      "id": "DEFECT-001",
+      "severity": "HIGH",
+      "discovered_by": "RedTeam-Parser-ULSS",
+      "component": "ulss_engine/html_text.rs",
+      "title": "Footnote tokens (fn:...) not expanded in export_html_snippet",
+      "description": "In heavy documents with 500+ footnotes, transform_inline did not match (fn:...) or (fn), emitting raw parenthesized text instead of <sup>[...]</sup> tags.",
+      "reproduction_payload": "test_red_team_adversarial_fuzzing",
+      "status": "CLOSED",
+      "remediated_by": "BlueTeam-AutoFixer",
+      "fix_commit": "Added inline scanner for (fn:...) and (fn) in transform_inline emitting <sup>[note]</sup>.",
+      "regression_test": "ulss_engine::tests::test_red_team_adversarial_fuzzing"
+    },
+    {
+      "id": "DEFECT-002",
+      "severity": "HIGH",
+      "discovered_by": "RedTeam-Parser-ULSS",
+      "component": "ulss_engine/lexer.rs",
+      "title": "Single quotes in font-family string literals rejected by ULSS lexer",
+      "description": "ULSS lexer only accepted double quotes '\"', throwing 'Unexpected character in ULSS: '\\'' when styles declared font-family: 'Segoe UI Variable'.",
+      "reproduction_payload": "font-family: 'Segoe UI Variable'",
+      "status": "CLOSED",
+      "remediated_by": "BlueTeam-AutoFixer",
+      "fix_commit": "Allowed both '\"' and '\\'' quote delimiters in UlssLexer tokenization.",
+      "regression_test": "ulss_engine::tests::test_red_team_adversarial_fuzzing"
+    },
+    {
+      "id": "DEFECT-003",
+      "severity": "MEDIUM",
+      "discovered_by": "RedTeam-Parser-ULSS",
+      "component": "ulss_engine/parser.rs",
+      "title": "Variable definition with colon ($var: val) threw Expected '='",
+      "description": "ULSS parser strictly demanded '=' for variable assignments, breaking styles using CSS-flavored colon assignment syntax.",
+      "reproduction_payload": "$base: 13.333pt",
+      "status": "CLOSED",
+      "remediated_by": "BlueTeam-AutoFixer",
+      "fix_commit": "Updated parse_variable_definition to accept both Token::Equals and Token::Colon.",
+      "regression_test": "ulss_engine::tests::test_red_team_adversarial_fuzzing"
+    },
+    {
+      "id": "DEFECT-004",
+      "severity": "MEDIUM",
+      "discovered_by": "RedTeam-Parser-ULSS",
+      "component": "ulss_engine/parser.rs",
+      "title": "Mixin declaration with @mixin prefix threw Expected '{'",
+      "description": "ULSS parser expected @name { ... } directly and failed when authors declared @mixin name { ... }.",
+      "reproduction_payload": "@mixin shadow { text-shadow: 1pt 1pt #888 }",
+      "status": "CLOSED",
+      "remediated_by": "BlueTeam-AutoFixer",
+      "fix_commit": "Added lookahead check in parse_mixin_definition to extract identifier if token name is 'mixin'.",
+      "regression_test": "ulss_engine::tests::test_red_team_adversarial_fuzzing"
+    }
+  ],
+  "visual_audit_findings": {
+    "auditor": "RedTeam-UI-Visual",
+    "browser_session": "Chrome Integrated Subagent / http://127.0.0.1:5173/",
+    "microui_compliance": {
+      "icon_max_size_allowed": "16px x 16px",
+      "icon_max_size_observed": "15px x 15px",
+      "badge_max_height_allowed": "18px",
+      "badge_max_height_observed": "16px",
+      "status": "100% COMPLIANT (0 violations)"
+    },
+    "keyboard_navigation": {
+      "cmd_palette_ctrl_p": "PASSED (Spotlight opened cleanly)",
+      "cmd_palette_ctrl_space": "PASSED (Spotlight opened cleanly)",
+      "drill_down_enter": "PASSED (Library -> SheetList -> Editor)",
+      "drill_up_ctrl_enter": "PASSED (Editor -> SheetList -> Library)",
+      "arrow_keys_sheet_list": "PASSED (Navigates and scrolls sheets into view)"
+    },
+    "artifacts_captured": [
+      "initial_app_view_1792443147639.png",
+      "command_palette_test_1792443153213.png",
+      "dashboard_test_1792443159843.png",
+      "web_publishing_test_1792443170230.png"
+    ]
+  },
+  "portability_audit_findings": {
+    "auditor": "RedTeam-Portability-Binary",
+    "target": "Windows 11 x64",
+    "appdata_writes": 0,
+    "registry_writes": 0,
+    "persistence_root": "./odisea_data/",
+    "database": "./odisea_data/library.odiseadb",
+    "config": "./odisea_data/config.toml",
+    "status": "100% PORTABLE COMPLIANT"
+  }
+}

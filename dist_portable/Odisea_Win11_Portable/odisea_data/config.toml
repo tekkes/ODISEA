@@ -1,0 +1,11 @@
+theme_mode = "dark"
+active_theme = "default"
+active_style = "default"
+typewriter_enabled = false
+typewriter_position = "center"
+focus_mode = "none"
+show_library = true
+show_sheet_list = true
+show_dashboard = false
+auto_backup_hours = 1
+spell_check_language = "es"

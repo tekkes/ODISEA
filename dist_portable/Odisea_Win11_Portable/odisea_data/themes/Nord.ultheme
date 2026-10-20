@@ -1,0 +1,324 @@
+{
+  "themeVersion": 1,
+  "name": "Nordic Frost",
+  "author": "Arctic Ice Studio / Odisea",
+  "palette": {
+    "accents": {
+      "accent-red": "#ff3b30",
+      "accent-orange": "#ff9500",
+      "accent-yellow": "#ffcc00",
+      "accent-green": "#34c759",
+      "accent-teal": "#30b0c7",
+      "accent-blue": "#007aff",
+      "accent-indigo": "#5856d6",
+      "accent-purple": "#af52de",
+      "accent-pink": "#ff2d55",
+      "accent-brown": "#a2845e",
+      "accent-gray": "#8e8e93"
+    }
+  },
+  "light": {
+    "editor": {
+      "background-color": "#eceff4",
+      "font-color": "#2e3440",
+      "insertion-point-color": "#5e81ac",
+      "selection-color": "#d8dee9",
+      "current-line-color": "#e5e9f0"
+    },
+    "markup": {
+      "heading-1": {
+        "font-color": "#1d1d1f",
+        "font-weight": "bold",
+        "font-size-scale": 1.7,
+        "markup-color": "#007aff"
+      },
+      "heading-2": {
+        "font-color": "#1d1d1f",
+        "font-weight": "bold",
+        "font-size-scale": 1.4,
+        "markup-color": "#007aff"
+      },
+      "heading-3": {
+        "font-color": "#1d1d1f",
+        "font-weight": "bold",
+        "font-size-scale": 1.2,
+        "markup-color": "#007aff"
+      },
+      "heading-4": {
+        "font-color": "#1d1d1f",
+        "font-weight": "semibold",
+        "font-size-scale": 1.1,
+        "markup-color": "#5856d6"
+      },
+      "heading-5": {
+        "font-color": "#3a3a3c",
+        "font-weight": "medium",
+        "font-style": "italic",
+        "font-size-scale": 1.0,
+        "markup-color": "#5856d6"
+      },
+      "heading-6": {
+        "font-color": "#6e6e73",
+        "font-weight": "semibold",
+        "font-size-scale": 0.9,
+        "markup-color": "#8e8e93"
+      },
+      "paragraph": {
+        "font-color": "#1d1d1f"
+      },
+      "block-quote": {
+        "font-color": "#3a3a3c",
+        "font-style": "italic",
+        "markup-color": "#30b0c7",
+        "border-color": "#30b0c7"
+      },
+      "list-unordered": {
+        "markup-color": "#ff9500",
+        "font-color": "#1d1d1f"
+      },
+      "list-ordered": {
+        "markup-color": "#ff9500",
+        "font-color": "#1d1d1f"
+      },
+      "list-task": {
+        "markup-color": "#34c759",
+        "font-color": "#1d1d1f",
+        "completed-color": "#8e8e93"
+      },
+      "divider": {
+        "markup-color": "#d2d2d7",
+        "line-color": "#e5e5ea"
+      },
+      "block-code": {
+        "font-color": "#004085",
+        "background-color": "#f2f2f7",
+        "markup-color": "#8e8e93"
+      },
+      "block-raw": {
+        "font-color": "#856404",
+        "background-color": "#fff3cd",
+        "markup-color": "#ffcc00"
+      },
+      "block-comment": {
+        "font-color": "#8e8e93",
+        "font-style": "italic",
+        "markup-color": "#8e8e93"
+      },
+      "table": {
+        "font-color": "#1d1d1f",
+        "border-color": "#d2d2d7",
+        "header-background-color": "#f2f2f7",
+        "markup-color": "#007aff"
+      },
+      "table-of-contents": {
+        "font-color": "#007aff",
+        "markup-color": "#007aff"
+      },
+      "media-image": {
+        "font-color": "#af52de",
+        "markup-color": "#af52de"
+      },
+      "inline-strong": {
+        "font-weight": "bold",
+        "font-color": "#1d1d1f",
+        "markup-color": "#8e8e93"
+      },
+      "inline-emphasis": {
+        "font-style": "italic",
+        "font-color": "#1d1d1f",
+        "markup-color": "#8e8e93"
+      },
+      "inline-code": {
+        "font-color": "#007aff",
+        "background-color": "#f2f2f7",
+        "markup-color": "#8e8e93"
+      },
+      "inline-raw": {
+        "font-color": "#856404",
+        "background-color": "#fff3cd",
+        "markup-color": "#ffcc00"
+      },
+      "inline-mark": {
+        "background-color": "#ffea79",
+        "font-color": "#1d1d1f",
+        "markup-color": "#ff9500"
+      },
+      "inline-delete": {
+        "font-color": "#8e8e93",
+        "strikethrough-color": "#ff3b30",
+        "markup-color": "#ff3b30"
+      },
+      "inline-comment": {
+        "font-color": "#8e8e93",
+        "font-style": "italic",
+        "markup-color": "#a2845e"
+      },
+      "inline-annotation": {
+        "background-color": "#e8f2ff",
+        "font-color": "#007aff",
+        "markup-color": "#007aff"
+      },
+      "inline-footnote": {
+        "font-color": "#af52de",
+        "markup-color": "#af52de"
+      },
+      "inline-link": {
+        "font-color": "#007aff",
+        "underline-color": "#007aff",
+        "markup-color": "#8e8e93"
+      }
+    }
+  },
+  "dark": {
+    "editor": {
+      "background-color": "#2e3440",
+      "font-color": "#eceff4",
+      "insertion-point-color": "#88c0d0",
+      "selection-color": "#434c5e",
+      "current-line-color": "#353c4a"
+    },
+    "markup": {
+      "heading-1": {
+        "font-color": "#ffffff",
+        "font-weight": "bold",
+        "font-size-scale": 1.7,
+        "markup-color": "#0a84ff"
+      },
+      "heading-2": {
+        "font-color": "#ffffff",
+        "font-weight": "bold",
+        "font-size-scale": 1.4,
+        "markup-color": "#0a84ff"
+      },
+      "heading-3": {
+        "font-color": "#ffffff",
+        "font-weight": "bold",
+        "font-size-scale": 1.2,
+        "markup-color": "#0a84ff"
+      },
+      "heading-4": {
+        "font-color": "#e5e5ea",
+        "font-weight": "semibold",
+        "font-size-scale": 1.1,
+        "markup-color": "#5e5ce6"
+      },
+      "heading-5": {
+        "font-color": "#aeaeb2",
+        "font-weight": "medium",
+        "font-style": "italic",
+        "font-size-scale": 1.0,
+        "markup-color": "#5e5ce6"
+      },
+      "heading-6": {
+        "font-color": "#8e8e93",
+        "font-weight": "semibold",
+        "font-size-scale": 0.9,
+        "markup-color": "#636366"
+      },
+      "paragraph": {
+        "font-color": "#f2f2f7"
+      },
+      "block-quote": {
+        "font-color": "#aeaeb2",
+        "font-style": "italic",
+        "markup-color": "#64d2ff",
+        "border-color": "#64d2ff"
+      },
+      "list-unordered": {
+        "markup-color": "#ff9f0a",
+        "font-color": "#f2f2f7"
+      },
+      "list-ordered": {
+        "markup-color": "#ff9f0a",
+        "font-color": "#f2f2f7"
+      },
+      "list-task": {
+        "markup-color": "#30d158",
+        "font-color": "#f2f2f7",
+        "completed-color": "#636366"
+      },
+      "divider": {
+        "markup-color": "#3a3a3c",
+        "line-color": "#38383a"
+      },
+      "block-code": {
+        "font-color": "#9cdcfe",
+        "background-color": "#252528",
+        "markup-color": "#636366"
+      },
+      "block-raw": {
+        "font-color": "#ffd60a",
+        "background-color": "#332b00",
+        "markup-color": "#ffd60a"
+      },
+      "block-comment": {
+        "font-color": "#636366",
+        "font-style": "italic",
+        "markup-color": "#48484a"
+      },
+      "table": {
+        "font-color": "#f2f2f7",
+        "border-color": "#3a3a3c",
+        "header-background-color": "#2c2c2e",
+        "markup-color": "#0a84ff"
+      },
+      "table-of-contents": {
+        "font-color": "#0a84ff",
+        "markup-color": "#0a84ff"
+      },
+      "media-image": {
+        "font-color": "#bf5af2",
+        "markup-color": "#bf5af2"
+      },
+      "inline-strong": {
+        "font-weight": "bold",
+        "font-color": "#ffffff",
+        "markup-color": "#636366"
+      },
+      "inline-emphasis": {
+        "font-style": "italic",
+        "font-color": "#f2f2f7",
+        "markup-color": "#636366"
+      },
+      "inline-code": {
+        "font-color": "#409cff",
+        "background-color": "#2c2c2e",
+        "markup-color": "#636366"
+      },
+      "inline-raw": {
+        "font-color": "#ffd60a",
+        "background-color": "#332b00",
+        "markup-color": "#ffd60a"
+      },
+      "inline-mark": {
+        "background-color": "#594800",
+        "font-color": "#ffffff",
+        "markup-color": "#ff9f0a"
+      },
+      "inline-delete": {
+        "font-color": "#636366",
+        "strikethrough-color": "#ff453a",
+        "markup-color": "#ff453a"
+      },
+      "inline-comment": {
+        "font-color": "#8e8e93",
+        "font-style": "italic",
+        "markup-color": "#ac8e68"
+      },
+      "inline-annotation": {
+        "background-color": "#0b2545",
+        "font-color": "#409cff",
+        "markup-color": "#0a84ff"
+      },
+      "inline-footnote": {
+        "font-color": "#bf5af2",
+        "markup-color": "#bf5af2"
+      },
+      "inline-link": {
+        "font-color": "#0a84ff",
+        "underline-color": "#0a84ff",
+        "markup-color": "#636366"
+      }
+    }
+  }
+}

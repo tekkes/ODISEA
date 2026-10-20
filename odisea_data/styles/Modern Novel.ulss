@@ -1,0 +1,23 @@
+// Modern Novel Style (.ulss)
+$font-body = "Charter"
+$font-headings = "Avenir Next"
+document-settings {
+    page-size: "A5"
+    margin-top: 20mm
+    margin-bottom: 20mm
+    margin-left: 20mm
+    margin-right: 20mm
+}
+defaults {
+    font-family: $font-body
+    font-size: 11pt
+    line-height: 16pt
+}
+heading-1 {
+    font-family: $font-headings
+    font-size: 18pt
+    font-weight: bold
+    margin-top: 30pt
+    margin-bottom: 15pt
+    keep-with-next: yes
+}

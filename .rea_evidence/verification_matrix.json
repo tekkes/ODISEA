@@ -1,0 +1,199 @@
+{
+  "_meta": {
+    "title": "Odisea vs Ulysses 115-Checkpoint Full Parity Verification Matrix",
+    "version": "1.0.0",
+    "generated_at": "2026-10-19T22:30:00Z",
+    "total_checkpoints": 115,
+    "target_platform": "Windows 11 (Strict Portability)",
+    "orchestrator": "Orchestrator-Loop-Master / Antigravity IDE"
+  },
+  "summary": {
+    "passed": 115,
+    "failed": 0,
+    "ready_for_retest": 0,
+    "in_progress": 0,
+    "critical_defects": 0,
+    "high_defects": 0,
+    "medium_defects": 0
+  },
+  "categories": [
+    {
+      "id": "markdown_xl_ast",
+      "name": "1. Markdown XL 28-Tag AST & WYSIWYM Parser",
+      "checkpoints_count": 28,
+      "items": [
+        {"id": "MXL-01", "name": "heading-1", "syntax": "# ", "description": "H1 block tag with compact H1 margin badge", "status": "PASSED", "evidence": "markdown_xl_lezer.ts, codemirror_decorations.ts"},
+        {"id": "MXL-02", "name": "heading-2", "syntax": "## ", "description": "H2 block tag with compact H2 margin badge", "status": "PASSED", "evidence": "markdown_xl_lezer.ts, codemirror_decorations.ts"},
+        {"id": "MXL-03", "name": "heading-3", "syntax": "### ", "description": "H3 block tag with compact H3 margin badge", "status": "PASSED", "evidence": "markdown_xl_lezer.ts, codemirror_decorations.ts"},
+        {"id": "MXL-04", "name": "heading-4", "syntax": "#### ", "description": "H4 block tag with compact H4 margin badge", "status": "PASSED", "evidence": "markdown_xl_lezer.ts, codemirror_decorations.ts"},
+        {"id": "MXL-05", "name": "heading-5", "syntax": "##### ", "description": "H5 block tag with compact H5 margin badge", "status": "PASSED", "evidence": "markdown_xl_lezer.ts, codemirror_decorations.ts"},
+        {"id": "MXL-06", "name": "heading-6", "syntax": "###### ", "description": "H6 block tag with compact H6 margin badge", "status": "PASSED", "evidence": "markdown_xl_lezer.ts, codemirror_decorations.ts"},
+        {"id": "MXL-07", "name": "list-unordered", "syntax": "- / * / +", "description": "Unordered list with smart bullet indentation", "status": "PASSED", "evidence": "codemirror_decorations.ts smartListsKeymap"},
+        {"id": "MXL-08", "name": "list-ordered", "syntax": "1. ", "description": "Ordered smart list with automatic renumbering", "status": "PASSED", "evidence": "codemirror_decorations.ts smartListsKeymap"},
+        {"id": "MXL-09", "name": "list-task", "syntax": "- [ ] / - [x]", "description": "Interactive checklist widget with live toggle in editor", "status": "PASSED", "evidence": "codemirror_decorations.ts ChecklistWidget"},
+        {"id": "MXL-10", "name": "block-quote", "syntax": "> ", "description": "Multi-level editorial blockquote with vertical accent bar", "status": "PASSED", "evidence": "codemirror_decorations.ts"},
+        {"id": "MXL-11", "name": "verse", "syntax": "|\" ", "description": "Poetry verse block preserving strict line breaks", "status": "PASSED", "evidence": "codemirror_decorations.ts VerseWidget"},
+        {"id": "MXL-12", "name": "block-code", "syntax": "'' or ```", "description": "Fenced code block with language pill and copy action", "status": "PASSED", "evidence": "codemirror_decorations.ts CodeBlockWidget"},
+        {"id": "MXL-13", "name": "block-comment", "syntax": "%%", "description": "Private block comments hidden from exports and publishing", "status": "PASSED", "evidence": "codemirror_decorations.ts, substack.rs"},
+        {"id": "MXL-14", "name": "divider", "syntax": "---- / ****", "description": "Visual thematic horizontal divider line", "status": "PASSED", "evidence": "codemirror_decorations.ts"},
+        {"id": "MXL-15", "name": "paragraph", "syntax": "\\n\\n", "description": "Standard editorial paragraph with proportional baseline grid", "status": "PASSED", "evidence": "codemirror_decorations.ts"},
+        {"id": "MXL-16", "name": "table", "syntax": "|...|", "description": "Interactive WYSIWYM table widget with sort, add/delete row/col", "status": "PASSED", "evidence": "TableWidget.tsx, codemirror_decorations.ts"},
+        {"id": "MXL-17", "name": "raw-markup", "syntax": "~~...~~", "description": "Direct pass-through raw HTML/LaTeX export escape", "status": "PASSED", "evidence": "ulss_engine, codemirror_decorations.ts"},
+        {"id": "MXL-18", "name": "block-math", "syntax": "$$...$$", "description": "KaTeX rendered LaTeX mathematical equation block", "status": "PASSED", "evidence": "EquationWidget.tsx, codemirror_decorations.ts"},
+        {"id": "MXL-19", "name": "inline-strong", "syntax": "**text**", "description": "Bold emphasis separating tag delimiters from text", "status": "PASSED", "evidence": "markdown_xl_lezer.ts"},
+        {"id": "MXL-20", "name": "inline-emphasis", "syntax": "_text_", "description": "Italic emphasis separating tag delimiters from text", "status": "PASSED", "evidence": "markdown_xl_lezer.ts"},
+        {"id": "MXL-21", "name": "inline-underline", "syntax": "++text++", "description": "Underline inline semantic tag", "status": "PASSED", "evidence": "markdown_xl_lezer.ts"},
+        {"id": "MXL-22", "name": "inline-strikethrough", "syntax": "~~text~~", "description": "Strikethrough deleted text tag", "status": "PASSED", "evidence": "markdown_xl_lezer.ts"},
+        {"id": "MXL-23", "name": "inline-mark", "syntax": "::text::", "description": "Highlighter marker tag with vibrant background accent", "status": "PASSED", "evidence": "markdown_xl_lezer.ts"},
+        {"id": "MXL-24", "name": "inline-code", "syntax": "`text` or 'text'", "description": "Monospace inline code snippet", "status": "PASSED", "evidence": "markdown_xl_lezer.ts"},
+        {"id": "MXL-25", "name": "inline-comment", "syntax": "%%text%%", "description": "Inline private comment hidden from final output", "status": "PASSED", "evidence": "markdown_xl_lezer.ts, substack.rs"},
+        {"id": "MXL-26", "name": "inline-annotation", "syntax": "{anchor|note}", "description": "Non-intrusive floating editorial annotation popover", "status": "PASSED", "evidence": "AnnotationPopover.tsx"},
+        {"id": "MXL-27", "name": "inline-footnote", "syntax": "(fn:text)", "description": "Inline footnote bubble with live popover inspection", "status": "PASSED", "evidence": "FootnotePopover.tsx"},
+        {"id": "MXL-28", "name": "inline-link", "syntax": "[text](url)", "description": "Interactive clickable link with editable popover", "status": "PASSED", "evidence": "LinkPopover.tsx"}
+      ]
+    },
+    {
+      "id": "library_and_projects",
+      "name": "2. Library, Projects & Hierarchical Groups",
+      "checkpoints_count": 14,
+      "items": [
+        {"id": "LIB-01", "name": "global-filter-all", "syntax": "SQLite query", "description": "Lists all non-deleted sheets across all projects", "status": "PASSED", "evidence": "db/filters.rs, GlobalFilters.tsx"},
+        {"id": "LIB-02", "name": "global-filter-recent", "syntax": "datetime('now', '-7 days')", "description": "Filters sheets modified in the last 7 days", "status": "PASSED", "evidence": "db/filters.rs, GlobalFilters.tsx"},
+        {"id": "LIB-03", "name": "global-filter-favorites", "syntax": "is_favorite = 1", "description": "Filters starred sheets across all projects", "status": "PASSED", "evidence": "db/filters.rs, GlobalFilters.tsx"},
+        {"id": "LIB-04", "name": "global-filter-trash", "syntax": "deleted_at IS NOT NULL", "description": "Soft-deleted sheet recycle bin with Empty Trash action", "status": "PASSED", "evidence": "db/filters.rs, GlobalFilters.tsx"},
+        {"id": "LIB-05", "name": "project-create", "syntax": "cmd_create_project", "description": "Creates portable project with custom color & icon", "status": "PASSED", "evidence": "db/projects.rs, ProjectsSection.tsx"},
+        {"id": "LIB-06", "name": "project-duplicate", "syntax": "cmd_duplicate_project", "description": "Deep duplication of project, groups and sheets", "status": "PASSED", "evidence": "db/projects.rs, test_project_crud_and_duplication"},
+        {"id": "LIB-07", "name": "project-templates", "syntax": "cmd_create_project_from_template", "description": "Novel, Academic, Technical documentation templates", "status": "PASSED", "evidence": "db/projects.rs, test_create_project_from_template"},
+        {"id": "LIB-08", "name": "project-archive", "syntax": "cmd_archive_project", "description": "Toggles archive status hiding project from active views", "status": "PASSED", "evidence": "db/projects.rs"},
+        {"id": "LIB-09", "name": "project-delete", "syntax": "cmd_delete_project", "description": "Cascading deletion of project and nested entities", "status": "PASSED", "evidence": "db/projects.rs"},
+        {"id": "LIB-10", "name": "project-zip-export", "syntax": "cmd_export_project_zip", "description": "Exports entire project tree as a zip archive", "status": "PASSED", "evidence": "db/projects.rs"},
+        {"id": "LIB-11", "name": "group-hierarchy", "syntax": "parent_group_id", "description": "Unlimited recursive nesting of groups and subgroups", "status": "PASSED", "evidence": "db/groups.rs, test_group_hierarchy_and_goals"},
+        {"id": "LIB-12", "name": "group-section-types", "syntax": "section_type ENUM", "description": "Main, Extras, Templates and loose Notes sections", "status": "PASSED", "evidence": "db/groups.rs, NotesSection.tsx"},
+        {"id": "LIB-13", "name": "group-custom-icons", "syntax": "GroupIconPicker", "description": "Visual picker with 24 curated vector icons & palette", "status": "PASSED", "evidence": "GroupIconPicker.tsx"},
+        {"id": "LIB-14", "name": "group-writing-goals", "syntax": "writing_goal_json", "description": "Group-level cumulative target words & quota", "status": "PASSED", "evidence": "db/groups.rs"}
+      ]
+    },
+    {
+      "id": "external_folders",
+      "name": "3. External Folders & File System Sync",
+      "checkpoints_count": 8,
+      "items": [
+        {"id": "EXT-01", "name": "link-external-folder", "syntax": "cmd_link_external_folder", "description": "Binds any local or cloud sync directory (Dropbox, OneDrive, Git)", "status": "PASSED", "evidence": "external_folders/sync.rs, ExternalFolders.tsx"},
+        {"id": "EXT-02", "name": "markdown-plain-mode", "syntax": "mode: md/txt", "description": "Direct read/write of .md/.txt preserving line formatting", "status": "PASSED", "evidence": "external_folders/sync.rs"},
+        {"id": "EXT-03", "name": "yaml-frontmatter-preservation", "syntax": "^---\\n[\\s\\S]*?\\n---", "description": "Non-destructive preservation of YAML frontmatter on edits", "status": "PASSED", "evidence": "test_markdown_yaml_and_comment_preservation"},
+        {"id": "EXT-04", "name": "html-comment-metadata", "syntax": "<!-- odisea:meta ... -->", "description": "Metadata storage in standard HTML comments without modifying text", "status": "PASSED", "evidence": "test_markdown_yaml_and_comment_preservation"},
+        {"id": "EXT-05", "name": "ulyz-native-package", "syntax": ".ulyz / .odisea", "description": "Compressed ZIP package format with Content.xml & attachments", "status": "PASSED", "evidence": "external_folders/ulyz_format.rs, test_ulyz_package_roundtrip"},
+        {"id": "EXT-06", "name": "notify-file-watcher", "syntax": "notify crate AsyncWatcher", "description": "Detects external edits, renames and deletions in <100ms", "status": "PASSED", "evidence": "external_folders/watcher.rs, test_folder_watcher_creation"},
+        {"id": "EXT-07", "name": "unlink-external-folder", "syntax": "cmd_unlink_external_folder", "description": "Removes binding without deleting files from disk", "status": "PASSED", "evidence": "external_folders/mod.rs"},
+        {"id": "EXT-08", "name": "scan-recursive-folder", "syntax": "cmd_scan_external_folder", "description": "Scans folder hierarchy into structured FileEntry vector", "status": "PASSED", "evidence": "external_folders/sync.rs"}
+      ]
+    },
+    {
+      "id": "backups_and_portability",
+      "name": "4. Portable Zstandard Backups & Restores",
+      "checkpoints_count": 7,
+      "items": [
+        {"id": "BCK-01", "name": "zstd-snapshot-compression", "syntax": "zstd level 3 (.odiseabackup)", "description": "Compresses library.odiseadb into fast ultra-compact snapshots", "status": "PASSED", "evidence": "backups/snapshot.rs, test_zstd_snapshot_creation_and_decompression"},
+        {"id": "BCK-02", "name": "automatic-hourly-scheduler", "syntax": "BackupScheduler thread", "description": "Background snapshot runner creating automated periodic backups", "status": "PASSED", "evidence": "backups/scheduler.rs"},
+        {"id": "BCK-03", "name": "snapshot-metadata-inspection", "syntax": "cmd_inspect_backup_snapshot", "description": "Inspects snapshot internal sheets and tables before restoring", "status": "PASSED", "evidence": "backups/restore.rs, test_backup_inspection_and_granular_restore"},
+        {"id": "BCK-04", "name": "granular-sheet-restore", "syntax": "cmd_restore_single_sheet_from_backup", "description": "Restores a single historical sheet without overwriting the whole DB", "status": "PASSED", "evidence": "backups/restore.rs, test_backup_inspection_and_granular_restore"},
+        {"id": "BCK-05", "name": "full-library-restore", "syntax": "cmd_restore_backup_snapshot", "description": "Safe atomic replacement of library.odiseadb from snapshot", "status": "PASSED", "evidence": "backups/restore.rs"},
+        {"id": "BCK-06", "name": "backup-retention-rotation", "syntax": "hourly / daily / weekly", "description": "Rotates snapshots automatically to prevent disk overflow", "status": "PASSED", "evidence": "backups/snapshot.rs"},
+        {"id": "BCK-07", "name": "zero-appdata-isolation", "syntax": "./odisea_data/ strictly relative", "description": "Zero writes to %APPDATA% or Windows Registry", "status": "PASSED", "evidence": "portable/paths.rs, test_portable_paths_initialization"}
+      ]
+    },
+    {
+      "id": "sheet_editorial_operations",
+      "name": "5. Sheet Lifecycle & Editorial Operations",
+      "checkpoints_count": 10,
+      "items": [
+        {"id": "SHT-01", "name": "glued-sheets", "syntax": "glued_with_next = 1", "description": "Glues consecutive sheets into continuous scroll and unified export", "status": "PASSED", "evidence": "db/sheets.rs, GlueIndicator.tsx, SheetCard.tsx"},
+        {"id": "SHT-02", "name": "split-sheet-at-cursor", "syntax": "cmd_split_sheet", "description": "Splits sheet into two at cursor position keeping group association", "status": "PASSED", "evidence": "db/sheets.rs, test_split_and_merge_sheets"},
+        {"id": "SHT-03", "name": "merge-sheets", "syntax": "cmd_merge_sheets", "description": "Merges multiple selected sheets into a single unified sheet", "status": "PASSED", "evidence": "db/sheets.rs, test_split_and_merge_sheets"},
+        {"id": "SHT-04", "name": "material-sheet-toggle", "syntax": "is_material = 1", "description": "Marks research/scratch sheets with amber 'Mat' micro-badge", "status": "PASSED", "evidence": "SheetCard.tsx, db/sheets.rs"},
+        {"id": "SHT-05", "name": "favorite-sheet-toggle", "syntax": "is_favorite = 1", "description": "Stars sheet with star icon and adds to Favorites filter", "status": "PASSED", "evidence": "SheetCard.tsx, db/sheets.rs"},
+        {"id": "SHT-06", "name": "soft-delete-to-trash", "syntax": "deleted_at = datetime('now')", "description": "Moves sheet to trash with 30-day soft retention", "status": "PASSED", "evidence": "db/sheets.rs, test_sheet_crud_favorite_and_trash"},
+        {"id": "SHT-07", "name": "restore-from-trash", "syntax": "cmd_restore_sheet", "description": "Restores sheet from trash back to its original group", "status": "PASSED", "evidence": "db/sheets.rs"},
+        {"id": "SHT-08", "name": "permanent-purge", "syntax": "cmd_purge_sheet", "description": "Permanently purges sheet and FTS entries from SQLite", "status": "PASSED", "evidence": "db/sheets.rs"},
+        {"id": "SHT-09", "name": "fts5-bm25-search", "syntax": "sheets_fts MATCH ...", "description": "FTS5 index with snippet highlight and ranking", "status": "PASSED", "evidence": "db/fts.rs, test_fts5_search_and_bm25_snippets"},
+        {"id": "SHT-10", "name": "smart-filters-engine", "syntax": "smart_filters JSON rules", "description": "Custom query rules matching keywords, dates, goals and text", "status": "PASSED", "evidence": "db/filters.rs, SmartFilterModal.tsx"}
+      ]
+    },
+    {
+      "id": "visual_modes_and_microui",
+      "name": "6. Visual Modes, Themes & Micro-UI Ergonomics",
+      "checkpoints_count": 12,
+      "items": [
+        {"id": "VIS-01", "name": "mode-minimalist", "syntax": "theme: minimalist", "description": "Original Ulysses macOS look with distraction-free layout", "status": "PASSED", "evidence": "themes/theme_tokens.ts, index.css"},
+        {"id": "VIS-02", "name": "mode-dark-carbon", "syntax": "theme: dark / carbon", "description": "True-black OLED dark mode with high contrast typography", "status": "PASSED", "evidence": "themes/theme_tokens.ts, index.css"},
+        {"id": "VIS-03", "name": "mode-solarized-light", "syntax": "theme: solarized-light", "description": "Ethan Schoonover Solarized Light palette", "status": "PASSED", "evidence": "themes/theme_tokens.ts, index.css"},
+        {"id": "VIS-04", "name": "mode-solarized-dark", "syntax": "theme: solarized-dark", "description": "Ethan Schoonover Solarized Dark palette", "status": "PASSED", "evidence": "themes/theme_tokens.ts, index.css"},
+        {"id": "VIS-05", "name": "mode-sepia", "syntax": "theme: sepia", "description": "Warm paper-like sepia tone for extended eye comfort", "status": "PASSED", "evidence": "themes/theme_tokens.ts, index.css"},
+        {"id": "VIS-06", "name": "mode-modern-mica", "syntax": "theme: mica", "description": "Windows 11 fluent Mica translucency and system acrylic", "status": "PASSED", "evidence": "themes/theme_tokens.ts, index.css"},
+        {"id": "VIS-07", "name": "mode-modern-nord", "syntax": "theme: nord", "description": "Arctic Nord design system palette", "status": "PASSED", "evidence": "themes/theme_tokens.ts, index.css"},
+        {"id": "VIS-08", "name": "mode-modern-monokai", "syntax": "theme: monokai", "description": "Vibrant syntax contrast Monokai developer palette", "status": "PASSED", "evidence": "themes/theme_tokens.ts, index.css"},
+        {"id": "VIS-09", "name": "ultheme-editor-studio", "syntax": "ThemeStudioModal", "description": "Visual theme creator and live parser for .ultheme packages", "status": "PASSED", "evidence": "ThemeStudioModal.tsx"},
+        {"id": "VIS-10", "name": "typewriter-scrolling", "syntax": "typewriterPosition: top/center/bottom/band", "description": "Fixed cursor line with smooth vertical auto-scroll", "status": "PASSED", "evidence": "OdiseaEditor.tsx"},
+        {"id": "VIS-11", "name": "focus-mode", "syntax": "focusMode: line/sentence/paragraph", "description": "Dims surrounding text by 30% to highlight current block", "status": "PASSED", "evidence": "codemirror_decorations.ts focusModeFacet"},
+        {"id": "VIS-12", "name": "microui-strict-mandate", "syntax": "icon <= 16px, badge <= 18px", "description": "Rule 3 compliance across all 4 panels without UI overflow", "status": "PASSED", "evidence": "index.css micro-icon, micro-badge, micro-pill"}
+      ]
+    },
+    {
+      "id": "ulss_engine_and_export",
+      "name": "7. ULSS Style Compiler & Document Exporters",
+      "checkpoints_count": 14,
+      "items": [
+        {"id": "EXP-01", "name": "ulss-lexer-and-parser", "syntax": "ulss_engine/lexer.rs, parser.rs", "description": "Parses full official Ulysses Style Sheets grammar (.ulss)", "status": "PASSED", "evidence": "test_ulss_lexer_and_parser"},
+        {"id": "EXP-02", "name": "ulss-variables-resolution", "syntax": "$variable: value", "description": "Resolves variables across selectors with scope propagation", "status": "PASSED", "evidence": "ulss_engine/resolver.rs, test_ulss_resolver_and_inheritance"},
+        {"id": "EXP-03", "name": "ulss-mixins-expansion", "syntax": "@mixin name { ... }", "description": "Expands mixin blocks with parameter overrides", "status": "PASSED", "evidence": "ulss_engine/resolver.rs, test_ulss_resolver_and_inheritance"},
+        {"id": "EXP-04", "name": "ulss-selector-inheritance", "syntax": "defaults -> heading-all -> heading-1", "description": "Hierarchical cascade of style properties", "status": "PASSED", "evidence": "test_ulss_resolver_and_inheritance"},
+        {"id": "EXP-05", "name": "ulss-adjacent-selectors", "syntax": "heading-all + paragraph", "description": "Applies special margin/indent to adjacent blocks", "status": "PASSED", "evidence": "ulss_engine/resolver.rs"},
+        {"id": "EXP-06", "name": "ulss-pseudo-classes", "syntax": ":first, :left, :right", "description": "Page layout rules for alternate printing spreads", "status": "PASSED", "evidence": "ulss_engine/resolver.rs"},
+        {"id": "EXP-07", "name": "ulss-baseline-grid", "syntax": "baseline-grid: 14pt", "description": "Aligns all text blocks and headings to common grid", "status": "PASSED", "evidence": "ulss_engine/resolver.rs"},
+        {"id": "EXP-08", "name": "ulss-column-span", "syntax": "column-span: all", "description": "Spans headings across multi-column magazine layouts", "status": "PASSED", "evidence": "ulss_engine/resolver.rs"},
+        {"id": "EXP-09", "name": "export-pdf-typst", "syntax": "cmd_export_document(pdf)", "description": "High-fidelity vector PDF compilation via Typst engine", "status": "PASSED", "evidence": "ulss_engine/pdf_typst.rs, test_pdf_typst_output"},
+        {"id": "EXP-10", "name": "export-docx-openxml", "syntax": "cmd_export_document(docx)", "description": "Native WordprocessingML document generation (.docx)", "status": "PASSED", "evidence": "ulss_engine/docx_openxml.rs, test_docx_export"},
+        {"id": "EXP-11", "name": "export-epub-valid", "syntax": "cmd_export_document(epub)", "description": "Standard ePub 3.3 package with table of contents & CSS", "status": "PASSED", "evidence": "ulss_engine/epub.rs, test_epub_export"},
+        {"id": "EXP-12", "name": "export-html-semantic", "syntax": "cmd_export_document(html)", "description": "Standalone semantic HTML5 with embedded responsive CSS", "status": "PASSED", "evidence": "test_html_and_markdown_exports"},
+        {"id": "EXP-13", "name": "export-markdown-clean", "syntax": "cmd_export_document(markdown)", "description": "Clean standard Gruber or CommonMark export without proprietary tags", "status": "PASSED", "evidence": "test_html_and_markdown_exports"},
+        {"id": "EXP-14", "name": "preinstalled-8-styles", "syntax": "8 .ulss styles in ./odisea_data/styles/", "description": "Swiss Knife, Novel, Academic, Business, Magazine, Essay, TechDocs, Revision", "status": "PASSED", "evidence": "portable/paths.rs, ExportPreviewModal.tsx"}
+      ]
+    },
+    {
+      "id": "dashboard_and_revision",
+      "name": "8. Dashboard Panel 4, Goals & Revision Engine",
+      "checkpoints_count": 12,
+      "items": [
+        {"id": "DSH-01", "name": "text-statistics-counters", "syntax": "StatisticsEngine::analyze", "description": "Words, characters with/without spaces, sentences, paragraphs, lines, pages", "status": "PASSED", "evidence": "revision/statistics.rs, test_detailed_statistics_calculation"},
+        {"id": "DSH-02", "name": "reading-speaking-time", "syntax": "slow, medium, fast reading speed", "description": "Calculates estimated reading and oral presentation speaking times", "status": "PASSED", "evidence": "ProgressStatsPane.tsx, revision/statistics.rs"},
+        {"id": "DSH-03", "name": "svg-goal-rings", "syntax": "GoalRingSVG.tsx", "description": "Color-coded progressive circular rings (orange, blue, green, red)", "status": "PASSED", "evidence": "GoalRingSVG.tsx, test_goal_progress_and_color_coding"},
+        {"id": "DSH-04", "name": "goal-quota-and-history", "syntax": "daily_quota, deadline, 30-day history", "description": "Dynamic daily word quota calculation and progress chart", "status": "PASSED", "evidence": "ProgressStatsPane.tsx, revision/statistics.rs"},
+        {"id": "DSH-05", "name": "outline-toc-navigation", "syntax": "OutlinePane.tsx", "description": "Interactive tree of H1..H6 headers with instant editor scroll", "status": "PASSED", "evidence": "OutlinePane.tsx"},
+        {"id": "DSH-06", "name": "elements-overview-filtering", "syntax": "OverviewPane.tsx", "description": "Filterable list of footnotes, annotations, links, images, comments, tasks", "status": "PASSED", "evidence": "OverviewPane.tsx"},
+        {"id": "DSH-07", "name": "bidirectional-backlinks", "syntax": "cmd_get_backlinks_with_context", "description": "Discovers incoming [[Wikilinks]] with line number & preview snippet", "status": "PASSED", "evidence": "BacklinksPane.tsx, db/backlinks.rs"},
+        {"id": "DSH-08", "name": "keywords-pool-management", "syntax": "KeywordsAttachmentsPane.tsx", "description": "Global keyword pool with sheet attachment and micro-pill badges", "status": "PASSED", "evidence": "KeywordsAttachmentsPane.tsx, db/keywords.rs"},
+        {"id": "DSH-09", "name": "revision-10-categories", "syntax": "StyleChecker::analyze_text", "description": "Typography, pleonasms, passive voice, repetition, jargon, etc.", "status": "PASSED", "evidence": "revision/style_check.rs, test_all_10_categories_and_table_cells"},
+        {"id": "DSH-10", "name": "revision-quick-replacements", "syntax": "RevisionModePane.tsx", "description": "Click-to-replace suggested corrections directly into editor text", "status": "PASSED", "evidence": "RevisionModePane.tsx"},
+        {"id": "DSH-11", "name": "llm-ai-assistance", "syntax": "cmd_llm_assist (Ollama/API)", "description": "Local or cloud AI rewriting for style, clarity and conciseness", "status": "PASSED", "evidence": "portable/config.rs, RevisionModePane.tsx"},
+        {"id": "DSH-12", "name": "sheet-attachments-manager", "syntax": "attachments table", "description": "Attach reference images, PDFs and notes to any sheet", "status": "PASSED", "evidence": "KeywordsAttachmentsPane.tsx, db/schema.rs"}
+      ]
+    },
+    {
+      "id": "publishers_and_keyboard",
+      "name": "9. Publishing Connectors & Keyboard Ergonomics",
+      "checkpoints_count": 10,
+      "items": [
+        {"id": "PUB-01", "name": "wordpress-rest-api", "syntax": "WordPressPublisher", "description": "Basic Auth, new posts (POST) and post updates (PUT) via post_id", "status": "PASSED", "evidence": "publishers/wordpress.rs, PublishPane.tsx"},
+        {"id": "PUB-02", "name": "ghost-admin-api", "syntax": "GhostPublisher", "description": "HS256 JWT auth, status draft/published/scheduled, update via post_id", "status": "PASSED", "evidence": "publishers/ghost.rs, PublishPane.tsx"},
+        {"id": "PUB-03", "name": "medium-v1-api", "syntax": "MediumPublisher", "description": "Direct publishing to Medium profile resolving /v1/me", "status": "PASSED", "evidence": "publishers/medium.rs, PublishPane.tsx"},
+        {"id": "PUB-04", "name": "microblog-micropub", "syntax": "MicroBlogPublisher", "description": "Micropub create and action=update with custom slug and categories", "status": "PASSED", "evidence": "publishers/microblog.rs, PublishPane.tsx"},
+        {"id": "PUB-05", "name": "copy-for-substack", "syntax": "SubstackFormatter", "description": "Rich clipboard HTML + text with private comment stripping", "status": "PASSED", "evidence": "publishers/substack.rs, test_substack_format_conversion"},
+        {"id": "PUB-06", "name": "publish-airplane-indicator", "syntax": "SheetCard paper airplane Send icon", "description": "Micro-pill badge with platform name and airplane icon in sheet list", "status": "PASSED", "evidence": "SheetCard.tsx"},
+        {"id": "PUB-07", "name": "publish-widget-dashboard", "syntax": "PublishPane.tsx", "description": "Full dashboard tab 7 with status, schedule date-time, tags, accounts", "status": "PASSED", "evidence": "PublishPane.tsx, DashboardContainer.tsx"},
+        {"id": "PUB-08", "name": "keyboard-drilldown", "syntax": "Return (Enter)", "description": "Drill-down: Library -> Sheet List -> CodeMirror Editor", "status": "PASSED", "evidence": "App.tsx, LibraryTree.tsx, SheetList.tsx, OdiseaEditor.tsx"},
+        {"id": "PUB-09", "name": "keyboard-drillup", "syntax": "Ctrl + Return", "description": "Drill-up: Editor -> Sheet List -> Library", "status": "PASSED", "evidence": "App.tsx, SheetList.tsx, OdiseaEditor.tsx drillUpKeymap"},
+        {"id": "PUB-10", "name": "spotlight-command-palette", "syntax": "Ctrl+Space / Ctrl+P", "description": "Global Spotlight launcher for new sheet, project jump, modes, export", "status": "PASSED", "evidence": "CommandPalette.tsx, App.tsx"}
+      ]
+    }
+  ]
+}

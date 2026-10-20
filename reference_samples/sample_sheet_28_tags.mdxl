@@ -1,0 +1,109 @@
+# Odisea Architecture Canonical Specification
+
+(toc)
+
+%% Internal engineering comment block:
+%% This sheet verifies the full 28-tag lexical coverage of Markdown XL for Odisea on Windows 11.
+%% Do not export to final public PDFs without stripping comments.
+
+The **Odisea** platform is designed as an exact, high-performance replica and Windows 11 extension of [Ulysses](https://ulysses.app) for macOS. It strictly honors the _What You See Is What You Mean_ (WYSIWYM) writing paradigm while introducing deep desktop integration.
+
+## Structural Heading Demonstration
+
+### Section Sub-level 3
+
+#### Detailed Subsection 4
+
+##### Semantic Component 5
+
+###### Micro-section 6: Engine Core
+
+----
+
+## Inline Formatting & Nested Constructs
+
+Writing in Markdown XL allows fluent combination of typographic tags:
+Here is normal text containing **strong bold words**, _emphasized italics_, and nested **_bold italic elements_**. 
+
+We can also mark critical terms using the native highlighter ::high-priority feature::, or mark deprecated syntax using the redaction tag ||legacy Win32 GDI call||. Authors can write inline private notes ++verify DirectX 12 D2D fallback++ that are omitted during standard export.
+
+Complex inline elements support nested payloads:
+- A word with an inline annotation: {DirectWrite Text Layout|Hardware-accelerated text shaping engine for OpenType features}.
+- An inline footnote reference(fn: Footnotes in Ulysses and Odisea are automatically numbered on output and mapped to bottom-of-page or end-of-section slots).
+- Technical inline code `const layout = engine.create_text_layout(text);` and inline raw string ~<span class="custom-win11-pill">Native</span>~.
+
+## Lists and Task Tracking
+
+Odisea supports nested hierarchical lists with smart indentation:
+
+1. Phase 1: Core Parsing & Lexical Analysis
+   1. Build unambiguous EBNF grammar
+   2. Implement zero-copy Rust/C++ lexer
+2. Phase 2: Layout & Typography Engine
+   - [x] Baseline grid alignment (16pt pitch)
+   - [x] Multi-column balancing (PDF & print)
+   - [ ] DirectWrite typography fallback for OpenType math
+3. Phase 3: High-Fidelity UI Components
+   * File library navigation tree (SQLite backend)
+   * Three-pane fluid layout (Library, Sheet List, Editor)
+
+## Block Quotes and Structural Nesting
+
+> The true beauty of a focused text editor lies in the invisible discipline of its layout engine.
+> When text snaps seamlessly to the **baseline grid**(fn: Ulysses baseline grid feature aligns every line across all columns strictly), the reading experience becomes effortless.
+> > Nested block quotes inherit typography while compounding margin indents and accent borders.
+
+## Mathematical Typography (LaTeX Equations)
+
+Odisea provides first-class LaTeX mathematical formulas both inline and as standalone display blocks:
+
+Inline equation: The relativistic energy-momentum invariant is $E^2 = (pc)^2 + (m_0 c^2)^2$.
+
+Standalone display equation block:
+
+$$\oint_{\partial \Omega} \mathbf{E} \cdot d\mathbf{A} = \frac{1}{\varepsilon_0} \iiint_{\Omega} \rho \, dV$$
+
+## Code Blocks & Verbatim Raw Blocks
+
+Code blocks support language specifiers and tab stops:
+
+''rust
+pub struct SheetParser {
+    tokens: Vec<Token>,
+    cursor: usize,
+}
+
+impl SheetParser {
+    pub fn parse_markdown_xl(input: &str) -> Result<DocumentNode, ParseError> {
+        // High performance SIMD scanner
+        let lexer = Lexer::new(input);
+        lexer.tokenize_all()
+    }
+}
+''
+
+Verbatim raw blocks bypass the markup engine and feed directly into target exporter backends:
+
+~~
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Windows 11 Integration]
+DirectComposition Visual tree synchronized with Windows DWM compositor.
+\end{tcolorbox}
+~~
+
+## Media Objects & Tables
+
+Images can be inserted inline or as standalone figure blocks:
+
+(img: assets/odisea_window_architecture.png)
+
+Tabular data is structured cleanly using either native `(tbl)` sheets or standard grid syntax:
+
+| Component ID | Module Name | Technology Stack | Latency SLA |
+| :--- | :--- | :--- | :--- |
+| `MOD-01` | **Lexer / AST** | Rust + EBNF Parser | < 0.5 ms |
+| `MOD-02` | **Layout Engine** | DirectWrite / Direct2D | < 16.6 ms (60 fps) |
+| `MOD-03` | **Style Compiler** | ULSS Evaluator | < 2.0 ms |
+| `MOD-04` | **Storage Layer** | SQLite WAL mode | < 1.0 ms |
+
+---
+*End of canonical sample sheet.*

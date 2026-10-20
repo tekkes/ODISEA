@@ -1,0 +1,33 @@
+// Editorial Revision Style (.ulss)
+// Explicitly displays inline additions (++), comments (%%), annotations ({}), and deleted text (||)
+$font-rev = "Charter"
+
+defaults {
+    font-family: $font-rev
+    font-size: 10.5pt
+    line-height: 16pt
+}
+
+inline-delete {
+    strikethrough: yes
+    strikethrough-color: #d70015
+    font-color: #6e6e73
+}
+
+inline-mark {
+    background-color: #fff3a8
+    font-color: #1d1d1f
+}
+
+inline-annotation {
+    background-color: #e8f2ff
+    font-color: #004085
+}
+
+block-comment {
+    background-color: #fff3cd
+    font-color: #856404
+    border-left-width: 3pt
+    border-left-color: #ffc107
+    padding: 6pt
+}

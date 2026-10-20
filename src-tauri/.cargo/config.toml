@@ -1,0 +1,4 @@
+# Target directory relative to project root to avoid hardcoded absolute paths
+[build]
+target-dir = "target"
+

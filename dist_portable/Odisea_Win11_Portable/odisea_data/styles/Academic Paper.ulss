@@ -1,0 +1,52 @@
+// Academic Paper Style (.ulss)
+$font-serif = "Times New Roman"
+$color-dark = #111111
+
+document-settings {
+    page-size: "A4"
+    margin-top: 25mm
+    margin-bottom: 25mm
+    margin-left: 25mm
+    margin-right: 25mm
+    footnote-enumeration: continuous
+    footnote-placement: end-of-page
+    footnote-style: decimal
+}
+
+defaults {
+    font-family: $font-serif
+    font-size: 10.5pt
+    line-height: 15pt
+    text-alignment: justified
+    hyphenation: yes
+}
+
+heading-1 {
+    font-family: $font-serif
+    font-size: 16pt
+    font-weight: bold
+    margin-top: 20pt
+    margin-bottom: 10pt
+    page-break: before
+}
+
+heading-2 {
+    font-family: $font-serif
+    font-size: 13pt
+    font-weight: bold
+    margin-top: 14pt
+    margin-bottom: 6pt
+}
+
+block-quote {
+    font-size: 9.5pt
+    line-height: 14pt
+    margin-left: 20pt
+    margin-right: 20pt
+    font-slant: italic
+}
+
+inline-footnote :anchor {
+    font-size: 8pt
+    baseline-shift: superscript
+}

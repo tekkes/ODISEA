@@ -1,0 +1,159 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-bg-primary: #ffffff;
+    --color-bg-secondary: #f6f6f8;
+    --color-bg-tertiary: #ededf0;
+    --color-text-primary: #1d1d1f;
+    --color-text-secondary: #6e6e73;
+    --color-text-muted: #8e8e93;
+    --color-accent: #007aff;
+    --color-border: #e5e5ea;
+    --color-selection: #b4d8fd;
+    --color-current-line: #f8f9fa;
+  }
+
+  .dark {
+    --color-bg-primary: #1c1c1e;
+    --color-bg-secondary: #252528;
+    --color-bg-tertiary: #2c2c2e;
+    --color-text-primary: #f2f2f7;
+    --color-text-secondary: #aeaeb2;
+    --color-text-muted: #636366;
+    --color-accent: #0a84ff;
+    --color-border: #38383a;
+    --color-selection: #264f78;
+    --color-current-line: #222225;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+}
+
+/* MANDATO MICRO-UI (Regla 3): 
+   Ningún icono > 16px (14px-16px, trazo fino 1.5px). 
+   Ninguna etiqueta visual (badge / keyword / micro-pill) > 18px (16px-18px, font 10px, padding 1px 5px, border-radius 4px). */
+.micro-icon {
+  width: 14px;
+  height: 14px;
+  max-width: 16px;
+  max-height: 16px;
+  stroke-width: 1.5px;
+}
+
+svg.micro-icon {
+  stroke-width: 1.5;
+}
+
+.micro-badge,
+.micro-keyword,
+.micro-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 16px;
+  max-height: 18px;
+  font-size: 10px;
+  line-height: 14px;
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(142, 142, 147, 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(142, 142, 147, 0.5);
+}
+
+/* Ulysses Focus Mode: Atenúa el resto del texto al 30% */
+.cm-focus-dimmed {
+  opacity: 0.3 !important;
+  filter: blur(0.12px);
+  transition: opacity 0.2s ease, filter 0.2s ease;
+}
+
+.cm-focus-dimmed:hover {
+  opacity: 0.65 !important;
+  filter: none;
+}
+
+/* Preset: Barely There / Sin Etiquetas (Atenuación extrema de sintaxis) */
+.theme-barely-there .cm-ulysses-tag {
+  opacity: 0.04 !important;
+  transition: opacity 0.15s ease;
+}
+
+.theme-barely-there .cm-line:hover .cm-ulysses-tag,
+.theme-barely-there .cm-ulysses-tag:hover,
+.theme-barely-there .cm-focused .cm-line:has(.cm-cursor) .cm-ulysses-tag {
+  opacity: 0.75 !important;
+}
+
+/* Preset: Windows 11 Liquid Glass / Mica (Acrílico translúcido) */
+.theme-mica-glass aside,
+.theme-mica-glass header,
+.theme-mica-glass footer {
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Heading scale variables defaults */
+:root {
+  --scale-h1: 1.45rem;
+  --scale-h2: 1.25rem;
+  --scale-h3: 1.12rem;
+  --scale-h4: 1.02rem;
+  --scale-h5: 1.0rem;
+  --scale-h6: 0.9rem;
+  --editor-font: system-ui, -apple-system, sans-serif;
+  --editor-line-height: 1.75;
+  --editor-max-width: 680px;
+}
+
+/* Revision Mode Visual Attenuation & Highlighting */
+.revision-mode-active .cm-content {
+  color: var(--color-text-muted) !important;
+  opacity: 0.65;
+  transition: opacity 0.3s ease;
+}
+
+.revision-mode-active .cm-line:hover {
+  opacity: 0.95;
+}
+
+.revision-mode-active .cm-annotation,
+.revision-mode-active .cm-comment,
+.revision-mode-active .cm-deletion,
+.revision-mode-active .cm-addition,
+.revision-mode-active [class*="annotation"],
+.revision-mode-active [class*="comment"],
+.revision-mode-active [class*="delete"],
+.revision-mode-active [class*="ulysses-tag"] {
+  opacity: 1 !important;
+  font-weight: 600;
+  background-color: rgba(255, 159, 10, 0.18) !important;
+  border-bottom: 2px dashed #ff9f0a;
+  padding: 0 3px;
+  border-radius: 3px;
+}
+
+
+

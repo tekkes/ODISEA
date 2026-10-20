@@ -1,0 +1,23 @@
+{
+  "name": "Odisea Dark",
+  "version": "1.0",
+  "type": "dark",
+  "colors": {
+    "background": "#1e1e2e",
+    "foreground": "#cdd6f4",
+    "sidebar_background": "#181825",
+    "accent": "#89b4fa",
+    "selection": "#45475a",
+    "cursor": "#f5e0dc",
+    "editor": {
+      "line_numbers": "#6c7086",
+      "heading_1": "#89b4fa",
+      "heading_2": "#b4befe",
+      "bold": "#f38ba8",
+      "italic": "#f9e2af",
+      "quote": "#a6adc8",
+      "code": "#a6e3a1",
+      "link": "#74c7ec"
+    }
+  }
+}

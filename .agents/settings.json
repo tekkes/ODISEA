@@ -1,0 +1,22 @@
+{
+    "agent": {
+        "defaultModel": "gemini-3.1-pro",
+        "maxParallelAgents": 5,
+        "builtinBrowser": {
+            "enabled": true,
+            "headless": false,
+            "captureArtifacts": true
+        },
+        "permissions": {
+            "allow": [
+                "mcp(rea-reverse-engineer/*)",
+                "mcp(filesystem-odisea/*)",
+                "mcp(sqlite-odisea/*)",
+                "terminal(cargo *)",
+                "terminal(npm *)",
+                "terminal(npx vitest *)",
+                "terminal(npx stryker *)"
+            ]
+        }
+    }
+}

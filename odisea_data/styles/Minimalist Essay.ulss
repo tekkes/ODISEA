@@ -1,0 +1,30 @@
+// Minimalist Essay (.ulss)
+$font-essay = "Georgia"
+
+document-settings {
+    page-size: "A4"
+    margin-top: 32mm
+    margin-bottom: 32mm
+    margin-left: 36mm
+    margin-right: 36mm
+}
+
+defaults {
+    font-family: $font-essay
+    font-size: 11pt
+    line-height: 18pt
+    font-color: #27272b
+    text-alignment: left
+}
+
+heading-1 {
+    font-family: $font-essay
+    font-size: 18pt
+    font-weight: normal
+    margin-top: 36pt
+    margin-bottom: 18pt
+}
+
+paragraph {
+    margin-bottom: 12pt
+}

@@ -1,0 +1,448 @@
+(* =============================================================================
+   ODISEA REVERSE-ENGINEERING EVIDENCE: FORMAL GRAMMAR SPECIFICATION (EBNF)
+   Target: Markdown XL (28 Tags) & Ulysses Style Sheet (ULSS)
+   Standard: ISO/IEC 14977 Unambiguous Syntax
+   Evidence ID: ev_odisea_grammar_canonical_v2
+   ============================================================================= *)
+
+(* =============================================================================
+   PART 1: MARKDOWN XL (28 CANONICAL TAGS)
+   ============================================================================= *)
+
+Document
+    = { BlankLine } , [ BlockElementList ] , { BlankLine } ;
+
+BlockElementList
+    = BlockElement , { { BlankLine } , BlockElement } ;
+
+BlockElement
+    = Heading
+    | Blockquote
+    | ListBlock
+    | CodeBlock
+    | RawBlock
+    | CommentBlock
+    | TableBlock
+    | TocBlock
+    | DividerBlock
+    | MathBlock
+    | ImageBlock
+    | Paragraph ;
+
+(* -----------------------------------------------------------------------------
+   1.1 Block Elements (Tags 1 - 18)
+   ----------------------------------------------------------------------------- *)
+
+(* Tags 1-6: Headings H1..H6 *)
+Heading
+    = Heading1 | Heading2 | Heading3 | Heading4 | Heading5 | Heading6 ;
+
+Heading1 = '#' , WhiteSpace , InlineSeq , Newline ;
+Heading2 = '##' , WhiteSpace , InlineSeq , Newline ;
+Heading3 = '###' , WhiteSpace , InlineSeq , Newline ;
+Heading4 = '####' , WhiteSpace , InlineSeq , Newline ;
+Heading5 = '#####' , WhiteSpace , InlineSeq , Newline ;
+Heading6 = '######' , WhiteSpace , InlineSeq , Newline ;
+
+(* Tag 7: Paragraph *)
+Paragraph
+    = ParagraphLine , { Newline , ParagraphLine } , ( Newline | EndOfFile ) ;
+
+ParagraphLine
+    = ( NonBlockStartChar | EscapedChar ) , { InlineElement } ;
+
+(* Tag 8: Blockquote (Recursive container) *)
+Blockquote
+    = BlockquoteLine , { Newline , BlockquoteLine } ;
+
+BlockquoteLine
+    = '>' , [ Space ] , ( BlockElement | InlineSeq ) ;
+
+(* Tags 9-11: Lists (Unordered, Ordered, Task) *)
+ListBlock
+    = UnorderedList | OrderedList | TaskList ;
+
+UnorderedList
+    = UnorderedListItem , { Newline , UnorderedListItem } ;
+
+UnorderedListItem
+    = [ Indent ] , ( '-' | '*' | '+' ) , WhiteSpace , InlineSeq , [ NestedListBlock ] ;
+
+OrderedList
+    = OrderedListItem , { Newline , OrderedListItem } ;
+
+OrderedListItem
+    = [ Indent ] , Digit , { Digit } , '.' , WhiteSpace , InlineSeq , [ NestedListBlock ] ;
+
+TaskList
+    = TaskListItem , { Newline , TaskListItem } ;
+
+TaskListItem
+    = [ Indent ] , '-' , Space , '[' , ( Space | 'x' | 'X' ) , ']' , WhiteSpace , InlineSeq , [ NestedListBlock ] ;
+
+NestedListBlock
+    = Newline , Indent , ListBlock ;
+
+(* Tag 12: Divider *)
+DividerBlock
+    = ( '----' | '====' | '****' ) , { '-' | '=' | '*' } , Newline ;
+
+(* Tag 13: Code Block (Dual syntax: '' or ```) *)
+CodeBlock
+    = CodeBlockUlysses | CodeBlockStandard ;
+
+CodeBlockUlysses
+    = "''" , [ LanguageId ] , Newline , VerbatimCodeLines , "''" , Newline ;
+
+CodeBlockStandard
+    = "```" , [ LanguageId ] , Newline , VerbatimCodeLines , "```" , Newline ;
+
+(* Tag 14: Raw Block (Export Passthrough) *)
+RawBlock
+    = '~~' , Newline , VerbatimRawLines , '~~' , Newline ;
+
+(* Tag 15: Comment Block (Author Notes) *)
+CommentBlock
+    = '%%' , [ WhiteSpace ] , CommentLine , { Newline , '%%' , [ WhiteSpace ] , CommentLine } , Newline ;
+
+CommentLine
+    = { PrintableChar } ;
+
+(* Tag 16: Table Block ((tbl) or GFM Pipe Grid) *)
+TableBlock
+    = TableUlysses | TableGfm ;
+
+TableUlysses
+    = '(tbl)' , [ WhiteSpace ] , Newline , TableGfm ;
+
+TableGfm
+    = TableHeaderRow , Newline , TableSeparatorRow , { Newline , TableDataRow } ;
+
+TableHeaderRow
+    = '|' , TableCell , { '|' , TableCell } , '|' ;
+
+TableSeparatorRow
+    = '|' , TableAlignCell , { '|' , TableAlignCell } , '|' ;
+
+TableDataRow
+    = '|' , TableCell , { '|' , TableCell } , '|' ;
+
+TableCell
+    = [ WhiteSpace ] , InlineSeq , [ WhiteSpace ] ;
+
+TableAlignCell
+    = [ WhiteSpace ] , [ ':' ] , '---' , { '-' } , [ ':' ] , [ WhiteSpace ] ;
+
+(* Tag 17: Table of Contents *)
+TocBlock
+    = '(toc)' , [ WhiteSpace ] , ( Newline | EndOfFile ) ;
+
+(* Tag 18: Media / Image Block *)
+ImageBlock
+    = ( ImageUlysses | ImageMarkdown ) , ( Newline | EndOfFile ) ;
+
+ImageUlysses
+    = '(img:' , [ WhiteSpace ] , PathString , [ WhiteSpace ] , ')'
+    | '(img)' ;
+
+ImageMarkdown
+    = '![' , [ InlineSeq ] , '](' , UrlString , [ Space , '"' , StringLiteral , '"' ] , ')' ;
+
+(* Extension: Math Block *)
+MathBlock
+    = '$$' , Newline , MathContentLines , '$$' , Newline ;
+
+(* -----------------------------------------------------------------------------
+   1.2 Inline Elements (Tags 19 - 28)
+   ----------------------------------------------------------------------------- *)
+
+InlineSeq
+    = InlineElement , { InlineElement } ;
+
+InlineElement
+    = EscapedChar
+    | InlineMath
+    | InlineStrongEmphasis
+    | InlineStrong
+    | InlineEmphasis
+    | InlineCode
+    | InlineRaw
+    | InlineMark
+    | InlineDelete
+    | InlineComment
+    | InlineAnnotation
+    | InlineFootnote
+    | InlineLink
+    | InlineImage
+    | PlainText ;
+
+(* Tag 19: Strong / Bold *)
+InlineStrong
+    = ( '**' , InlineSeqNoStrongAsterisk , '**' )
+    | ( '__' , InlineSeqNoStrongUnderscore , '__' ) ;
+
+(* Tag 20: Emphasis / Italic *)
+InlineEmphasis
+    = ( '*' , InlineSeqNoEmphasisAsterisk , '*' )
+    | ( '_' , InlineSeqNoEmphasisUnderscore , '_' ) ;
+
+(* Combined Strong & Emphasis disambiguation *)
+InlineStrongEmphasis
+    = ( '***' , InlineSeq , '***' )
+    | ( '___' , InlineSeq , '___' ) ;
+
+(* Tag 21: Inline Code *)
+InlineCode
+    = '`' , { NonBacktickChar } , '`' ;
+
+(* Tag 22: Inline Raw *)
+InlineRaw
+    = '~' , { NonTildeChar } , '~' ;
+
+(* Tag 23: Inline Mark / Highlight *)
+InlineMark
+    = ( '::' , { NonColonColonChar } , '::' )
+    | ( '==' , { NonEqualEqualChar } , '==' ) ;
+
+(* Tag 24: Inline Delete / Redaction *)
+InlineDelete
+    = '||' , { NonPipePipeChar } , '||' ;
+
+(* Tag 25: Inline Private Comment *)
+InlineComment
+    = '++' , { NonPlusPlusChar } , '++' ;
+
+(* Tag 26: Inline Annotation *)
+InlineAnnotation
+    = '{' , AnnotationBody , [ '|' , AnnotationNote ] , '}' ;
+
+AnnotationBody
+    = InlineSeq ;
+
+AnnotationNote
+    = { NonBraceChar } ;
+
+(* Tag 27: Inline Footnote *)
+InlineFootnote
+    = '(fn:' , [ WhiteSpace ] , FootnotePayload , ')'
+    | '(fn)' ;
+
+FootnotePayload
+    = InlineSeq ;
+
+(* Tag 28: Inline Link *)
+InlineLink
+    = '[' , InlineSeq , '](' , UrlString , ')' ;
+
+InlineImage
+    = ImageUlysses | ImageMarkdown ;
+
+InlineMath
+    = '$' , MathInlineContent , '$' ;
+
+PlainText
+    = ( RegularTextChar ) , { RegularTextChar } ;
+
+EscapedChar
+    = '\\' , AnyPunctuationChar ;
+
+(* =============================================================================
+   PART 2: ULYSSES STYLE SHEET (ULSS) GRAMMAR
+   ============================================================================= *)
+
+StyleSheet
+    = { SStatement } ;
+
+SStatement
+    = SVariableDefinition
+    | SMixinDefinition
+    | SStyleRule
+    | SComment ;
+
+(* -----------------------------------------------------------------------------
+   2.1 Variables & Arithmetic Expressions
+   ----------------------------------------------------------------------------- *)
+
+SVariableDefinition
+    = SVariableName , [ SWhiteSpace ] , '=' , [ SWhiteSpace ] , SExpression , [ SEndOfStatement ] ;
+
+SVariableName
+    = '$' , IdentifierChar , { IdentifierChar | '-' } ;
+
+SExpression
+    = SAdditiveExpr ;
+
+SAdditiveExpr
+    = SMultiplicativeExpr , { [ SWhiteSpace ] , ( '+' | '-' ) , [ SWhiteSpace ] , SMultiplicativeExpr } ;
+
+SMultiplicativeExpr
+    = SPrimaryExpr , { [ SWhiteSpace ] , ( '*' | '/' ) , [ SWhiteSpace ] , SPrimaryExpr } ;
+
+SPrimaryExpr
+    = SVariableName
+    | SLength
+    | SNumber
+    | SColor
+    | SString
+    | SSymbol
+    | SArray
+    | SBoolean
+    | '(' , [ SWhiteSpace ] , SExpression , [ SWhiteSpace ] , ')' ;
+
+(* -----------------------------------------------------------------------------
+   2.2 Mixins & Style Rules
+   ----------------------------------------------------------------------------- *)
+
+SMixinDefinition
+    = SMixinName , [ SWhiteSpace ] , SDeclarationBlock ;
+
+SMixinName
+    = '@' , IdentifierChar , { IdentifierChar | '-' } ;
+
+SStyleRule
+    = SSelectorList , [ SWhiteSpace ] , [ SMixinApplicationList ] , [ SWhiteSpace ] , SDeclarationBlock ;
+
+SMixinApplicationList
+    = ':' , [ SWhiteSpace ] , SMixinName , { [ SWhiteSpace ] , ',' , [ SWhiteSpace ] , SMixinName } ;
+
+SSelectorList
+    = SSelector , { [ SWhiteSpace ] , ',' , [ SWhiteSpace ] , SSelector } ;
+
+SSelector
+    = SCompoundSelector , { SCombinator , SCompoundSelector } ;
+
+SCombinator
+    = ( [ SWhiteSpace ] , '+' , [ SWhiteSpace ] )
+    | ( [ SWhiteSpace ] , '>' , [ SWhiteSpace ] )
+    | SWhiteSpace ;
+
+SCompoundSelector
+    = SClassName , { SPseudoClass } ;
+
+SPseudoClass
+    = [ SWhiteSpace ] , ':' , IdentifierChar , { IdentifierChar | '-' } ;
+
+SClassName
+    = 'document-settings'
+    | 'defaults'
+    | 'area-header'
+    | 'area-footer'
+    | 'area-footnotes'
+    | 'heading-1' | 'heading-2' | 'heading-3' | 'heading-4' | 'heading-5' | 'heading-6' | 'heading-all'
+    | 'paragraph' | 'paragraph-figure' | 'figure-caption' | 'paragraph-divider'
+    | 'block-quote' | 'block-code' | 'block-raw' | 'block-comment' | 'block-all'
+    | 'list-ordered' | 'list-unordered' | 'list-all'
+    | 'table' | 'table-cell'
+    | 'table-of-contents' | 'table-of-contents-item'
+    | 'media-image'
+    | 'inline-strong' | 'inline-emphasis' | 'inline-code' | 'inline-citation'
+    | 'inline-comment' | 'inline-raw' | 'inline-mark' | 'inline-delete'
+    | 'inline-link' | 'inline-footnote' | 'inline-annotation'
+    | 'toc-heading-1' | 'toc-heading-2' | 'toc-heading-3'
+    | 'syntax-all' | 'syntax-keyword' | 'syntax-string' | 'syntax-comment'
+    | IdentifierChar , { IdentifierChar | '-' } ;
+
+(* -----------------------------------------------------------------------------
+   2.3 Declarations, Properties and Value Literals
+   ----------------------------------------------------------------------------- *)
+
+SDeclarationBlock
+    = '{' , { SDeclarationEntry } , '}' ;
+
+SDeclarationEntry
+    = [ SWhiteSpace ] , SPropertyAssignment , [ SEndOfStatement ] ;
+
+SPropertyAssignment
+    = SPropertyName , [ SWhiteSpace ] , ':' , [ SWhiteSpace ] , SExpression ;
+
+SPropertyName
+    = IdentifierChar , { IdentifierChar | '-' } ;
+
+SEndOfStatement
+    = ';' | Newline ;
+
+SLength
+    = SNumber , SUnit ;
+
+SUnit
+    = 'pt' | 'mm' | 'cm' | 'in' | 'em' | 'en' | 'ex' | '%' ;
+
+SNumber
+    = [ '+' | '-' ] , Digit , { Digit } , [ '.' , Digit , { Digit } ] ;
+
+SColor
+    = HexColor | RgbColor ;
+
+HexColor
+    = '#' , HexDigit , HexDigit , HexDigit , [ HexDigit , HexDigit , HexDigit , [ HexDigit , HexDigit ] ] ;
+
+RgbColor
+    = 'rgb(' , SNumber , ',' , SNumber , ',' , SNumber , ')' ;
+
+SString
+    = '"' , { StringChar } , '"' ;
+
+SSymbol
+    = IdentifierChar , { IdentifierChar | '-' } ;
+
+SBoolean
+    = 'yes' | 'no' | 'YES' | 'NO' | 'true' | 'false' | 'TRUE' | 'FALSE' ;
+
+SArray
+    = '[' , [ SWhiteSpace ] , SExpression , { [ SWhiteSpace ] , ',' , [ SWhiteSpace ] , SExpression } , [ SWhiteSpace ] , ']' ;
+
+SComment
+    = '//' , { PrintableChar } , Newline ;
+
+(* -----------------------------------------------------------------------------
+   2.4 Lexical Terminals & Character Classes
+   ----------------------------------------------------------------------------- *)
+
+NonBlockStartChar
+    = ? Any printable Unicode character except '#', '>', '-', '*', '+', '|', '`', '~', '%', '(', '$' ? ;
+
+RegularTextChar
+    = ? Any character except Markdown XL delimiter triggers or backslash ? ;
+
+LanguageId
+    = ( Letter | Digit | '_' | '-' | '+' ) , { Letter | Digit | '_' | '-' | '+' } ;
+
+PathString
+    = { PrintableChar - ')' } ;
+
+UrlString
+    = { PrintableChar - ')' } ;
+
+StringLiteral
+    = { PrintableChar - '"' } ;
+
+IdentifierChar
+    = Letter | Digit ;
+
+HexDigit
+    = Digit | 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'A' | 'B' | 'C' | 'D' | 'E' | 'F' ;
+
+Digit
+    = '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' ;
+
+Letter
+    = 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g' | 'h' | 'i' | 'j' | 'k' | 'l' | 'm'
+    | 'n' | 'o' | 'p' | 'q' | 'r' | 's' | 't' | 'u' | 'v' | 'w' | 'x' | 'y' | 'z'
+    | 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H' | 'I' | 'J' | 'K' | 'L' | 'M'
+    | 'N' | 'O' | 'P' | 'Q' | 'R' | 'S' | 'T' | 'U' | 'V' | 'W' | 'X' | 'Y' | 'Z' ;
+
+WhiteSpace
+    = Space | Tab ;
+
+SWhiteSpace
+    = Space | Tab | Newline ;
+
+Indent
+    = ( Space , Space , [ Space , Space ] ) | Tab ;
+
+Space = ' ' ;
+Tab = ? Unicode Character Horizontal Tab (U+0009) ? ;
+Newline = ? Unicode Character Line Feed (U+000A) or CR+LF (U+000D U+000A) ? ;
+BlankLine = { WhiteSpace } , Newline ;
+EndOfFile = ? End of Stream ? ;
+PrintableChar = ? Any Unicode printable graphic character ? ;

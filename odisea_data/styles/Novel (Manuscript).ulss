@@ -1,0 +1,46 @@
+// Novel (Manuscript) Standard Submission (.ulss)
+$font-body = "Courier New"
+$font-title = "Courier New"
+
+document-settings {
+    page-size: "Letter"
+    margin-top: 1in
+    margin-bottom: 1in
+    margin-left: 1in
+    margin-right: 1in
+    two-sided: no
+}
+
+defaults {
+    font-family: $font-body
+    font-size: 12pt
+    line-height: 24pt
+    text-alignment: left
+}
+
+heading-1 {
+    font-family: $font-title
+    font-size: 14pt
+    font-weight: bold
+    text-alignment: center
+    page-break: before
+    margin-top: 2in
+    margin-bottom: 1in
+}
+
+paragraph {
+    margin-top: 0
+    margin-bottom: 0
+    first-line-indent: 0
+}
+
+paragraph + paragraph {
+    first-line-indent: 0.5in
+}
+
+area-header {
+    font-family: $font-body
+    font-size: 10pt
+    text-alignment: right
+    content: "AUTHOR / TITLE / {page-number}"
+}

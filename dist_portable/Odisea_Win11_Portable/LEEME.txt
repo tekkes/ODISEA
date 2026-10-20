@@ -1,0 +1,13 @@
+=============================================================
+ Odisea Portable para Windows 11
+=============================================================
+
+Para iniciar la aplicacion:
+1. Haz doble clic en 'Iniciar_Odisea.bat' (la primera vez compila el lanzador nativo 'Iniciar_Odisea.exe' en medio segundo con el compilador de Windows).
+2. A partir de ahi, puedes abrir directamente 'Iniciar_Odisea.exe' haciendo doble clic.
+
+Notas de portabilidad:
+- Todos tus datos, proyectos, borradores y configuraciones se guardan
+  en la carpeta local './odisea_data/'.
+- No requiere instalacion de Node, Python ni Rust.
+- 100% compatible con Windows 11.

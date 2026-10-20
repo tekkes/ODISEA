@@ -1,0 +1,391 @@
+{
+  "_meta": {
+    "evidence_version": "2.1.0",
+    "generated_at": "2026-10-19T17:18:00Z",
+    "generator": "rea-reverse-engineer / morluto/rea specialist",
+    "target_project": "Odisea for Windows 11 (Ulysses Replica & Extended Engine)",
+    "canonical_authorities": [
+      "https://styles.ulysses.app/reference",
+      "https://help.ulysses.app/en_US/dive-into-editing/markdown-xl"
+    ]
+  },
+  "canonical_artifacts": {
+    "sample_sheet_28_tags.mdxl": {
+      "path": "reference_samples/sample_sheet_28_tags.mdxl",
+      "sha256": "4F3FC105D5B568C6EFA4D471D5B551E010F40ED9118ECCDFC35E4ECD4AF7C59D",
+      "format": "Markdown XL (Extended Gruber Markdown)",
+      "total_tags_exercised": 28,
+      "contains_latex_math": true,
+      "contains_nested_constructs": true
+    },
+    "sample_style.ulss": {
+      "path": "reference_samples/sample_style.ulss",
+      "sha256": "F287A3822692C03AF44F935EDA506A85C266DC097698015563107D1A8B7F863C",
+      "format": "Ulysses Style Sheet (ULSS)",
+      "contains_baseline_grid": true,
+      "contains_column_count": true,
+      "contains_mixins": true,
+      "contains_variables": true,
+      "contains_relative_selectors": true
+    },
+    "sample_theme.ultheme": {
+      "path": "reference_samples/sample_theme.ultheme",
+      "sha256": "03EFA6D32A9614F89FCC381263669DE156DF3C2A088E9143A0DA469936BA1CEB",
+      "format": "Ulysses Editor Theme (ULTHEME)",
+      "palette_type": "Dual (Light/Dark)",
+      "accents_count": 11,
+      "tags_defined": 28
+    }
+  },
+  "markdown_xl_specification": {
+    "overview": "Markdown XL is a 28-tag strict WYSIWYM markup language providing dedicated semantic tokens for authorship, editorial collaboration, and structured document design.",
+    "tag_inventory_28": [
+      {
+        "id": 1,
+        "name": "heading-1",
+        "category": "block",
+        "trigger": "# ",
+        "closing": "\\n",
+        "ast_node": "HeadingNode(level=1)",
+        "description": "First-level section title"
+      },
+      {
+        "id": 2,
+        "name": "heading-2",
+        "category": "block",
+        "trigger": "## ",
+        "closing": "\\n",
+        "ast_node": "HeadingNode(level=2)",
+        "description": "Second-level section heading"
+      },
+      {
+        "id": 3,
+        "name": "heading-3",
+        "category": "block",
+        "trigger": "### ",
+        "closing": "\\n",
+        "ast_node": "HeadingNode(level=3)",
+        "description": "Third-level section subheading"
+      },
+      {
+        "id": 4,
+        "name": "heading-4",
+        "category": "block",
+        "trigger": "#### ",
+        "closing": "\\n",
+        "ast_node": "HeadingNode(level=4)",
+        "description": "Fourth-level subsection"
+      },
+      {
+        "id": 5,
+        "name": "heading-5",
+        "category": "block",
+        "trigger": "##### ",
+        "closing": "\\n",
+        "ast_node": "HeadingNode(level=5)",
+        "description": "Fifth-level semantic heading"
+      },
+      {
+        "id": 6,
+        "name": "heading-6",
+        "category": "block",
+        "trigger": "###### ",
+        "closing": "\\n",
+        "ast_node": "HeadingNode(level=6)",
+        "description": "Sixth-level micro heading"
+      },
+      {
+        "id": 7,
+        "name": "paragraph",
+        "category": "block",
+        "trigger": "",
+        "closing": "\\n\\n",
+        "ast_node": "ParagraphNode",
+        "description": "Standard textual paragraph block"
+      },
+      {
+        "id": 8,
+        "name": "block-quote",
+        "category": "block",
+        "trigger": "> ",
+        "closing": "\\n\\n",
+        "ast_node": "BlockquoteNode",
+        "description": "Quotation container with indentation and left accent rule"
+      },
+      {
+        "id": 9,
+        "name": "list-unordered",
+        "category": "block",
+        "trigger": "- | * | + ",
+        "closing": "\\n",
+        "ast_node": "UnorderedListNode",
+        "description": "Bulleted list item"
+      },
+      {
+        "id": 10,
+        "name": "list-ordered",
+        "category": "block",
+        "trigger": "[0-9]+\\. ",
+        "closing": "\\n",
+        "ast_node": "OrderedListNode",
+        "description": "Sequentially numbered list item"
+      },
+      {
+        "id": 11,
+        "name": "list-task",
+        "category": "block",
+        "trigger": "- [ ] | - [x] ",
+        "closing": "\\n",
+        "ast_node": "TaskListNode(checked=bool)",
+        "description": "Interactive checklist task item"
+      },
+      {
+        "id": 12,
+        "name": "divider",
+        "category": "block",
+        "trigger": "---- | ==== | ****",
+        "closing": "\\n",
+        "ast_node": "DividerNode",
+        "description": "Horizontal thematic break or page break separator"
+      },
+      {
+        "id": 13,
+        "name": "block-code",
+        "category": "block",
+        "trigger": "''[lang]?\\n | ```[lang]?\\n",
+        "closing": "\\n'' | \\n```",
+        "ast_node": "CodeBlockNode(lang)",
+        "description": "Syntax-highlighted monospace preformatted code block"
+      },
+      {
+        "id": 14,
+        "name": "block-raw",
+        "category": "block",
+        "trigger": "~~\\n",
+        "closing": "\\n~~",
+        "ast_node": "RawBlockNode",
+        "description": "Verbatim export payload bypassing the markdown generator"
+      },
+      {
+        "id": 15,
+        "name": "block-comment",
+        "category": "block",
+        "trigger": "%%",
+        "closing": "\\n",
+        "ast_node": "CommentBlockNode",
+        "description": "Author-only private paragraph excluded from standard export"
+      },
+      {
+        "id": 16,
+        "name": "table",
+        "category": "block",
+        "trigger": "(tbl) | |...|",
+        "closing": "\\n\\n",
+        "ast_node": "TableNode",
+        "description": "Tabular grid data container with header row/column boundaries"
+      },
+      {
+        "id": 17,
+        "name": "table-of-contents",
+        "category": "object",
+        "trigger": "(toc)",
+        "closing": "",
+        "ast_node": "TocNode",
+        "description": "Dynamic Table of Contents generator based on document headings"
+      },
+      {
+        "id": 18,
+        "name": "media-image",
+        "category": "object",
+        "trigger": "(img: path) | (img) | ![alt](url)",
+        "closing": "",
+        "ast_node": "ImageNode(src, alt)",
+        "description": "Embedded bitmap or vector asset reference"
+      },
+      {
+        "id": 19,
+        "name": "inline-strong",
+        "category": "inline",
+        "trigger": "** | __",
+        "closing": "** | __",
+        "ast_node": "StrongNode",
+        "description": "Bold typographic emphasis"
+      },
+      {
+        "id": 20,
+        "name": "inline-emphasis",
+        "category": "inline",
+        "trigger": "* | _",
+        "closing": "* | _",
+        "ast_node": "EmphasisNode",
+        "description": "Italic typographic emphasis"
+      },
+      {
+        "id": 21,
+        "name": "inline-code",
+        "category": "inline",
+        "trigger": "`",
+        "closing": "`",
+        "ast_node": "InlineCodeNode",
+        "description": "Monospace inline code segment"
+      },
+      {
+        "id": 22,
+        "name": "inline-raw",
+        "category": "inline",
+        "trigger": "~",
+        "closing": "~",
+        "ast_node": "InlineRawNode",
+        "description": "Inline raw code passthrough"
+      },
+      {
+        "id": 23,
+        "name": "inline-mark",
+        "category": "inline",
+        "trigger": "::",
+        "closing": "::",
+        "ast_node": "MarkNode",
+        "description": "Text highlight marker"
+      },
+      {
+        "id": 24,
+        "name": "inline-delete",
+        "category": "inline",
+        "trigger": "||",
+        "closing": "||",
+        "ast_node": "DeleteNode",
+        "description": "Editorial redaction or strikethrough"
+      },
+      {
+        "id": 25,
+        "name": "inline-comment",
+        "category": "inline",
+        "trigger": "++",
+        "closing": "++",
+        "ast_node": "InlineCommentNode",
+        "description": "Inline private comment excluded from clean exports"
+      },
+      {
+        "id": 26,
+        "name": "inline-annotation",
+        "category": "inline",
+        "trigger": "{",
+        "closing": "}",
+        "ast_node": "AnnotationNode(text, note)",
+        "description": "Editorial attached note or sidebar marginalia"
+      },
+      {
+        "id": 27,
+        "name": "inline-footnote",
+        "category": "inline",
+        "trigger": "(fn: text) | (fn)",
+        "closing": ")",
+        "ast_node": "FootnoteNode(text)",
+        "description": "Footnote reference with automated numbering"
+      },
+      {
+        "id": 28,
+        "name": "inline-link",
+        "category": "inline",
+        "trigger": "[",
+        "closing": "](url)",
+        "ast_node": "LinkNode(text, href)",
+        "description": "Hyperlink reference with anchor text and URL"
+      }
+    ],
+    "disambiguation_rules": [
+      {
+        "rule_id": "DISAMB-01-BOLD-ITALIC",
+        "description": "Three asterisks `***text***` parses as StrongNode containing EmphasisNode.",
+        "precedence": "StrongNode outer, EmphasisNode inner"
+      },
+      {
+        "rule_id": "DISAMB-02-DELETE-VS-TABLE",
+        "description": "`||` at the start of a line without prior pipe is parsed as inline-delete opening, whereas single `|` delimit table cells.",
+        "precedence": "Table parser requires at least two single pipes on a line."
+      },
+      {
+        "rule_id": "DISAMB-03-CODE-BLOCK-DOUBLE-TICK",
+        "description": "Double single-quote `''` at line start introduces a code block until matching `''` at line start.",
+        "precedence": "Evaluated before blockquote and paragraph."
+      },
+      {
+        "rule_id": "DISAMB-04-ANNOTATION-SYNTAX",
+        "description": "Annotations support `{body|note}` or `{body}`. If pipe is present, left is anchor body and right is note payload.",
+        "precedence": "Inline scanner scans for terminating `}` before starting next inline."
+      }
+    ]
+  },
+  "ulss_specification": {
+    "overview": "Ulysses Style Sheets (ULSS) is a declarative styling language with full cascade, inheritance, arithmetic expressions, variables, mixins, and relative selectors.",
+    "selector_categories": {
+      "general_classes": [
+        "document-settings",
+        "defaults",
+        "area-header",
+        "area-footer",
+        "area-footnotes"
+      ],
+      "definition_classes": [
+        "heading-1", "heading-2", "heading-3", "heading-4", "heading-5", "heading-6", "heading-all",
+        "paragraph", "paragraph-figure", "figure-caption", "paragraph-divider",
+        "block-quote", "block-code", "block-raw", "block-comment", "block-all",
+        "list-ordered", "list-unordered", "list-all",
+        "table", "table-cell",
+        "table-of-contents", "table-of-contents-item",
+        "media-image"
+      ],
+      "inline_classes": [
+        "inline-strong", "inline-emphasis", "inline-code", "inline-citation",
+        "inline-comment", "inline-raw", "inline-mark", "inline-delete",
+        "inline-link", "inline-footnote", "inline-annotation"
+      ],
+      "syntax_classes": [
+        "syntax-all", "syntax-comment", "syntax-constant", "syntax-entity",
+        "syntax-parameter", "syntax-tag", "syntax-keyword", "syntax-string",
+        "syntax-variable", "syntax-error", "syntax-escape", "syntax-heading",
+        "syntax-italic", "syntax-bold", "syntax-deleted", "syntax-inserted"
+      ]
+    },
+    "combinators": [
+      {
+        "symbol": "+",
+        "name": "Adjacent Sibling",
+        "example": "paragraph + paragraph",
+        "semantics": "Matches node if it immediately follows the predecessor node."
+      },
+      {
+        "symbol": ">",
+        "name": "Direct Child",
+        "example": "block-quote > paragraph",
+        "semantics": "Matches node if it is directly contained in parent node."
+      },
+      {
+        "symbol": " ",
+        "name": "Descendant",
+        "example": "area-footnotes inline-link",
+        "semantics": "Matches node if it is hierarchically nested within ancestor node."
+      }
+    ],
+    "pseudoclasses": [
+      ":first", ":last",
+      ":first-page", ":left-page", ":right-page",
+      ":anchor", ":enumerator",
+      ":header", ":body", ":header-row", ":header-row-boundary",
+      ":header-column", ":header-column-boundary",
+      ":header-top", ":header-top-boundary",
+      ":header-bottom", ":header-bottom-boundary",
+      ":header-left", ":header-left-boundary",
+      ":header-right", ":header-right-boundary",
+      ":heading-1", ":heading-2", ":heading-3", ":heading-4", ":heading-5", ":heading-6"
+    ],
+    "document_settings_attributes": [
+      "page-size", "page-width", "page-height",
+      "margin-top", "margin-bottom", "margin-left", "margin-right",
+      "baseline-grid", "baseline-grid-size",
+      "column-count", "column-spacing-width",
+      "two-sided",
+      "footnote-enumeration", "footnote-placement", "footnote-style"
+    ]
+  }
+}

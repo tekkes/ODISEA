@@ -1,0 +1,48 @@
+// Technical Documentation Style (.ulss)
+$font-tech = "Segoe UI"
+$font-mono = "Cascadia Code"
+
+document-settings {
+    page-size: "A4"
+    margin-top: 20mm
+    margin-bottom: 20mm
+    margin-left: 20mm
+    margin-right: 20mm
+}
+
+defaults {
+    font-family: $font-tech
+    font-size: 10pt
+    line-height: 15pt
+    color: #1f2937
+}
+
+heading-1 {
+    font-family: $font-tech
+    font-size: 18pt
+    font-weight: bold
+    border-bottom-width: 1pt
+    border-bottom-color: #e5e7eb
+    padding-bottom: 4pt
+    margin-top: 20pt
+    margin-bottom: 10pt
+}
+
+block-code {
+    font-family: $font-mono
+    font-size: 9pt
+    background-color: #f3f4f6
+    border-width: 1pt
+    border-color: #e5e7eb
+    border-radius: 4pt
+    padding: 8pt
+}
+
+inline-code {
+    font-family: $font-mono
+    font-size: 9pt
+    background-color: #f3f4f6
+    border-radius: 2pt
+    padding-left: 2pt
+    padding-right: 2pt
+}

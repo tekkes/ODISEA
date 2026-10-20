@@ -1,0 +1,327 @@
+// =============================================================================
+// ODISEA / ULYSSES REFERENCE STYLE SHEET (.ulss)
+// Canonical Specification Compliant (styles.ulysses.app/reference)
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// 1. GLOBAL VARIABLES & METRICS
+// -----------------------------------------------------------------------------
+$font-body         = "Charter"
+$font-headings     = "Avenir Next"
+$font-monospace    = "JetBrains Mono"
+
+$color-primary     = #1d1d1f
+$color-secondary   = #6e6e73
+$color-accent      = #0071e3
+$color-bg-alt      = #f5f5f7
+$color-border      = #d2d2d7
+$color-quote       = #3a3a3c
+$color-code-bg     = #f2f2f7
+
+$base-font-size    = 10.5pt
+$base-line-height  = 16pt
+$paragraph-spacing = 8pt
+
+// -----------------------------------------------------------------------------
+// 2. REUSABLE MIXINS
+// -----------------------------------------------------------------------------
+@base-typography {
+    font-family:    $font-body
+    font-size:      $base-font-size
+    line-height:    $base-line-height
+    font-color:     $color-primary
+}
+
+@heading-shared {
+    font-family:    $font-headings
+    font-weight:    bold
+    font-color:     $color-primary
+    keep-with-next: yes
+}
+
+@code-container {
+    font-family:      $font-monospace
+    font-size:        9pt
+    background-color: $color-code-bg
+}
+
+// -----------------------------------------------------------------------------
+// 3. DOCUMENT SETTINGS (Print & PDF Layout Engine)
+// -----------------------------------------------------------------------------
+document-settings {
+    page-size:              "A4"
+    page-width:             210mm
+    page-height:            297mm
+    margin-top:             25mm
+    margin-bottom:          25mm
+    margin-left:            20mm
+    margin-right:           20mm
+    
+    // Core Layout Engine Grid & Multi-Column
+    baseline-grid:          $base-line-height
+    baseline-grid-size:     $base-line-height
+    column-count:           1
+    column-spacing-width:   6mm
+    two-sided:              yes
+
+    // Footnotes Engine
+    footnote-enumeration:   continuous
+    footnote-placement:     end-of-page
+    footnote-style:         decimal
+}
+
+// -----------------------------------------------------------------------------
+// 4. DEFAULTS & GLOBAL FALLBACKS
+// -----------------------------------------------------------------------------
+defaults : @base-typography {
+    text-alignment:     justified
+    hyphenation:        yes
+}
+
+// -----------------------------------------------------------------------------
+// 5. HEADINGS H1 THROUGH H6
+// -----------------------------------------------------------------------------
+heading-1 : @heading-shared {
+    font-size:          24pt
+    line-height:        30pt
+    margin-top:         24pt
+    margin-bottom:      12pt
+    page-break:         before
+}
+
+heading-2 : @heading-shared {
+    font-size:          18pt
+    line-height:        24pt
+    margin-top:         18pt
+    margin-bottom:      8pt
+}
+
+heading-3 : @heading-shared {
+    font-size:          14pt
+    line-height:        18pt
+    margin-top:         14pt
+    margin-bottom:      6pt
+}
+
+heading-4 : @heading-shared {
+    font-size:          12pt
+    line-height:        16pt
+    margin-top:         10pt
+    margin-bottom:      4pt
+    font-weight:        semibold
+}
+
+heading-5 : @heading-shared {
+    font-size:          11pt
+    line-height:        15pt
+    margin-top:         8pt
+    margin-bottom:      2pt
+    font-slant:         italic
+    font-weight:        medium
+}
+
+heading-6 : @heading-shared {
+    font-size:          10pt
+    line-height:        14pt
+    margin-top:         6pt
+    margin-bottom:      2pt
+    font-color:         $color-secondary
+    text-transform:     uppercase
+}
+
+// -----------------------------------------------------------------------------
+// 6. PARAGRAPHS & RELATIVE SELECTORS
+// -----------------------------------------------------------------------------
+paragraph {
+    margin-top:         0pt
+    margin-bottom:      $paragraph-spacing
+    first-line-indent:  0pt
+}
+
+// Relative selector: consecutive paragraphs use first-line-indent instead of margin
+paragraph + paragraph {
+    margin-top:         0pt
+    margin-bottom:      0pt
+    first-line-indent:  14pt
+}
+
+// -----------------------------------------------------------------------------
+// 7. BLOCK STRUCTURES (Quote, Code, Divider)
+// -----------------------------------------------------------------------------
+block-quote {
+    font-family:        $font-body
+    font-slant:         italic
+    font-color:         $color-quote
+    margin-left:        16pt
+    margin-right:       16pt
+    margin-top:         12pt
+    margin-bottom:      12pt
+    border-left-width:  2.5pt
+    border-left-color:  $color-accent
+    padding-left:       10pt
+}
+
+block-code : @code-container {
+    margin-top:         10pt
+    margin-bottom:      10pt
+    margin-left:        0pt
+    margin-right:       0pt
+    padding:            8pt
+    border-color:       $color-border
+    border-width:       0.5pt
+    border-radius:      4pt
+    line-height:        13pt
+    tab-width:          4
+}
+
+paragraph-divider {
+    margin-top:         18pt
+    margin-bottom:      18pt
+    border-width:       0.5pt
+    border-color:       $color-border
+    border-style:       solid
+}
+
+// -----------------------------------------------------------------------------
+// 8. TABLES & TABLE CELLS
+// -----------------------------------------------------------------------------
+table {
+    margin-top:         14pt
+    margin-bottom:      14pt
+    border-width:       0.75pt
+    border-color:       $color-border
+    cell-padding:       6pt
+}
+
+table-cell {
+    font-size:          9.5pt
+    line-height:        13pt
+    row-separator-color: $color-border
+    row-separator-width: 0.5pt
+}
+
+table-cell :header {
+    font-family:        $font-headings
+    font-weight:        bold
+    background-color:   $color-bg-alt
+    font-color:         $color-primary
+}
+
+table-cell :header-top-boundary {
+    row-separator-width: 1.5pt
+    row-separator-color: $color-primary
+}
+
+// -----------------------------------------------------------------------------
+// 9. INLINE FORMATTING & ANNOTATIONS
+// -----------------------------------------------------------------------------
+inline-strong {
+    font-weight:        bold
+}
+
+inline-emphasis {
+    font-slant:         italic
+}
+
+inline-code : @code-container {
+    padding-left:       2pt
+    padding-right:      2pt
+    border-radius:      2pt
+}
+
+inline-mark {
+    background-color:   #fff3a8
+    font-color:         #1d1d1f
+}
+
+inline-delete {
+    strikethrough:      yes
+    strikethrough-color: #d70015
+    font-color:         $color-secondary
+}
+
+inline-link {
+    font-color:         $color-accent
+    underline:          single
+}
+
+inline-annotation {
+    background-color:   #e8f2ff
+    font-color:         #004085
+}
+
+inline-annotation :anchor {
+    font-size:          8pt
+    baseline-shift:     superscript
+    font-weight:        bold
+    font-color:         $color-accent
+}
+
+inline-footnote {
+    font-size:          9pt
+    line-height:        12pt
+    font-color:         $color-secondary
+}
+
+inline-footnote :anchor {
+    font-size:          7.5pt
+    baseline-shift:     superscript
+    font-weight:        semibold
+    font-color:         $color-accent
+}
+
+// -----------------------------------------------------------------------------
+// 10. RUNNING HEADERS, FOOTERS & TOC
+// -----------------------------------------------------------------------------
+area-header {
+    font-family:        $font-headings
+    font-size:          8pt
+    font-color:         $color-secondary
+    top-spacing:        10mm
+    bottom-spacing:     5mm
+    border-bottom-width: 0.25pt
+    border-bottom-color: $color-border
+    content:            "Odisea Architecture Specification | {document-title}"
+}
+
+area-header :first-page {
+    content:            none
+}
+
+area-header :left-page {
+    text-alignment:     left
+}
+
+area-header :right-page {
+    text-alignment:     right
+}
+
+area-footer {
+    font-family:        $font-headings
+    font-size:          8pt
+    font-color:         $color-secondary
+    bottom-spacing:     10mm
+    content:            "{page-number} / {total-pages}"
+    text-alignment:     center
+}
+
+table-of-contents {
+    margin-top:         20pt
+    margin-bottom:      20pt
+}
+
+table-of-contents-item :heading-1 {
+    font-family:        $font-headings
+    font-size:          11pt
+    font-weight:        bold
+    margin-top:         6pt
+    margin-bottom:      2pt
+}
+
+toc-heading-1 {
+    font-family:        $font-headings
+    font-size:          11pt
+    font-weight:        bold
+    margin-top:         6pt
+    margin-bottom:      2pt
+}

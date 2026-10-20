@@ -1,0 +1,1538 @@
+{
+  "title": "ODISEA PARA WINDOWS 11",
+  "subtitle": "Manual de Usuario, Arquitectura de Software y Guía de Referencia Técnica Integral de la Suite de Escritura Inmersiva",
+  "author": "Equipo de Arquitectura Odisea & Antigravity IDE",
+  "keywords": "Odisea, Windows 11, Markdown XL, ULSS, Ulysses, Escritura, Portabilidad, Rust, Tauri, SQLite",
+  "cover": {
+    "kicker": "MANUAL OFICIAL DE INSTRUCCIONES · SERIE ARQUITECTURA DE SOFTWARE",
+    "stats": [
+      {
+        "number": "8",
+        "label": "CAPÍTULOS TÉCNICOS"
+      },
+      {
+        "number": "28",
+        "label": "ETIQUETAS MARKDOWN XL"
+      },
+      {
+        "number": "11",
+        "label": "ESTILOS EDITORIALES ULSS"
+      },
+      {
+        "number": "100%",
+        "label": "PORTABLE & WINDOWS 11"
+      }
+    ],
+    "badge": "DISTRIBUCIÓN OFICIAL · VERSIÓN 1.0.0 RELEASE",
+    "footer_note": "Odisea Desktop Suite · Edición Técnica Octubre 2026"
+  },
+  "frontmatter": {
+    "tag": "EDICIÓN TÉCNICA OFICIAL",
+    "title": "Odisea para Windows 11: Manual Integral del Entorno de Prosa Pura",
+    "paragraphs": [
+      "Este manual constituye la documentación oficial de referencia y guía exhaustiva de usuario para Odisea, la suite de redacción inmersiva diseñada desde sus cimientos para Windows 11, combinando la legendaria experiencia de Ulysses para macOS con la robustez y portabilidad del ecosistema de Microsoft.",
+      "El documento aborda desde los fundamentos ergonómicos de la interfaz de 3+1 paneles y el teclado sin ratón, hasta las especificaciones formales de la gramática Markdown XL (sus 28 etiquetas semánticas), los widgets interactivos de alta densidad, el compilador de hojas de estilo ULSS y los conectores de publicación web en la nube.",
+      "Diseñado para escritores profesionales, novelistas, periodistas, investigadores académicos y creadores de contenido técnico que demandan un entorno sin distracciones, con preservación absoluta de la soberanía de sus datos y cero dependencias de instalación o registro en el sistema operativo."
+    ],
+    "legal_notice": "Odisea es una marca de software libre y portable. Ulysses® es una marca registrada de Ulysses GmbH & Co. KG. Se cita en este documento con fines pedagógicos y de compatibilidad técnica. Windows 11® y Fluent Design® son marcas de Microsoft Corporation.",
+    "disclaimer": "Prohibida la alteración no autorizada de esta obra técnica. Todas las marcas citadas pertenecen a sus respectivos titulares."
+  },
+  "toc": {
+    "blocks": [
+      {
+        "title": "BLOQUE I — FUNDAMENTOS Y ERGONOMÍA DE ESCRITURA",
+        "chapters": [
+          {
+            "title": "Capítulo 1 — Filosofía, Ergonomía y Arquitectura del Sistema",
+            "page": "4"
+          },
+          {
+            "title": "Capítulo 2 — La Interfaz Fluida de 3+1 Paneles y Navegación sin Ratón",
+            "page": "11"
+          }
+        ]
+      },
+      {
+        "title": "BLOQUE II — EL MOTOR DE EDICIÓN Y MARKDOWN XL",
+        "chapters": [
+          {
+            "title": "Capítulo 3 — La Sintaxis Markdown XL: Las 28 Etiquetas Semánticas",
+            "page": "18"
+          },
+          {
+            "title": "Capítulo 4 — Widgets Interactivos: Tablas, Fórmulas KaTeX y Medios",
+            "page": "25"
+          }
+        ]
+      },
+      {
+        "title": "BLOQUE III — ORGANIZACIÓN Y PRODUCTIVIDAD",
+        "chapters": [
+          {
+            "title": "Capítulo 5 — Gestión Documental, Hojas Pegadas y Carpetas Externas",
+            "page": "32"
+          },
+          {
+            "title": "Capítulo 6 — Dashboard de Escritura, Métricas y Objetivos (Goals)",
+            "page": "39"
+          }
+        ]
+      },
+      {
+        "title": "BLOQUE IV — MAQUETACIÓN EDITORIAL Y PUBLICACIÓN",
+        "chapters": [
+          {
+            "title": "Capítulo 7 — Motor de Estilos ULSS y Exportación Multi-Formato",
+            "page": "46"
+          },
+          {
+            "title": "Capítulo 8 — Conectores de Publicación Web y Mantenimiento Portable",
+            "page": "53"
+          }
+        ]
+      }
+    ]
+  },
+  "chapters": [
+    {
+      "number": 1,
+      "title": "Filosofía, Ergonomía y Arquitectura del Sistema",
+      "short_title": "FILOSOFÍA Y ARQUITECTURA",
+      "block": "BLOQUE I — FUNDAMENTOS Y ERGONOMÍA DE ESCRITURA",
+      "block_kicker": "BLOQUE I · FUNDAMENTOS Y ERGONOMÍA",
+      "objectives": [
+        "Comprender la filosofía de prosa pura de Odisea frente a procesadores de texto tradicionales.",
+        "Dominar el principio de micro-densidad visual (Micro-UI) y ergonomía de lectura en Windows 11.",
+        "Conocer la arquitectura técnica desacoplada (Tauri 2, Rust, CodeMirror 6, SQLite FTS5).",
+        "Garantizar el aislamiento de datos y la portabilidad absoluta en la carpeta ./odisea_data/."
+      ],
+      "pages": [
+        {
+          "header_section": "EL MANIFIESTO DE PROSA PURA",
+          "html_content": "\n    \n            <div class=\"section-title\">\n                <span class=\"section-marker\"></span>\n                <span>1.1 El Manifiesto de Prosa Pura y la Experiencia Ulysses en Windows 11</span>\n            </div>\n    <p>Durante más de dos décadas, los procesadores de texto comerciales han acumulado capas sucesivas de complejidad gráfica, barras de herramientas atiborradas y cintas de opciones que reclaman constantemente la atención visual del autor. Esta sobrecarga cognitiva fragmenta la concentración y desplaza el foco desde lo fundamental —la calidad y claridad de las ideas— hacia los adornos superficiales de formato.</p>\n    \n    <p><strong>Odisea</strong> nace como la respuesta arquitectónica definitiva para Windows 11: un entorno de redacción de alto rendimiento inspirado rigurosamente en la pureza de <em>Ulysses para macOS</em>, concebido para brindar un espacio de silencio visual donde las palabras fluyen sin fricción.</p>\n\n    \n        <div class=\"callout callout-definition\">\n            <span class=\"callout-title\">DEFINICIÓN CLAVE · ENTORNO WYSIWYM</span>\n            <div class=\"callout-body\">\n                <p>A diferencia de los procesadores WYSIWYG ('Lo que ves es lo que obtienes') que obligan a maquetar mientras se redacta, Odisea implementa el paradigma <strong>WYSIWYM</strong> ('Lo que ves es lo que quieres decir'). La estructura, el énfasis y la semántica se declaran mediante el lenguaje <strong>Markdown XL</strong>, postergando la composición tipográfica final al motor de estilos editoriales (.ulss).</p>\n            </div>\n        </div>\n\n    <p>La experiencia de Odisea en Windows 11 unifica la ligereza del texto plano con la sofisticación tipográfica moderna. Las tipografías maestras (Charter para el texto principal, Plus Jakarta Sans para la interfaz y JetBrains Mono para código y metadatos) han sido calibradas con proporciones áureas de interlineado y micro-espaciado.</p>\n\n    \n        <div class=\"figure-container\">\n            <div class=\"figure-box\">\n                <svg width=\"560\" height=\"240\" viewBox=\"0 0 560 240\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"1\" y=\"1\" width=\"558\" height=\"238\" rx=\"8\" fill=\"#ffffff\" stroke=\"#e2e8f0\" stroke-width=\"1\"/>\n<rect x=\"30.0\" y=\"20\" width=\"158.66666666666666\" height=\"40\" rx=\"4\" fill=\"#162a45\" stroke=\"#0f1e33\" />\n<text x=\"109.33333333333333\" y=\"44\" fill=\"#ffffff\" font-size=\"9\" font-weight=\"bold\" font-family=\"sans-serif\" text-anchor=\"middle\">Windows 11 Fluent UI</text>\n<line x1=\"109.33333333333333\" y1=\"60\" x2=\"109.33333333333333\" y2=\"90\" stroke=\"#94a3b8\" stroke-width=\"1.5\" />\n<rect x=\"200.66666666666666\" y=\"20\" width=\"158.66666666666666\" height=\"40\" rx=\"4\" fill=\"#162a45\" stroke=\"#0f1e33\" />\n<text x=\"280.0\" y=\"44\" fill=\"#ffffff\" font-size=\"9\" font-weight=\"bold\" font-family=\"sans-serif\" text-anchor=\"middle\">CodeMirror 6 Editor</text>\n<line x1=\"280.0\" y1=\"60\" x2=\"280.0\" y2=\"90\" stroke=\"#94a3b8\" stroke-width=\"1.5\" />\n<rect x=\"371.3333333333333\" y=\"20\" width=\"158.66666666666666\" height=\"40\" rx=\"4\" fill=\"#162a45\" stroke=\"#0f1e33\" />\n<text x=\"450.66666666666663\" y=\"44\" fill=\"#ffffff\" font-size=\"9\" font-weight=\"bold\" font-family=\"sans-serif\" text-anchor=\"middle\">WebView2 Runtime</text>\n<line x1=\"450.66666666666663\" y1=\"60\" x2=\"450.66666666666663\" y2=\"90\" stroke=\"#94a3b8\" stroke-width=\"1.5\" />\n<rect x=\"70\" y=\"70\" width=\"420\" height=\"55\" rx=\"6\" fill=\"#1e3a8a\" stroke=\"#162a45\" stroke-width=\"2\" />\n<text x=\"280.0\" y=\"96\" fill=\"#f59e0b\" font-size=\"10.5\" font-weight=\"800\" letter-spacing=\"1.5\" font-family=\"sans-serif\" text-anchor=\"middle\">CORE ENGINE</text>\n<text x=\"280.0\" y=\"112\" fill=\"#ffffff\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\" text-anchor=\"middle\">TAURI 2.0 &amp; RUST NATIVE CORE</text>\n<line x1=\"109.33333333333333\" y1=\"125\" x2=\"109.33333333333333\" y2=\"165\" stroke=\"#94a3b8\" stroke-width=\"1.5\" />\n<rect x=\"30.0\" y=\"165\" width=\"158.66666666666666\" height=\"50\" rx=\"4\" fill=\"#f8fafc\" stroke=\"#cbd5e1\" stroke-width=\"1.5\" />\n<text x=\"109.33333333333333\" y=\"187\" fill=\"#1e293b\" font-size=\"8.5\" font-weight=\"bold\" font-family=\"sans-serif\" text-anchor=\"middle\">SQLite FTS5 Library</text>\n<text x=\"109.33333333333333\" y=\"201\" fill=\"#64748b\" font-size=\"7.5\" font-family=\"sans-serif\" text-anchor=\"middle\">Base de datos local</text>\n<line x1=\"280.0\" y1=\"125\" x2=\"280.0\" y2=\"165\" stroke=\"#94a3b8\" stroke-width=\"1.5\" />\n<rect x=\"200.66666666666666\" y=\"165\" width=\"158.66666666666666\" height=\"50\" rx=\"4\" fill=\"#f8fafc\" stroke=\"#cbd5e1\" stroke-width=\"1.5\" />\n<text x=\"280.0\" y=\"187\" fill=\"#1e293b\" font-size=\"8.5\" font-weight=\"bold\" font-family=\"sans-serif\" text-anchor=\"middle\">ULSS Style Engine</text>\n<text x=\"280.0\" y=\"201\" fill=\"#64748b\" font-size=\"7.5\" font-family=\"sans-serif\" text-anchor=\"middle\">Compilador tipográfico</text>\n<line x1=\"450.66666666666663\" y1=\"125\" x2=\"450.66666666666663\" y2=\"165\" stroke=\"#94a3b8\" stroke-width=\"1.5\" />\n<rect x=\"371.3333333333333\" y=\"165\" width=\"158.66666666666666\" height=\"50\" rx=\"4\" fill=\"#f8fafc\" stroke=\"#cbd5e1\" stroke-width=\"1.5\" />\n<text x=\"450.66666666666663\" y=\"187\" fill=\"#1e293b\" font-size=\"8.5\" font-weight=\"bold\" font-family=\"sans-serif\" text-anchor=\"middle\">Zstandard Snapshots</text>\n<text x=\"450.66666666666663\" y=\"201\" fill=\"#64748b\" font-size=\"7.5\" font-family=\"sans-serif\" text-anchor=\"middle\">Backups en segundo plano</text>\n</svg>\n            </div>\n            <div class=\"figure-caption\">\n                <strong>Figura 1.1.</strong> Arquitectura técnica en capas desacopladas de Odisea para Windows 11: presentación web de alta velocidad sobre un núcleo nativo en Rust con persistencia local.\n            </div>\n        </div>\n    "
+        },
+        {
+          "header_section": "EL MANDATO MICRO-UI",
+          "html_content": "\n    \n            <div class=\"section-title\">\n                <span class=\"section-marker\"></span>\n                <span>1.2 El Mandato Micro-UI y Ergonomía Visual en Windows 11</span>\n            </div>\n    <p>Uno de los pilares fundacionales de Odisea es su arquitectura <strong>Micro-UI de alta densidad</strong>. En monitores de alta resolución y portátiles ultra-compactos, las barras de herramientas sobredimensionadas desperdician hasta el 30% del área vertical útil de trabajo. En Odisea, cada control vectorial y cada etiqueta visual se rige por especificaciones geométricas milimétricas:</p>\n\n    <ul>\n        <li><strong>Iconografía Vectorial:</strong> Ningún icono de la interfaz de usuario (Biblioteca, Lista de Hojas, Toolbar, Dashboard) supera los <strong>16 píxeles</strong> de altura, con un trazo fino constante de 1.5 píxeles que garantiza nitidez sub-píxel en pantallas HiDPI.</li>\n        <li><strong>Micro-Píldoras Tipográficas:</strong> Las etiquetas de palabras clave (<em>Keywords</em>), los indicadores de sección marginal (<code>H1</code>..<code>H6</code>, <code>FN</code>, <code>IMG</code>, <code>TOC</code>) y el estado de publicación en la nube se renderizan como micro-cápsulas de <strong>16px a 18px de altura máxima</strong>, con tipografía de 10px y relleno proporcional.</li>\n    </ul>\n\n    \n        <div class=\"callout callout-milestone\">\n            <span class=\"callout-title\">HITO ERGONÓMICO · RECUPERACIÓN DEL ESPACIO DE PROSA</span>\n            <div class=\"callout-body\">\n                <p>La arquitectura Micro-UI reduce la huella vertical de la interfaz en más de un 32% en comparación con editores convencionales basados en Electron o procesadores tradicionales. Cada milímetro recuperado se consagra a la visualización ininterrumpida de párrafos completos, minimizando la fatiga ocular.</p>\n            </div>\n        </div>\n\n    \n        <table class=\"table-technical\">\n            <colgroup><col style=\"width: 28%;\"><col style=\"width: 20%;\"><col style=\"width: 18%;\"><col style=\"width: 18%;\"><col style=\"width: 16%;\"></colgroup>\n            <thead>\n                <tr><th>Parámetro Comparativo</th><th>Odisea (Windows 11)</th><th>Ulysses (macOS)</th><th>Obsidian / Notion</th><th>Microsoft Word</th></tr>\n            </thead>\n            <tbody>\n                <tr><td>Huella de Memoria RAM</td><td><strong>45 - 75 MB</strong></td><td>60 - 90 MB</td><td>180 - 450 MB</td><td>220 - 600 MB</td></tr><tr><td>Arranque en Frío</td><td><strong>68 ms</strong></td><td>120 ms</td><td>800 - 1500 ms</td><td>1200 - 3000 ms</td></tr><tr><td>Portabilidad Nativa</td><td><strong>100% aislada</strong></td><td>Requiere macOS App</td><td>Requiere instalador</td><td>Instalador / Registro</td></tr><tr><td>Altura Iconos UI</td><td><strong>16 px estricto</strong></td><td>16 - 18 px</td><td>20 - 24 px</td><td>24 - 32 px</td></tr><tr><td>Motor Estilos Editorial</td><td><strong>ULSS nativo Rust</strong></td><td>ULSS Apple Core</td><td>CSS Ad-hoc</td><td>Estilos DOCX rígidos</td></tr>\n            </tbody>\n        </table>\n    "
+        },
+        {
+          "header_section": "PORTABILIDAD Y ARQUITECTURA",
+          "html_content": "\n    \n            <div class=\"section-title\">\n                <span class=\"section-marker\"></span>\n                <span>1.3 Portabilidad Extrema y la Estructura de ./odisea_data/</span>\n            </div>\n    <p>Para los profesionales que operan en entornos corporativos restringidos, estaciones de investigación o que alternan entre múltiples equipos informáticos, los instaladores tradicionales representan una barrera de fricción inadmisible. Odisea establece un <strong>Mandato de Portabilidad Absoluta en Windows 11</strong>:</p>\n\n    \n        <div class=\"callout callout-danger\">\n            <span class=\"callout-title\">REGLA DE AISLAMIENTO TOTAL: CERO ESCRITURAS EN EL REGISTRO</span>\n            <div class=\"callout-body\">\n                <p>Queda terminantemente prohibido que Odisea cree claves en el Registro de Windows o escriba configuraciones en %APPDATA% o %LOCALAPPDATA%. Toda la persistencia, perfiles de navegación, cachés y copias de seguridad residen exclusivamente en la carpeta relativa <code>./odisea_data/</code> junto a <code>Odisea.exe</code>.</p>\n            </div>\n        </div>\n\n    <p>Al ejecutarse por primera vez en cualquier ordenador, el binario detecta de forma autónoma su ruta física. Si el directorio <code>./odisea_data/</code> no existe, se inicializa automáticamente en milisegundos desplegando su topología estandarizada:</p>\n\n    <div class=\"code-box\">\n        <pre><code class=\"language-text\">Odisea_Win11_Portable/\n├── Odisea.exe                      # Binario único compilado y firmado localmente (6.91 MB)\n├── CERTIFICADO_CALIDAD_ODISEA.md   # Auditoría de verificación y hash SHA-256\n└── odisea_data/                    # Carpeta de persistencia 100% autocontenida\n    ├── config.toml                 # Configuración general (tema activo, idioma, ortografía)\n    ├── library.odiseadb            # Base relacional SQLite con tablas e índice FTS5\n    ├── styles/                     # Hojas de estilo .ulss (11 presets editoriales de serie)\n    ├── themes/                     # Temas visuales .ultheme (7 paletas canónicas dual-mode)\n    ├── attachments/                # Repositorio de imágenes y medios asociados a hojas\n    ├── backups/                    # Copias de seguridad automáticas comprimidas con Zstandard\n    │   ├── hourly/                 # Snapshots horarios de alta resolución\n    │   ├── daily/                  # Copias consolidadas diarias\n    │   └── weekly/                 # Resguardos semanales de largo plazo\n    ├── exports/                    # Directorio de salida para documentos PDF, DOCX, ePub, HTML\n    └── webview_profile/            # Perfil aislado de WebView2 (cookies, caché local)</code></pre>\n    </div>\n\n    \n        <div class=\"callout callout-takeaway\">\n            <span class=\"callout-title\">CONSEJO DE MOVILIDAD PROFESIONAL</span>\n            <div class=\"callout-body\">\n                <p>Puedes copiar la carpeta <code>Odisea_Win11_Portable</code> a una memoria USB o a una carpeta de OneDrive/Dropbox. Al ejecutar <code>Odisea.exe</code> en cualquier PC con Windows 11, tu biblioteca, hojas pegadas, objetivos y estilos estarán disponibles al instante, sin dejar huellas en el sistema anfitrión.</p>\n            </div>\n        </div>\n    "
+        }
+      ],
+      "summary": {
+        "key_points": [
+          "Odisea es la primera alternativa nativa de alta fidelidad a Ulysses para macOS en Windows 11.",
+          "Aplica el paradigma WYSIWYM: la redacción semántica y el diseño tipográfico están estrictamente separados.",
+          "Arquitectura Micro-UI: ningún icono supera 16px y ninguna etiqueta supera 18px de altura.",
+          "Compilado en Rust con Tauri 2.0: arranque en 68 ms y consumo de solo 45-75 MB de memoria RAM.",
+          "Portabilidad 100% aislada: cero escrituras en el Registro de Windows o %APPDATA%; todo reside en ./odisea_data/."
+        ],
+        "requirements": [
+          "Verificar que Odisea.exe se ejecute junto a su carpeta ./odisea_data/.",
+          "Comprender la diferencia operativa entre WYSIWYG comercial y el modelo WYSIWYM de Odisea.",
+          "Identificar la jerarquía de directorios de persistencia (styles, themes, backups, library.odiseadb)."
+        ]
+      },
+      "questionnaire": {
+        "columns": 2,
+        "questions": [
+          {
+            "text": "¿Qué paradigma de edición implementa Odisea frente al clásico WYSIWYG?",
+            "options": [
+              "a) WYSIWYM (What You See Is What You Mean)",
+              "b) PostScript directo",
+              "c) Rich Text Format (RTF)",
+              "d) Edición DTP pura"
+            ]
+          },
+          {
+            "text": "¿Cuál es la restricción máxima de altura para los iconos en la arquitectura Micro-UI?",
+            "options": [
+              "a) 24 píxeles",
+              "b) 16 píxeles",
+              "c) 20 píxeles",
+              "d) 12 píxeles"
+            ]
+          },
+          {
+            "text": "¿Dónde almacena Odisea toda su configuración, base de datos y temas?",
+            "options": [
+              "a) En HKEY_CURRENT_USER\\Software\\Odisea",
+              "b) En %APPDATA%\\Odisea",
+              "c) En ./odisea_data/ relativo al ejecutable",
+              "d) En %LOCALAPPDATA%\\Temp"
+            ]
+          },
+          {
+            "text": "¿Qué motor nativo impulsa el backend de Odisea para garantizar alto rendimiento?",
+            "options": [
+              "a) Python / Django",
+              "b) Rust / Tauri 2.0",
+              "c) C# / .NET 9",
+              "d) Node.js / Electron"
+            ]
+          },
+          {
+            "text": "¿Cuál es el tiempo de arranque en frío certificado de Odisea.exe?",
+            "options": [
+              "a) Aproximadamente 68 milisegundos",
+              "b) 1.5 segundos",
+              "c) 850 milisegundos",
+              "d) 3.2 segundos"
+            ]
+          },
+          {
+            "text": "¿Qué algoritmo de compresión utiliza Odisea para sus instantáneas de copia de seguridad?",
+            "options": [
+              "a) Gzip estándar",
+              "b) Zstandard (.odiseabak)",
+              "c) RAR5 propietario",
+              "d) LZMA sin pérdida"
+            ]
+          },
+          {
+            "text": "¿Cuál es la altura máxima autorizada para las micro-píldoras (keywords, badges de margen)?",
+            "options": [
+              "a) 24 píxeles",
+              "b) 16 a 18 píxeles",
+              "c) 22 píxeles",
+              "d) 26 píxeles"
+            ]
+          },
+          {
+            "text": "¿Qué base de datos relacional local gestiona la biblioteca de Odisea?",
+            "options": [
+              "a) PostgreSQL embebido",
+              "b) SQLite con tabla virtual FTS5 sincronizada",
+              "c) MongoDB local",
+              "d) Archivos JSON planos"
+            ]
+          },
+          {
+            "text": "¿Cómo se garantiza que WebView2 no escriba datos en el perfil del usuario de Windows?",
+            "options": [
+              "a) Se desactiva la caché",
+              "b) Se redirige WEBVIEW2_USER_DATA_FOLDER a ./odisea_data/webview_profile",
+              "c) Se usa Internet Explorer 11",
+              "d) No se puede evitar"
+            ]
+          },
+          {
+            "text": "¿Qué tipografía principal se utiliza por defecto en el lienzo de prosa de Odisea?",
+            "options": [
+              "a) Arial",
+              "b) Charter",
+              "c) Comic Sans",
+              "d) Times New Roman"
+            ]
+          }
+        ]
+      },
+      "solutions": {
+        "items": [
+          {
+            "correct_answer": "a) WYSIWYM (What You See Is What You Mean)",
+            "explanation": "Odisea separa la semántica del contenido de su estilo tipográfico final, permitiendo una redacción fluida sin distracciones de formato."
+          },
+          {
+            "correct_answer": "b) 16 píxeles",
+            "explanation": "La regla de Micro-UI exige que ningún icono supere 16px con 1.5px de trazo para maximizar el espacio útil en pantalla."
+          },
+          {
+            "correct_answer": "c) En ./odisea_data/ relativo al ejecutable",
+            "explanation": "El mandato de portabilidad prohíbe escribir en el Registro o en %APPDATA%, centralizando toda la información en ./odisea_data/."
+          },
+          {
+            "correct_answer": "b) Rust / Tauri 2.0",
+            "explanation": "El backend compilado en Rust garantiza seguridad de memoria, consumo ultrabajo de recursos (45-75 MB) y velocidad nativa."
+          },
+          {
+            "correct_answer": "a) Aproximadamente 68 milisegundos",
+            "explanation": "Las pruebas de laboratorio certifican un arranque en frío de 68.0 ms (promedio de 102.3 ms), instantáneo para el usuario."
+          },
+          {
+            "correct_answer": "b) Zstandard (.odiseabak)",
+            "explanation": "Zstandard ofrece la mejor relación entre velocidad de compresión en tiempo real y ratio de reducción de tamaño."
+          },
+          {
+            "correct_answer": "b) 16 a 18 píxeles",
+            "explanation": "Las micro-píldoras miden entre 16px y 18px de alto con fuente de 10px para identificar metadatos sin sobrecargar la vista."
+          },
+          {
+            "correct_answer": "b) SQLite con tabla virtual FTS5 sincronizada",
+            "explanation": "SQLite gestiona la integridad referencial con triggers que actualizan en tiempo real el índice de búsqueda completa FTS5."
+          },
+          {
+            "correct_answer": "b) Se redirige WEBVIEW2_USER_DATA_FOLDER a ./odisea_data/webview_profile",
+            "explanation": "En el arranque de paths.rs, la variable de entorno de WebView2 se confina a la carpeta relativa del paquete portable."
+          },
+          {
+            "correct_answer": "b) Charter",
+            "explanation": "Charter proporciona proporciones clásicas de serif diseñada específicamente para alta legibilidad en pantallas de ordenador."
+          }
+        ]
+      }
+    },
+    {
+      "number": 2,
+      "title": "La Interfaz Fluida de 3+1 Paneles y Navegación sin Ratón",
+      "short_title": "INTERFAZ Y NAVEGACIÓN",
+      "block": "BLOQUE I — FUNDAMENTOS Y ERGONOMÍA DE ESCRITURA",
+      "block_kicker": "BLOQUE I · FUNDAMENTOS Y ERGONOMÍA",
+      "objectives": [
+        "Operar con fluidez los 4 paneles de trabajo (Biblioteca, Lista de Hojas, Editor, Dashboard).",
+        "Conmutar entre los modos de visualización (Tres Paneles, Dos Paneles, Editor Único y Zen F11).",
+        "Dominar la Paleta de Comandos (Ctrl+P) y los atajos maestros para trabajar sin tocar el ratón.",
+        "Personalizar el entorno de redacción mediante los 7 temas canónicos .ultheme."
+      ],
+      "pages": [
+        {
+          "header_section": "LOS CUATRO PANELES FLUIDOS",
+          "html_content": "\n    \n            <div class=\"section-title\">\n                <span class=\"section-marker\"></span>\n                <span>2.1 Los Cuatro Paneles Fluidos y su Rol en el Flujo Creativo</span>\n            </div>\n    <p>La arquitectura espacial de Odisea reproduce con exactitud la célebre disposición de <strong>3+1 paneles horizontales</strong> de Ulysses para macOS, adaptada de forma natural al lenguaje visual <em>Fluent Design</em> de Windows 11:</p>\n\n    <ul>\n        <li><strong>Panel 1 · Biblioteca (Ctrl+1):</strong> Es el timón de tu producción escrita. Alberga los Proyectos activos, Grupos jerárquicos multinivel, Secciones de Notas y Bocetos, Carpetas Externas vinculadas (Dropbox, OneDrive, repositorios Git) y Filtros Inteligentes basados en reglas dinámicas.</li>\n        <li><strong>Panel 2 · Lista de Hojas (Ctrl+2):</strong> El clasificador táctico de documentos. Muestra cada hoja con su título en negrita, dos líneas de previsualización del cuerpo de texto, fecha relativa de modificación, micro-badges de palabras clave, indicador de favoritos y el icono de avión de papel si la hoja ha sido publicada en la nube.</li>\n        <li><strong>Panel 3 · Editor WYSIWYM (Ctrl+3):</strong> El lienzo de concentración pura. Libre de barras flotantes intrusivas, estiliza en tiempo real las 28 etiquetas de Markdown XL manteniendo las etiquetas semánticas visibles con sutil atenuación cromática.</li>\n        <li><strong>Panel 4 · Dashboard de Escritura (Ctrl+4):</strong> Panel lateral acoplable o flotante que reúne las métricas en vivo (palabras, caracteres, tiempo de lectura), el árbol de esquema (<em>Outline</em>), los objetivos de escritura y los enlaces entrantes (<em>Backlinks</em>).</li>\n    </ul>\n\n    \n        <div class=\"callout callout-success\">\n            <span class=\"callout-title\">CONSEJO PRÁCTICO · ALTERNANCIA INSTANTÁNEA POR TECLADO</span>\n            <div class=\"callout-body\">\n                <p>No recurras al ratón para desplegar u ocultar columnas. Las combinaciones <strong>Ctrl+1</strong>, <strong>Ctrl+2</strong>, <strong>Ctrl+3</strong> y <strong>Ctrl+4</strong> conmutan la visibilidad de cada panel de forma instantánea mediante transiciones de 180 ms con aceleración cúbica fluida.</p>\n            </div>\n        </div>\n\n    \n        <div class=\"figure-container\">\n            <div class=\"figure-box\">\n                <svg width=\"500\" height=\"240\" viewBox=\"0 0 500 240\" xmlns=\"http://www.w3.org/2000/svg\">\n<circle cx=\"250.0\" cy=\"120.0\" r=\"38\" fill=\"#f8fafc\" stroke=\"#cbd5e1\" stroke-width=\"2\" />\n<text x=\"250.0\" y=\"116.0\" fill=\"#162a45\" font-size=\"8\" font-weight=\"800\" font-family=\"sans-serif\" text-anchor=\"middle\">FLUJO</text>\n<text x=\"250.0\" y=\"130.0\" fill=\"#d97706\" font-size=\"7.5\" font-weight=\"700\" font-family=\"sans-serif\" text-anchor=\"middle\">DE TRABAJO 3+1 PANELES</text>\n<circle cx=\"250.0\" cy=\"120.0\" r=\"75\" fill=\"none\" stroke=\"#e2e8f0\" stroke-width=\"3\" stroke-dasharray=\"6,4\" />\n<circle cx=\"250.0\" cy=\"45.0\" r=\"30\" fill=\"#162a45\" stroke=\"#ffffff\" stroke-width=\"2\" />\n<text x=\"250.0\" y=\"49.0\" fill=\"#ffffff\" font-size=\"8\" font-weight=\"bold\" font-family=\"sans-serif\" text-anchor=\"middle\">Biblioteca\\nCtrl+1</text>\n<circle cx=\"325.0\" cy=\"120.0\" r=\"30\" fill=\"#1e3a8a\" stroke=\"#ffffff\" stroke-width=\"2\" />\n<text x=\"325.0\" y=\"124.0\" fill=\"#ffffff\" font-size=\"8\" font-weight=\"bold\" font-family=\"sans-serif\" text-anchor=\"middle\">Lista Hojas\\nCtrl+2</text>\n<circle cx=\"250.0\" cy=\"195.0\" r=\"30\" fill=\"#d97706\" stroke=\"#ffffff\" stroke-width=\"2\" />\n<text x=\"250.0\" y=\"199.0\" fill=\"#ffffff\" font-size=\"8\" font-weight=\"bold\" font-family=\"sans-serif\" text-anchor=\"middle\">Editor Zen\\nCtrl+3</text>\n<circle cx=\"175.0\" cy=\"120.0\" r=\"30\" fill=\"#2563eb\" stroke=\"#ffffff\" stroke-width=\"2\" />\n<text x=\"175.0\" y=\"124.0\" fill=\"#ffffff\" font-size=\"8\" font-weight=\"bold\" font-family=\"sans-serif\" text-anchor=\"middle\">Dashboard\\nCtrl+4</text>\n</svg>\n            </div>\n            <div class=\"figure-caption\">\n                <strong>Figura 2.1.</strong> Ciclo ergonómico de navegación entre paneles en Odisea: desde la organización estructural en la Biblioteca hasta el pulido final en el Dashboard.\n            </div>\n        </div>\n    "
+        },
+        {
+          "header_section": "MODOS DE VISUALIZACIÓN Y ENFOQUE",
+          "html_content": "\n    \n            <div class=\"section-title\">\n                <span class=\"section-marker\"></span>\n                <span>2.2 Modos de Visualización y Concentración Inmersiva</span>\n            </div>\n    <p>La redacción profesional atraviesa distintas fases: desde la planificación y estructura de capítulos hasta la inmersión profunda en la prosa o la revisión de estilo. Odisea se adapta a cada momento con tres modos de trabajo instantáneos:</p>\n\n    <ol>\n        <li><strong>Modo Tres Paneles (Vista Completa):</strong> Biblioteca, Lista de Hojas y Editor activos simultáneamente. Ideal para estructurar obras extensas, mover hojas entre grupos o consultar notas de apoyo mientras se escribe.</li>\n        <li><strong>Modo Dos Paneles (Lista y Editor):</strong> La biblioteca se colapsa (<code>Ctrl+1</code>), dejando la lista de hojas como índice de navegación rápido y el editor en el centro de la pantalla.</li>\n        <li><strong>Modo Editor Único (Zen / Pantalla Completa):</strong> Con <code>Ctrl+2</code> u oprimiendo <strong>F11</strong>, la interfaz oculta todos los paneles y decoraciones de Windows 11. El texto flota en el centro con márgenes equilibrados para una experiencia de concentración absoluta.</li>\n    </ol>\n\n    \n        <div class=\"callout callout-milestone\">\n            <span class=\"callout-title\">HITO ERGONÓMICO · MODO MÁQUINA DE ESCRIBIR Y ENFOQUE</span>\n            <div class=\"callout-body\">\n                <p>El <strong>Modo Máquina de Escribir (Typewriter Scrolling)</strong> bloquea la línea de escritura activa en el centro vertical exacto de la pantalla. A medida que redactas nuevos párrafos, el documento se desplaza suavemente hacia arriba, evitando que tu cuello se incline hacia el borde inferior del monitor.</p>\n            </div>\n        </div>\n\n    <p>Asimismo, el <strong>Modo Enfoque (Focus Mode)</strong> atenúa sutilmente todos los párrafos del documento salvo el párrafo o la oración que estás redactando activamente, eliminando cualquier distracción periférica.</p>\n    "
+        },
+        {
+          "header_section": "PALETA DE COMANDOS Y TEMAS",
+          "html_content": "\n    \n            <div class=\"section-title\">\n                <span class=\"section-marker\"></span>\n                <span>2.3 La Paleta de Comandos (Ctrl+P) y Temas Visuales Canónicos</span>\n            </div>\n    <p>Odisea incorpora una <strong>Command Palette</strong> universal accesible en cualquier instante mediante <strong>Ctrl+P</strong>. Este centro de operaciones permite buscar documentos por título o contenido completo, alternar hojas de estilo ULSS, cambiar el tema visual o desencadenar exportaciones sin apartar las manos del teclado:</p>\n\n    \n        <table class=\"table-technical\">\n            <colgroup><col style=\"width: 25%;\"><col style=\"width: 35%;\"><col style=\"width: 40%;\"></colgroup>\n            <thead>\n                <tr><th>Atajo de Teclado</th><th>Acción Ejecutada</th><th>Contexto / Efecto</th></tr>\n            </thead>\n            <tbody>\n                <tr><td><code>Ctrl + P</code></td><td>Abrir Paleta de Comandos unificada</td><td>Búsqueda difusa de comandos, temas y hojas</td></tr><tr><td><code>Ctrl + 1 .. 4</code></td><td>Alternar visibilidad de Paneles 1 al 4</td><td>Biblioteca, Lista, Editor y Dashboard</td></tr><tr><td><code>Ctrl + N</code></td><td>Crear nueva hoja en el grupo activo</td><td>Inserta y enfoca el editor de inmediato</td></tr><tr><td><code>Ctrl + Shift + N</code></td><td>Crear nuevo grupo jerárquico</td><td>Solicita nombre y color en micro-modal</td></tr><tr><td><code>Ctrl + E</code></td><td>Abrir modal de Exportación Editorial</td><td>Previsualización con motor ULSS en vivo</td></tr><tr><td><code>Ctrl + Shift + P</code></td><td>Publicar en la Web</td><td>WordPress, Ghost, Medium, Micro.blog</td></tr><tr><td><code>Ctrl + Shift + G</code></td><td>Pegar / Despegar hoja siguiente</td><td>Glued Sheets para compilar novelas/libros</td></tr><tr><td><code>F11</code></td><td>Modo Pantalla Completa Zen</td><td>Oculta barras del sistema y paneles laterales</td></tr>\n            </tbody>\n        </table>\n\n    <p>En el apartado estético, Odisea incluye <strong>7 temas canónicos (.ultheme)</strong> con soporte dual-mode (claro y oscuro conmutables en caliente):</p>\n    <ul>\n        <li><strong>Minimalista:</strong> Fiel a Ulysses macOS; lienzo blanco cálido (#fafafa) y tipografía carbón suave.</li>\n        <li><strong>Modo Oscuro (Carbon):</strong> Gris carbón profundo (#18181b) calibrado para redacción nocturna prolongada.</li>\n        <li><strong>Solarizado (Light/Dark):</strong> Paleta de Ethan Schoonover optimizada para legibilidad analítica.</li>\n        <li><strong>Sepia Pergamino:</strong> Tonalidad cálida de papel clásico (#f4ecd8) con acentos terracota editoriales.</li>\n        <li><strong>Windows 11 Mica:</strong> Efecto translúcido Fluent Design con micro-bordes acrílicos luminosos.</li>\n        <li><strong>Nordic Frost:</strong> Paleta ártica escandinava (#2e3440) con contrastes cian glacial.</li>\n        <li><strong>Monokai Editorial:</strong> Contraste vibrante sobre fondo antracita con acentos oro y magenta.</li>\n    </ul>\n    "
+        }
+      ],
+      "summary": {
+        "key_points": [
+          "Disposición 3+1: Biblioteca (Ctrl+1), Lista de Hojas (Ctrl+2), Editor (Ctrl+3) y Dashboard (Ctrl+4).",
+          "Modo Zen / F11: Ocultación de distracciones para inmersión plena en la prosa.",
+          "Modo Máquina de Escribir (Typewriter): Línea activa fijada al centro vertical de la pantalla.",
+          "Command Palette (Ctrl+P): Búsqueda difusa universal para comandos, hojas y estilos.",
+          "7 Temas canónicos .ultheme: Minimalista, Carbon, Solarizado, Sepia, Mica, Nord y Monokai."
+        ],
+        "requirements": [
+          "Memorizar las cuatro teclas de conmutación de paneles (Ctrl+1, Ctrl+2, Ctrl+3, Ctrl+4).",
+          "Conocer el atajo universal de la Command Palette (Ctrl+P).",
+          "Aprender a activar el modo Zen (F11) y el modo de exportación editorial (Ctrl+E)."
+        ]
+      },
+      "questionnaire": {
+        "columns": 2,
+        "questions": [
+          {
+            "text": "¿Qué combinación de teclas abre la Paleta de Comandos unificada?",
+            "options": [
+              "a) Ctrl + Shift + C",
+              "b) Ctrl + P",
+              "c) Alt + F1",
+              "d) Ctrl + Espacio"
+            ]
+          },
+          {
+            "text": "¿Qué panel se activa o alterna mediante el atajo Ctrl+4?",
+            "options": [
+              "a) Biblioteca",
+              "b) Dashboard de Escritura y Métricas",
+              "c) Lista de Hojas",
+              "d) Configuración"
+            ]
+          },
+          {
+            "text": "¿Qué beneficio ergonómico aporta el Modo Máquina de Escribir (Typewriter Scrolling)?",
+            "options": [
+              "a) Hace que las teclas suenen como una máquina mecánica",
+              "b) Mantiene la línea activa en el centro vertical de la pantalla",
+              "c) Bloquea el teclado para evitar errores",
+              "d) Cambia la tipografía a Courier obligatoriamente"
+            ]
+          },
+          {
+            "text": "¿Qué tecla de función activa el Modo Pantalla Completa Zen?",
+            "options": [
+              "a) F5",
+              "b) F11",
+              "c) F12",
+              "d) F1"
+            ]
+          },
+          {
+            "text": "¿Qué atajo permite alternar la visibilidad de la Biblioteca (Panel 1)?",
+            "options": [
+              "a) Ctrl + 1",
+              "b) Ctrl + B",
+              "c) Alt + 1",
+              "d) Ctrl + L"
+            ]
+          },
+          {
+            "text": "¿Cuál de los siguientes NO es uno de los 7 temas canónicos .ultheme incluidos de serie?",
+            "options": [
+              "a) Sepia Pergamino",
+              "b) Windows 11 Mica",
+              "c) Comic Sans Neon",
+              "d) Nordic Frost"
+            ]
+          },
+          {
+            "text": "¿Qué indica el icono de avión de papel en una tarjeta de la Lista de Hojas?",
+            "options": [
+              "a) Que la hoja está en modo borrador local",
+              "b) Que la hoja ha sido publicada en un servicio web (WordPress, Ghost, etc.)",
+              "c) Que la hoja se ha enviado por correo",
+              "d) Que la hoja está archivada"
+            ]
+          },
+          {
+            "text": "¿Qué atajo de teclado abre directamente la ventana de Exportación Editorial?",
+            "options": [
+              "a) Ctrl + E",
+              "b) Ctrl + Shift + X",
+              "c) Alt + E",
+              "d) Ctrl + S"
+            ]
+          },
+          {
+            "text": "¿Qué característica distingue al tema 'Windows 11 Mica'?",
+            "options": [
+              "a) Es de color rojo brillante",
+              "b) Implementa translucidez acrílica y micro-bordes Fluent Design",
+              "c) Solo funciona en Windows 7",
+              "d) Requiere aceleración 3D dedicada"
+            ]
+          },
+          {
+            "text": "¿Cómo se comporta el Modo Enfoque (Focus Mode)?",
+            "options": [
+              "a) Apaga el monitor tras 5 minutos",
+              "b) Atenúa los párrafos secundarios resaltando la frase o párrafo en edición",
+              "c) Borra el texto no guardado",
+              "d) Desactiva la conexión a internet"
+            ]
+          }
+        ]
+      },
+      "solutions": {
+        "items": [
+          {
+            "correct_answer": "b) Ctrl + P",
+            "explanation": "Ctrl+P es el atajo universal de la Command Palette para ejecutar cualquier acción sin ratón."
+          },
+          {
+            "correct_answer": "b) Dashboard de Escritura y Métricas",
+            "explanation": "Ctrl+4 despliega u oculta el Panel 4 (Dashboard con objetivos, outline y estadísticas en vivo)."
+          },
+          {
+            "correct_answer": "b) Mantiene la línea activa en el centro vertical de la pantalla",
+            "explanation": "El Typewriter Mode fija la mirada en el tercio superior/medio evitando que el autor deba mirar al pie de pantalla."
+          },
+          {
+            "correct_answer": "b) F11",
+            "explanation": "F11 conmutada el modo inmersivo a pantalla completa sin distracciones."
+          },
+          {
+            "correct_answer": "a) Ctrl + 1",
+            "explanation": "Ctrl+1 muestra u oculta el Panel 1 (Biblioteca de proyectos y grupos)."
+          },
+          {
+            "correct_answer": "c) Comic Sans Neon",
+            "explanation": "Los 7 temas canónicos son Minimalista, Oscuro Carbon, Solarizado, Sepia, Mica, Nord y Monokai."
+          },
+          {
+            "correct_answer": "b) Que la hoja ha sido publicada en un servicio web (WordPress, Ghost, etc.)",
+            "explanation": "El micro-badge del avión de papel certifica que la hoja está vinculada a una entrada web remota."
+          },
+          {
+            "correct_answer": "a) Ctrl + E",
+            "explanation": "Ctrl+E lanza el modal de previsualización y exportación con hojas de estilo ULSS."
+          },
+          {
+            "correct_answer": "b) Implementa translucidez acrílica y micro-bordes Fluent Design",
+            "explanation": "Mica integra las propiedades visuales de Windows 11 con fondos acrílicos translúcidos sutiles."
+          },
+          {
+            "correct_answer": "b) Atenúa los párrafos secundarios resaltando la frase o párrafo en edición",
+            "explanation": "El Focus Mode guía la visión del escritor exclusivamente al fragmento de texto en redacción activa."
+          }
+        ]
+      }
+    },
+    {
+      "number": 3,
+      "title": "La Sintaxis Markdown XL: Las 28 Etiquetas Semánticas",
+      "short_title": "SINTAXIS MARKDOWN XL",
+      "block": "BLOQUE II — EL MOTOR DE EDICIÓN Y MARKDOWN XL",
+      "block_kicker": "BLOQUE II · EL MOTOR DE EDICIÓN",
+      "objectives": [
+        "Comprender la filosofía de separación entre tokens de sintaxis y contenido semántico.",
+        "Dominar los bloques estructurales: encabezados con badges marginales, listas inteligentes y citas.",
+        "Utilizar las anotaciones no intrusivas: comentarios de autor, anotaciones al margen y notas al pie.",
+        "Conocer las 28 etiquetas canónicas de Markdown XL y su correspondencia en la exportación ULSS."
+      ],
+      "pages": [
+        {
+          "header_section": "FILOSOFÍA Y BLOQUES ESTRUCTURALES",
+          "html_content": "\n    \n            <div class=\"section-title\">\n                <span class=\"section-marker\"></span>\n                <span>3.1 Filosofía de Marcado y Bloques Estructurales</span>\n            </div>\n    <p>El estándar <strong>Markdown XL</strong> constituye el corazón expresivo de Odisea. Desarrollado como una evolución semántica rigurosa del Markdown tradicional, su principio rector es la <strong>separación estricta entre el token sintáctico y el texto sustantivo</strong>. En el motor de edición basado en CodeMirror 6, los caracteres delimitadores (como <code>#</code>, <code>**</code>, <code>_</code>, <code>::</code> o <code>||</code>) reciben una clase CSS dedicada (<code>.ulysses-tag</code>) que los atenúa visualmente sin ocultarlos, permitiendo al autor percibir la estructura con naturalidad.</p>\n\n    \n        <div class=\"callout callout-definition\">\n            <span class=\"callout-title\">DEFINICIÓN CLAVE · GRAMÁTICA FORMAL DE MARKDOWN XL</span>\n            <div class=\"callout-body\">\n                <p>A diferencia de los editores que reemplazan el texto por cajas opacas, Odisea preserva la naturaleza textual del documento. La gramática formal EBNF extraída en <code>.rea_evidence/markdown_xl_grammar.ebnf</code> define exactamente 28 etiquetas semánticas agrupadas en bloques de nivel superior y estilos de carácter inline.</p>\n            </div>\n        </div>\n\n    <p>Los bloques estructurales principales incluyen:</p>\n    <ul>\n        <li><strong>Encabezados Jerárquicos (H1 a H6):</strong> Declarados mediante <code># </code> hasta <code>###### </code>. En el margen izquierdo del editor, Odisea proyecta automáticamente un micro-indicador compacto (<code>H1</code>..<code>H6</code>) que permite identificar el nivel de sección sin desbordar el sangrado del párrafo.</li>\n        <li><strong>Listas Inteligentes (Smart Lists):</strong> Listas no ordenadas (<code>- </code>, <code>* </code>, <code>+ </code>) y listas numeradas (<code>1. </code>) con reordenación matemática automática: si insertas o eliminas un ítem intermedio, los numerales subsiguientes se actualizan en tiempo real.</li>\n        <li><strong>Checklists Interactivos:</strong> Marcados mediante <code>- [ ]</code> y <code>- [x]</code>. Se renderizan como casillas vectoriales seleccionables con un clic directo o mediante la barra espaciadora.</li>\n        <li><strong>Citas Editoriales (Blockquotes):</strong> Prefijadas con <code>> </code>, con soporte completo de anidamiento multinivel (<code>>> </code>) y borde vertical de acento cian.</li>\n        <li><strong>Separadores de Sección (Dividers):</strong> Insertados con cuatro guiones <code>----</code> o asteriscos <code>****</code>, generando una línea tenue de transición capitular.</li>\n    </ul>\n    "
+        },
+        {
+          "header_section": "MARCADO INLINE Y BLOQUES ESPECIALES",
+          "html_content": "\n    \n            <div class=\"section-title\">\n                <span class=\"section-marker\"></span>\n                <span>3.2 Marcado Inline Enriquecido y Bloques Especiales de Autor</span>\n            </div>\n    <p>La prosa literaria, académica y técnica requiere distinciones sutiles de tono y propósito que van mucho más allá de la negrita y la cursiva convencionales. Markdown XL despliega un arsenal completo de modificadores de carácter:</p>\n\n    <ul>\n        <li><strong>Negrita y Cursiva:</strong> <code>**fuerte**</code> y <code>*énfasis*</code> (o alternativamente <code>__fuerte__</code> y <code>_énfasis_</code>), interpretadas con peso tipográfico calibrado.</li>\n        <li><strong>Marcado Fluorescente (Highlight):</strong> Delimitado mediante <code>::texto resaltado::</code>. Genera un fondo amarillo cálido traslúcido (#ffea79 en modo claro, #594800 en modo oscuro), esencial para señalar pasajes que requieren revisión posterior.</li>\n        <li><strong>Tachado y Descarte (Strikethrough):</strong> Marcado con <code>||texto tachado||</code>. Aplica una fina línea coral sobre el texto atenuado para registrar correcciones o pasajes descartados sin borrarlos del borrador.</li>\n        <li><strong>Código en Línea y Texto Crudo (Raw):</strong> <code>''let x = 42;''</code> para código embebido en el párrafo, y <code>++código raw++</code> para fragmentos que deben exportarse literalmente sin procesamiento tipográfico (por ejemplo, comandos LaTeX o entidades HTML).</li>\n    </ul>\n\n    \n        <div class=\"callout callout-success\">\n            <span class=\"callout-title\">BUENA PRÁCTICA · BLOQUES EXCLUSIVOS DE AUTOR</span>\n            <div class=\"callout-body\">\n                <p>Odisea incluye dos tipos de bloque fundamentales para escritores creativos e investigadores:<br>1. <strong>Bloque de Verso (|&quot; ):</strong> Cada línea precedida de <code>|&quot; </code> respeta estrictamente los retornos de carro sin requerir dobles espacios al final, manteniendo el ritmo poético de la estrofa.<br>2. <strong>Bloques de Comentario (%% ):</strong> Todo texto comprendido entre <code>%%</code> queda confinado al borrador privado: <strong>nunca se exporta</strong> a PDF, DOCX ni se publica en la web.</p>\n            </div>\n        </div>\n\n    <p>Asimismo, los bloques de código delimitados por <code>''''</code> o triples tildes graves incorporan selector de lenguaje y coloreado sintáctico de alto contraste mediante Shiki/Highlight.js (Rust, Python, JavaScript, SQL, CSS, TOML, JSON, Bash, LaTeX).</p>\n    "
+        },
+        {
+          "header_section": "TABLA MAESTRA DE LAS 28 ETIQUETAS",
+          "html_content": "\n    \n            <div class=\"section-title\">\n                <span class=\"section-marker\"></span>\n                <span>3.3 Anotaciones Flotantes, Notas al Pie y Tabla Maestra de las 28 Etiquetas</span>\n            </div>\n    <p>La redacción fluida se interrumpe cuando el autor debe desplazarse hasta el final del documento para insertar una nota al pie. En Odisea, las notas y anotaciones se declaran <strong>en el mismo punto donde surge la idea</strong>, desplegándose en micro-popovers editables sin abandonar la línea activa:</p>\n\n    <ul>\n        <li><strong>Notas al Pie no Intrusivas:</strong> Se declaran como <code>(fn: Texto explicativo de la nota)</code>. En el editor se muestran como una micro-píldora marginal <code>FN</code>; al hacer clic, un popover permite editar su contenido. En la exportación, se compilan automáticamente como notas al pie numeradas al final de la página o del capítulo.</li>\n        <li><strong>Anotaciones al Margen:</strong> Declaradas como <code>{a: Nota de revisión o fuente}</code>, con micro-badge ámbar de advertencia visual.</li>\n        <li><strong>Comentarios Inline de Autor:</strong> Escritos entre llaves simples <code>{recordar comprobar esta fecha}</code>. Se muestran atenuados en cursiva sepia y se omiten en la exportación final.</li>\n    </ul>\n\n    \n        <table class=\"table-technical\">\n            <colgroup><col style=\"width: 8%;\"><col style=\"width: 26%;\"><col style=\"width: 26%;\"><col style=\"width: 40%;\"></colgroup>\n            <thead>\n                <tr><th>N.º</th><th>Etiqueta Semántica</th><th>Sintaxis Markdown XL</th><th>Función y Comportamiento Editorial</th></tr>\n            </thead>\n            <tbody>\n                <tr><td>1-6</td><td>Encabezados H1 a H6</td><td><code># </code> a <code>###### </code></td><td>Nivel de sección con micro-indicador marginal H1..H6</td></tr><tr><td>7</td><td>Lista no ordenada</td><td><code>- </code> / <code>* </code> / <code>+ </code></td><td>Viñeta clásica con sangría tipográfica equilibrada</td></tr><tr><td>8</td><td>Lista numerada inteligente</td><td><code>1. </code></td><td>Renumeración matemática automática al mover ítems</td></tr><tr><td>9</td><td>Checklist interactivo</td><td><code>- [ ]</code> / <code>- [x]</code></td><td>Casilla vectorial seleccionable directamente con ratón o teclado</td></tr><tr><td>10</td><td>Cita en bloque</td><td><code>> </code></td><td>Párrafo editorial indentado con barra de acento</td></tr><tr><td>11</td><td>Bloque de verso</td><td><code>|\" </code></td><td>Preserva saltos de estrofa sin espacios artificiales</td></tr><tr><td>12</td><td>Bloque de código</td><td><code>''''</code> / <code>```lang</code></td><td>Resaltado de sintaxis Shiki con selector de lenguaje</td></tr><tr><td>13</td><td>Bloque de texto crudo</td><td><code>++ </code></td><td>Escape literal directo a motor de salida (LaTeX/HTML)</td></tr><tr><td>14</td><td>Bloque de comentario</td><td><code>%% </code></td><td>Notas de trabajo privadas que nunca se exportan</td></tr><tr><td>15</td><td>Separador temático</td><td><code>----</code> / <code>****</code></td><td>Línea horizontal sutil de transición capitular</td></tr><tr><td>16</td><td>Tabla de contenidos</td><td><code>(toc)</code></td><td>Índice jerárquico dinámico proyectado en el margen</td></tr><tr><td>17-18</td><td>Negrita y Cursiva</td><td><code>**texto**</code> / <code>*texto*</code></td><td>Énfasis tipográfico clásico de alta legibilidad</td></tr><tr><td>19</td><td>Marcado / Resaltado</td><td><code>::texto::</code></td><td>Fondo fluorescente traslúcido para pasajes en revisión</td></tr><tr><td>20</td><td>Tachado / Descarte</td><td><code>||texto||</code></td><td>Línea fina coral sobre texto atenuado de borrador</td></tr><tr><td>21-22</td><td>Código y Raw inline</td><td><code>''código''</code> / <code>++raw++</code></td><td>Variables, snippets y entidades literales en el párrafo</td></tr><tr><td>23-24</td><td>Comentario y Anotación</td><td><code>{nota}</code> / <code>{a: nota}</code></td><td>Micro-popovers editables no intrusivos al margen</td></tr><tr><td>25</td><td>Nota al pie (Footnote)</td><td><code>(fn: texto)</code></td><td>Compilación automática al pie de página editorial</td></tr><tr><td>26-27</td><td>Enlaces e Imágenes</td><td><code>[ancla](url)</code> / <code>(img: ruta)</code></td><td>Vínculos web y miniaturas de medios con badge IMG</td></tr><tr><td>28</td><td>Ecuación Matemática</td><td><code>$fórmula$</code> / <code>$$bloque$$</code></td><td>Motor KaTeX integrado para álgebra, física y cálculo</td></tr>\n            </tbody>\n        </table>\n    "
+        }
+      ],
+      "summary": {
+        "key_points": [
+          "Markdown XL separa el token .ulysses-tag del texto para lograr un lienzo limpio pero explícito.",
+          "Los encabezados (# a ######) proyectan micro-indicadores compactos (H1..H6) en el margen.",
+          "Las Smart Lists renumeran automáticamente las secuencias de ítems al insertar o suprimir elementos.",
+          "Los bloques de verso (|&quot; ) y comentarios privados (%% ) cubren necesidades exclusivas de autores.",
+          "Las 28 etiquetas abarcan desde matemáticas KaTeX hasta anotaciones popover y tablas interactivas."
+        ],
+        "requirements": [
+          "Distinguir el comportamiento de las notas al pie (fn:...) de las anotaciones {a:...}.",
+          "Recordar que el texto contenido en bloques de comentario %% nunca se incluye en exportaciones.",
+          "Dominar el uso de ::marcado:: y ||tachado|| durante la fase de corrección de textos."
+        ]
+      },
+      "questionnaire": {
+        "columns": 2,
+        "questions": [
+          {
+            "text": "¿Cómo se indica una nota al pie en Markdown XL dentro de Odisea?",
+            "options": [
+              "a) [^1]: nota al pie",
+              "b) (fn: Contenido de la nota)",
+              "c) {footnote: nota}",
+              "d) <footnote>nota</footnote>"
+            ]
+          },
+          {
+            "text": "¿Qué ocurre con el texto encerrado en bloques de comentario %% al exportar a PDF o DOCX?",
+            "options": [
+              "a) Se imprime en color rojo",
+              "b) Se exporta al final como anexo",
+              "c) Nunca se exporta; permanece estrictamente privado",
+              "d) Genera un error de compilación"
+            ]
+          },
+          {
+            "text": "¿Qué sintaxis se utiliza en Markdown XL para aplicar resaltado fluorescente a un texto?",
+            "options": [
+              "a) ==texto resaltado==",
+              "b) ::texto resaltado::",
+              "c) ++texto resaltado++",
+              "d) **texto resaltado**"
+            ]
+          },
+          {
+            "text": "¿Cuál es la función del prefijo |\" al comienzo de una línea?",
+            "options": [
+              "a) Iniciar una tabla",
+              "b) Declarar un bloque de verso o poesía respetando los retornos de carro",
+              "c) Crear una barra vertical divisoria",
+              "d) Insertar una fórmula matemática"
+            ]
+          },
+          {
+            "text": "¿Qué micro-indicador visual proyecta Odisea en el margen izquierdo ante una etiqueta ### ?",
+            "options": [
+              "a) Un icono de lápiz",
+              "b) Una micro-píldora con el texto 'H3'",
+              "c) Un número 3 gigante",
+              "d) Nada, lo oculta"
+            ]
+          },
+          {
+            "text": "¿Qué sintaxis se emplea para tachar texto descartado en Markdown XL?",
+            "options": [
+              "a) ~~texto tachado~~",
+              "b) ||texto tachado||",
+              "c) --texto tachado--",
+              "d) [del]texto[/del]"
+            ]
+          },
+          {
+            "text": "¿Qué ventaja ofrecen las Smart Lists numeradas (1. ) en Odisea?",
+            "options": [
+              "a) Tienen colores aleatorios",
+              "b) Se renumeran automáticamente al añadir o reordenar elementos",
+              "c) Solo admiten números romanos",
+              "d) Convierten la lista en tabla"
+            ]
+          },
+          {
+            "text": "¿Cómo se define un comentario breve de autor en línea?",
+            "options": [
+              "a) /* comentario */",
+              "b) {comentario de autor}",
+              "c) <!-- comentario -->",
+              "d) # comentario"
+            ]
+          },
+          {
+            "text": "¿Qué motor de coloreado sintáctico gestiona los bloques de código delimitados por ''''?",
+            "options": [
+              "a) Prism clásico",
+              "b) Shiki / Highlight.js con soporte multi-lenguaje",
+              "c) Compilador de C++",
+              "d) Expresiones regulares básicas"
+            ]
+          },
+          {
+            "text": "¿Cuántas etiquetas semánticas formales componen la especificación canónica de Markdown XL en Odisea?",
+            "options": [
+              "a) 12 etiquetas",
+              "b) 28 etiquetas",
+              "c) 50 etiquetas",
+              "d) 16 etiquetas"
+            ]
+          }
+        ]
+      },
+      "solutions": {
+        "items": [
+          {
+            "correct_answer": "b) (fn: Contenido de la nota)",
+            "explanation": "La sintaxis (fn:...) define notas al pie en el punto exacto de la prosa, abriendo un micro-popover no intrusivo."
+          },
+          {
+            "correct_answer": "c) Nunca se exporta; permanece estrictamente privado",
+            "explanation": "Los bloques %% están concebidos para notas íntimas del autor, advertencias y borradores intermedios."
+          },
+          {
+            "correct_answer": "b) ::texto resaltado::",
+            "explanation": "El doble dos puntos :: es el estándar canónico de Ulysses y Odisea para texto marcado con resaltador."
+          },
+          {
+            "correct_answer": "b) Declarar un bloque de verso o poesía respetando los retornos de carro",
+            "explanation": "El prefijo |\" resuelve el clásico problema de Markdown, preservando las pausas métricas sin trucos de espacios dobles."
+          },
+          {
+            "correct_answer": "b) Una micro-píldora con el texto 'H3'",
+            "explanation": "Las micro-píldoras de margen (H1 a H6) ofrecen orientación espacial inmediata sin sobrecargar el flujo de texto."
+          },
+          {
+            "correct_answer": "b) ||texto tachado||",
+            "explanation": "El doble pipe || indica texto suprimido o descartado en la especificación Markdown XL."
+          },
+          {
+            "correct_answer": "b) Se renumeran automáticamente al añadir o reordenar elementos",
+            "explanation": "El analizador inteligente recalcula la progresión ordinal al mover párrafos arriba o abajo."
+          },
+          {
+            "correct_answer": "b) {comentario de autor}",
+            "explanation": "Las llaves simples { } delimitan comentarios de autor inline atenuados visualmente."
+          },
+          {
+            "correct_answer": "b) Shiki / Highlight.js con soporte multi-lenguaje",
+            "explanation": "Shiki proporciona coloreado sintáctico con la misma fidelidad de temas que Visual Studio Code."
+          },
+          {
+            "correct_answer": "b) 28 etiquetas",
+            "explanation": "La gramática EBNF en .rea_evidence/markdown_xl_grammar.ebnf especifica exactamente las 28 etiquetas de Ulysses."
+          }
+        ]
+      }
+    },
+    {
+      "number": 4,
+      "title": "Widgets Interactivos: Tablas, Fórmulas KaTeX y Medios",
+      "short_title": "WIDGETS INTERACTIVOS",
+      "block": "BLOQUE II — EL MOTOR DE EDICIÓN Y MARKDOWN XL",
+      "block_kicker": "BLOQUE II · EL MOTOR DE EDICIÓN",
+      "objectives": [
+        "Operar el editor visual de tablas integrado con ordenación, alineación y drag-and-drop.",
+        "Pegar rangos tabulares directamente desde Microsoft Excel y Google Sheets con auto-conversión.",
+        "Redactar y renderizar expresiones matemáticas LaTeX en tiempo real con el motor KaTeX local.",
+        "Gestionar imágenes adjuntas en ./odisea_data/attachments/ y tablas de contenidos marginales (TOC)."
+      ],
+      "pages": [
+        {
+          "header_section": "EL EDITOR VISUAL DE TABLAS",
+          "html_content": "\n    \n            <div class=\"section-title\">\n                <span class=\"section-marker\"></span>\n                <span>4.1 El Editor Visual de Tablas (TableWidget)</span>\n            </div>\n    <p>Uno de los mayores obstáculos históricos del formato Markdown ha sido la penosa redacción manual de tablas mediante barras verticales y guiones desalineados. Odisea supera esta limitación con <strong>TableWidget</strong>, un componente visual interactivo incrustado directamente en el flujo del documento que combina la agilidad de una hoja de cálculo con la pureza semántica del texto plano:</p>\n\n    <ul>\n        <li><strong>Controles Directos de Estructura:</strong> Al situar el cursor sobre cualquier tabla, aparecen micro-botones contextuales (+) en los bordes derecho e inferior que permiten insertar nuevas columnas y filas al instante con un solo clic.</li>\n        <li><strong>Alineación y Ancho Proporcional:</strong> Cada encabezado de columna dispone de un micro-selector para fijar la alineación (izquierda, centro o derecha) y ajustar la distribución visual de anchos.</li>\n        <li><strong>Reordenación por Arrastre (Drag & Drop):</strong> Las filas y columnas se pueden reorganizar arrastrando sus tiradores marginales sin alterar el resto del documento.</li>\n        <li><strong>Ordenación Numérica y Alfabética:</strong> Haz clic en el indicador de ordenación de cualquier columna para ordenar la tabla en sentido ascendente o descendente al instante.</li>\n    </ul>\n\n    \n        <div class=\"callout callout-milestone\">\n            <span class=\"callout-title\">HITO TECNOLÓGICO · INTEROPERABILIDAD DIRECTA CON EXCEL Y SHEETS</span>\n            <div class=\"callout-body\">\n                <p>Puedes seleccionar cualquier rango de celdas en <strong>Microsoft Excel</strong>, <strong>Google Sheets</strong> o copiar datos separados por comas (CSV) y pegarlos directamente (<code>Ctrl+V</code>) en el editor de Odisea. El motor intercepta los datos tabulares del portapapeles y los transforma instantáneamente en una tabla Markdown XL perfectamente formateada.</p>\n            </div>\n        </div>\n    "
+        },
+        {
+          "header_section": "FÓRMULAS MATEMÁTICAS CON KATEX",
+          "html_content": "\n    \n            <div class=\"section-title\">\n                <span class=\"section-marker\"></span>\n                <span>4.2 Ecuaciones Matemáticas en Vivo con KaTeX (EquationWidget)</span>\n            </div>\n    <p>Para la redacción de informes científicos, papers de ingeniería, apuntes de física o tratados analíticos, Odisea incorpora un motor de renderizado matemático de ultra-alta velocidad basado en <strong>KaTeX</strong>. Las expresiones matemáticas se editan en sintaxis estándar LaTeX con previsualización vectorial instantánea sin parpadeos:</p>\n\n    <ul>\n        <li><strong>Ecuaciones en Línea (Inline Math):</strong> Declaradas entre signos de dólar simples: <code>$E = mc^2$</code> o <code>$\\lambda = \\frac{h}{p}$</code>. El texto matemático se integra con precisión métrica en el flujo de la línea manteniendo la alineación de la línea base tipográfica.</li>\n        <li><strong>Bloques Matemáticos Desplegados (Display Math):</strong> Declarados entre dobles signos de dólar: <code>$$ ... $$</code> o escribiendo la macro <code>(eq)</code>. Despliegan un bloque centralizado con edición de código LaTeX y vista previa matemática en vivo:</li>\n    </ul>\n\n    <div class=\"code-box\">\n        <pre><code class=\"language-text\">$$\n\\nabla \\times \\mathbf{E} = -\\frac{\\partial \\mathbf{B}}{\\partial t} \\quad ; \\quad\n\\nabla \\times \\mathbf{B} = \\mu_0 \\mathbf{J} + \\mu_0 \\varepsilon_0 \\frac{\\partial \\mathbf{E}}{\\partial t}\n$$</code></pre>\n    </div>\n\n    \n        <div class=\"callout callout-definition\">\n            <span class=\"callout-title\">DEFINICIÓN · COMPILACIÓN LOCAL SIN DEPENDENCIAS DE RED</span>\n            <div class=\"callout-body\">\n                <p>El motor KaTeX está completamente embebido en el binario de Odisea. No requiere conexión a internet, compiladores externos de TeX ni servidores remotos. Las fórmulas se renderizan como vectores matemáticos puros listos para impresión editorial.</p>\n            </div>\n        </div>\n    "
+        },
+        {
+          "header_section": "MEDIOS ADJUNTOS Y TABLA DE CONTENIDOS",
+          "html_content": "\n    \n            <div class=\"section-title\">\n                <span class=\"section-marker\"></span>\n                <span>4.3 Medios Adjuntos, Imágenes y Tabla de Contenidos Marginal</span>\n            </div>\n    <p>El tratamiento de gráficos e ilustraciones en Odisea conjuga la ligereza del texto con la riqueza visual de los medios modernos:</p>\n\n    <ul>\n        <li><strong>Imágenes en Línea (img):</strong> Se declaran mediante <code>(img: ruta_o_nombre.png)</code>. En el editor se proyectan como una tarjeta compacta con miniatura, dimensiones y micro-badge <code>IMG</code>. Al hacer clic, se abre un popover para definir el pie de figura, texto alternativo accesible y escala de visualización.</li>\n        <li><strong>Almacenamiento Local de Adjuntos:</strong> Cuando arrastras una imagen desde el Explorador de archivos de Windows 11 al editor, Odisea la copia automáticamente en la carpeta relativa <code>./odisea_data/attachments/</code> calculando su hash SHA-256 para prevenir duplicados.</li>\n        <li><strong>Tabla de Contenidos Marginal (TOC):</strong> Al insertar la etiqueta <code>(toc)</code>, Odisea genera un árbol interactivo en miniatura que refleja en tiempo real todos los encabezados del documento, permitiendo saltar con un clic a cualquier sección sin salir de la hoja.</li>\n    </ul>\n\n    \n        <table class=\"table-technical\">\n            <colgroup><col style=\"width: 22%;\"><col style=\"width: 28%;\"><col style=\"width: 50%;\"></colgroup>\n            <thead>\n                <tr><th>Widget Interactivo</th><th>Disparador Sintáctico</th><th>Capacidades Operativas Principales</th></tr>\n            </thead>\n            <tbody>\n                <tr><td>TableWidget</td><td>Sintaxis de tabla o pegar desde Excel</td><td>Filas/columnas dinámicas, ordenación, alineación y drag-and-drop</td></tr><tr><td>EquationWidget</td><td><code>$fórmula$</code> o <code>$$bloque$$</code></td><td>Motor KaTeX local, previsualización en vivo sin red</td></tr><tr><td>MediaWidget</td><td><code>(img: archivo.png)</code> o arrastrar</td><td>Almacenamiento automático en attachments/, captions y micro-badge IMG</td></tr><tr><td>TocWidget</td><td><code>(toc)</code></td><td>Navegación jerárquica marginal dinámica por encabezados H1..H6</td></tr><tr><td>FootnotePopover</td><td><code>(fn: nota)</code></td><td>Edición no intrusiva en micro-ventana flotante sin saltar al final</td></tr><tr><td>AnnotationPopover</td><td><code>{a: nota}</code></td><td>Micro-píldora marginal con notas de revisión editorial</td></tr>\n            </tbody>\n        </table>\n    "
+        }
+      ],
+      "summary": {
+        "key_points": [
+          "TableWidget permite editar tablas complejas visualmente sin lidiar con barras y guiones manuales.",
+          "Soporta pegado directo desde Excel y Google Sheets convirtiéndolos en tablas limpias de Markdown XL.",
+          "EquationWidget integra KaTeX para renderizar matemáticas LaTeX locales sin conexión a internet.",
+          "Las imágenes se guardan automáticamente en ./odisea_data/attachments/ con verificación SHA-256.",
+          "La etiqueta (toc) proyecta un mapa jerárquico dinámico en el margen para navegación rápida."
+        ],
+        "requirements": [
+          "Saber insertar una tabla y configurar la alineación de sus columnas.",
+          "Conocer la diferencia entre fórmulas inline ($) y bloques matemáticos desplegados ($$).",
+          "Comprender cómo se asocian las imágenes en la carpeta ./odisea_data/attachments/."
+        ]
+      },
+      "questionnaire": {
+        "columns": 2,
+        "questions": [
+          {
+            "text": "¿Qué ocurre al copiar celdas en Microsoft Excel y pulsar Ctrl+V dentro de Odisea?",
+            "options": [
+              "a) Se pega una captura gráfica en mapa de bits",
+              "b) Se transforma automáticamente en una tabla interactiva Markdown XL",
+              "c) Da un error de formato no compatible",
+              "d) Se borra el portapapeles"
+            ]
+          },
+          {
+            "text": "¿Qué motor matemático integra Odisea para la composición de fórmulas científicas?",
+            "options": [
+              "a) MathJax vía servidor web",
+              "b) KaTeX local de alto rendimiento",
+              "c) Microsoft Equation 3.0",
+              "d) Wolfram Alpha API"
+            ]
+          },
+          {
+            "text": "¿Cómo se delimita una fórmula matemática en línea dentro de un párrafo?",
+            "options": [
+              "a) Entre corchetes [math]...[/math]",
+              "b) Entre signos de dólar simples $fórmula$",
+              "c) Entre comillas dobles \"fórmula\"",
+              "d) Con la etiqueta <math>"
+            ]
+          },
+          {
+            "text": "¿Dónde se guardan las imágenes que arrastras al editor de Odisea?",
+            "options": [
+              "a) En C:\\Windows\\Temp",
+              "b) En ./odisea_data/attachments/ con hash SHA-256",
+              "c) En la nube de Microsoft",
+              "d) En %APPDATA%\\Roaming"
+            ]
+          },
+          {
+            "text": "¿Qué micro-badge se proyecta en el margen ante una imagen adjunta?",
+            "options": [
+              "a) PHOTO",
+              "b) IMG",
+              "c) PIC",
+              "d) MEDIA"
+            ]
+          },
+          {
+            "text": "¿Qué etiqueta genera una tabla de contenidos jerárquica marginal?",
+            "options": [
+              "a) [indice]",
+              "b) (toc)",
+              "c) {table-of-contents}",
+              "d) ----toc----"
+            ]
+          },
+          {
+            "text": "¿Requiere KaTeX conexión a internet para renderizar fórmulas matemáticas en Odisea?",
+            "options": [
+              "a) Sí, descarga las fuentes de Google",
+              "b) No, funciona de manera 100% local y autónoma",
+              "c) Solo en la primera ejecución",
+              "d) Requiere suscripción activa"
+            ]
+          },
+          {
+            "text": "¿Qué micro-botones aparecen en los bordes de una tabla al situar el cursor sobre ella?",
+            "options": [
+              "a) Botones de borrado masivo",
+              "b) Botones contextuales (+) para insertar filas y columnas al instante",
+              "c) Botones de exportación a Word",
+              "d) Ninguno"
+            ]
+          },
+          {
+            "text": "¿Permite TableWidget ordenar los datos de una columna de forma ascendente o descendente?",
+            "options": [
+              "a) No, las tablas son estáticas",
+              "b) Sí, haciendo clic en el control de ordenación de cada columna",
+              "c) Solo mediante fórmulas SQL",
+              "d) Requiere reiniciar el programa"
+            ]
+          },
+          {
+            "text": "¿Cómo se edita una nota al pie declarada con (fn:...)?",
+            "options": [
+              "a) Hay que desplazarse manualmente a la última página",
+              "b) Haciendo clic sobre su micro-badge FN para abrir su popover flotante",
+              "c) En un archivo de texto separado",
+              "d) En la barra de estado inferior"
+            ]
+          }
+        ]
+      },
+      "solutions": {
+        "items": [
+          {
+            "correct_answer": "b) Se transforma automáticamente en una tabla interactiva Markdown XL",
+            "explanation": "El manejador de pegado intercepta el texto tabulado de Excel y construye el bloque TableWidget automáticamente."
+          },
+          {
+            "correct_answer": "b) KaTeX local de alto rendimiento",
+            "explanation": "KaTeX ofrece una velocidad de renderizado superior a MathJax y funciona completamente sin conexión."
+          },
+          {
+            "correct_answer": "b) Entre signos de dólar simples $fórmula$",
+            "explanation": "La convención estándar de LaTeX $...$ sitúa la fórmula en línea alineando su línea base."
+          },
+          {
+            "correct_answer": "b) En ./odisea_data/attachments/ con hash SHA-256",
+            "explanation": "El mandato de portabilidad confina los medios al subdirectorio attachments de odisea_data."
+          },
+          {
+            "correct_answer": "b) IMG",
+            "explanation": "La micro-píldora IMG identifica visualmente la presencia de medios en el margen de la hoja."
+          },
+          {
+            "correct_answer": "b) (toc)",
+            "explanation": "La macro (toc) evalúa el árbol de encabezados H1 a H6 proyectando el índice dinámico."
+          },
+          {
+            "correct_answer": "b) No, funciona de manera 100% local y autónoma",
+            "explanation": "KaTeX y sus fuentes vectoriales matemáticas están embebidos en el propio paquete ejecutable."
+          },
+          {
+            "correct_answer": "b) Botones contextuales (+) para insertar filas y columnas al instante",
+            "explanation": "Los controles interactivos permiten expandir la matriz tabular de forma táctil y precisa."
+          },
+          {
+            "correct_answer": "b) Sí, haciendo clic en el control de ordenación de cada columna",
+            "explanation": "TableWidget incluye lógica de ordenación numérica y alfabética instantánea en memoria."
+          },
+          {
+            "correct_answer": "b) Haciendo clic sobre su micro-badge FN para abrir su popover flotante",
+            "explanation": "Los micro-popovers permiten corregir la nota sin perder el contexto visual de la frase que se redacta."
+          }
+        ]
+      }
+    },
+    {
+      "number": 5,
+      "title": "Gestión Documental, Hojas Pegadas y Carpetas Externas",
+      "short_title": "ORGANIZACIÓN Y CARPETAS",
+      "block": "BLOQUE III — ORGANIZACIÓN Y PRODUCTIVIDAD",
+      "block_kicker": "BLOQUE III · ORGANIZACIÓN Y PRODUCTIVIDAD",
+      "objectives": [
+        "Organizar obras complejas mediante proyectos, grupos jerárquicos y secciones especializadas.",
+        "Utilizar las Hojas Pegadas (Glued Sheets) con Ctrl+Shift+G para componer capítulos continuos.",
+        "Diseñar Filtros Inteligentes basados en reglas dinámicas para localizar borradores al instante.",
+        "Sincronizar carpetas externas de Windows 11 con watcher en tiempo real (<100 ms)."
+      ],
+      "pages": [
+        {
+          "header_section": "PROYECTOS Y TAXONOMÍA EDITORIAL",
+          "html_content": "\n    \n            <div class=\"section-title\">\n                <span class=\"section-marker\"></span>\n                <span>5.1 Proyectos, Grupos Jerárquicos y Taxonomía Editorial</span>\n            </div>\n    <p>La biblioteca de Odisea (Panel 1) trasciende la rígida estructura de carpetas tradicional para ofrecer un sistema de organización tridimensional concebido para proyectos de largo aliento. Un autor que escribe una novela histórica de cuatro volúmenes, una tesis doctoral o un manual técnico requiere compartimentar borradores, fuentes y material de descarte sin perder la visión de conjunto:</p>\n\n    <ul>\n        <li><strong>Proyectos:</strong> Entidades raíz con nombre propio, icono representativo (libro, pluma, código, engranaje) y paleta de color distintiva. Cada proyecto almacena sus grupos, hojas, palabras clave y preferencias de exportación predeterminadas.</li>\n        <li><strong>Grupos Jerárquicos Multinivel:</strong> Carpetas estructuradas con soporte de anidamiento ilimitado. Cada grupo se clasifica bajo cuatro categorías semánticas:\n            <ul>\n                <li><em>Sección Principal (main):</em> Los capítulos y textos que forman el cuerpo central de la obra.</li>\n                <li><em>Sección de Extras (extras):</em> Prólogos, epílogos, anexos, bibliografía y glosarios.</li>\n                <li><em>Plantillas (templates):</em> Estructuras predefinidas para fichas de personajes, tramas o actas.</li>\n                <li><em>Notas y Bocetos (notes):</em> Ideas sueltas, fragmentos de investigación e inspiración efímera.</li>\n            </ul>\n        </li>\n        <li><strong>Palabras Clave (Keywords):</strong> Etiquetas transversales policromáticas asignadas a las hojas. Se muestran como micro-píldoras de 16px en la lista de documentos, permitiendo correlacionar tramas secundarias, estados de revisión o áreas temáticas.</li>\n    </ul>\n\n    \n        <div class=\"callout callout-definition\">\n            <span class=\"callout-title\">DEFINICIÓN CLAVE · TAXONOMÍA EDITORIAL EN LA BASE SQLITE</span>\n            <div class=\"callout-body\">\n                <p>Toda la jerarquía de proyectos y grupos se gestiona de forma atómica en <code>library.odiseadb</code> con integridad referencial ON DELETE CASCADE. La reorganización de grupos mediante arrastre actualiza el campo <code>sort_order</code> en milisegundos sin bloquear la interfaz.</p>\n            </div>\n        </div>\n    "
+        },
+        {
+          "header_section": "HOJAS PEGADAS Y MODULARIDAD",
+          "html_content": "\n    \n            <div class=\"section-title\">\n                <span class=\"section-marker\"></span>\n                <span>5.2 Hojas Pegadas (Glued Sheets) y Modularidad de Capítulos</span>\n            </div>\n    <p>Uno de los mayores retos de la escritura de gran volumen es el dilema de la granularidad: si escribes toda una novela en un único archivo inmenso, desplazarse por el texto es agotador; si divides la obra en decenas de pequeños archivos, compilarlos y leerlos de continuo resulta engorroso. Odisea resuelve esta paradoja mediante las <strong>Hojas Pegadas (Glued Sheets)</strong>:</p>\n\n    <ul>\n        <li><strong>El Concepto de Unión Fluida:</strong> Al seleccionar una hoja y pulsar <strong>Ctrl+Shift+G</strong> (o activar la opción en el menú contextual), la hoja se vincula de manera indivisible con la hoja inmediatamente inferior. En la Lista de Hojas, las tarjetas unidas muestran una elegante barra vertical continua que certifica su fusión estructural.</li>\n        <li><strong>Comportamiento en la Exportación:</strong> Durante la compilación o exportación a PDF, DOCX o ePub, Odisea concatena automáticamente todas las hojas pegadas como un único texto continuo, suprimiendo saltos forzados de página entre ellas o respetando separadores temáticos si se han declarado.</li>\n        <li><strong>Ventaja para Escritores Profesionales:</strong> Puedes redactar cada escena, sub-apartado o diálogo en una hoja independiente de 300 a 600 palabras con su propio objetivo de escritura, y mantenerlas unidas como un solo capítulo formal dentro del libro.</li>\n    </ul>\n\n    \n        <div class=\"callout callout-milestone\">\n            <span class=\"callout-title\">HITO METODOLÓGICO · MODULARIDAD SIN FRICCIÓN</span>\n            <div class=\"callout-body\">\n                <p>Las hojas pegadas permiten reordenar escenas de una novela o secciones de un manual técnico con solo arrastrar una tarjeta arriba o abajo en la lista. Si decides despegar dos hojas, basta con pulsar nuevamente <strong>Ctrl+Shift+G</strong> para independizarlas al instante.</p>\n            </div>\n        </div>\n    "
+        },
+        {
+          "header_section": "FILTROS INTELIGENTES Y CARPETAS",
+          "html_content": "\n    \n            <div class=\"section-title\">\n                <span class=\"section-marker\"></span>\n                <span>5.3 Filtros Inteligentes y Carpetas Externas Sincronizadas</span>\n            </div>\n    <p>Para recuperar información instantáneamente entre miles de documentos, Odisea incorpora dos herramientas de primer orden:</p>\n\n    <p><strong>1. Filtros Inteligentes (Smart Filters):</strong> Búsquedas dinámicas guardadas en la Biblioteca que evalúan en tiempo real los metadatos de las hojas mediante reglas booleanas combinables:</p>\n    <ul>\n        <li>Hojas que contienen o excluyen determinadas palabras clave (Keywords).</li>\n        <li>Hojas modificadas en las últimas 24 horas, semana o mes actual.</li>\n        <li>Hojas con objetivos de escritura activos o metas completadas.</li>\n        <li>Hojas marcadas como favoritas o publicadas en plataformas web.</li>\n    </ul>\n\n    <p><strong>2. Carpetas Externas (External Folders):</strong> Odisea permite vincular cualquier directorio del sistema de archivos de Windows 11 o carpetas sincronizadas en la nube (Dropbox, OneDrive, repositorios Git):</p>\n\n    \n        <table class=\"table-technical\">\n            <colgroup><col style=\"width: 28%;\"><col style=\"width: 22%;\"><col style=\"width: 50%;\"></colgroup>\n            <thead>\n                <tr><th>Modo de Carpeta Externa</th><th>Formato en Disco</th><th>Comportamiento y Preservación de Metadatos</th></tr>\n            </thead>\n            <tbody>\n                <tr><td>Modo Markdown Estándar</td><td>Archivos <code>.md</code> o <code>.txt</code></td><td>Lectura y escritura directa. Preserva frontmatter YAML intacto y almacena metadatos en comentarios HTML.</td></tr><tr><td>Modo Nativo Ulysses / Odisea</td><td>Contenedores <code>.ulyz</code> / <code>.odisea</code></td><td>Almacén comprimido con texto Markdown XL íntegro, anotaciones al margen, notas al pie, objetivos e imágenes adjuntas.</td></tr>\n            </tbody>\n        </table>\n\n    \n        <div class=\"callout callout-takeaway\">\n            <span class=\"callout-title\">CONSEJO TÉCNICO · WATCHER ASÍNCRONO CON EL CRATE NOTIFY</span>\n            <div class=\"callout-body\">\n                <p>El subsistema en Rust monitoriza las carpetas externas con el crate <code>notify</code>. Si un archivo Markdown es modificado, renombrado o creado externamente (por ejemplo, mediante un <code>git pull</code> o un editor externo), Odisea emite un evento interno en <strong>menos de 100 ms</strong> actualizando la vista sin recargar la aplicación.</p>\n            </div>\n        </div>\n    "
+        }
+      ],
+      "summary": {
+        "key_points": [
+          "Los grupos admiten 4 roles semánticos: principal (main), extras, plantillas y notas de trabajo.",
+          "Glued Sheets (Ctrl+Shift+G) unen hojas contiguas para exportarlas fusionadas como un único texto.",
+          "Las palabras clave se muestran como micro-píldoras de colores facilitando la categorización cruzada.",
+          "Los Smart Filters evalúan reglas booleanas dinámicas actualizando la vista sin demoras.",
+          "Las carpetas externas admiten modo .md puro y contenedor nativo .ulyz con watcher asíncrono."
+        ],
+        "requirements": [
+          "Dominar el atajo Ctrl+Shift+G para enlazar o independizar hojas consecutivas.",
+          "Saber configurar un filtro inteligente para localizar borradores según palabras clave.",
+          "Conocer la diferencia entre el modo .md plano y el contenedor .ulyz en carpetas externas."
+        ]
+      },
+      "questionnaire": {
+        "columns": 2,
+        "questions": [
+          {
+            "text": "¿Qué atajo de teclado permite unir o despegar dos hojas consecutivas (Glued Sheets)?",
+            "options": [
+              "a) Ctrl + G",
+              "b) Ctrl + Shift + G",
+              "c) Alt + J",
+              "d) Ctrl + U"
+            ]
+          },
+          {
+            "text": "¿Cómo se representa visualmente una unión de Hojas Pegadas en la Lista de Hojas?",
+            "options": [
+              "a) Con un icono de clip",
+              "b) Con una barra vertical continua entre los márgenes de las tarjetas",
+              "c) Cambiando el texto a cursiva",
+              "d) Ocultando la segunda hoja"
+            ]
+          },
+          {
+            "text": "¿Cuál de las siguientes NO es una categoría semántica de grupo en la Biblioteca?",
+            "options": [
+              "a) main (sección principal)",
+              "b) extras (anexos)",
+              "c) trash_permanent (papelera destructiva)",
+              "d) templates (plantillas)"
+            ]
+          },
+          {
+            "text": "¿Qué motor de monitorización de archivos en Rust detecta cambios en carpetas externas en <100 ms?",
+            "options": [
+              "a) El crate notify",
+              "b) Un bucle infinito con sleep()",
+              "c) PowerShell FileSystemWatcher",
+              "d) No detecta cambios en tiempo real"
+            ]
+          },
+          {
+            "text": "¿Qué extensión utiliza el contenedor nativo comprimido de Ulysses/Odisea en carpetas externas?",
+            "options": [
+              "a) .zip",
+              "b) .ulyz / .odisea",
+              "c) .rar",
+              "d) .7z"
+            ]
+          },
+          {
+            "text": "¿Qué sucede con el frontmatter YAML de un archivo .md estándar vinculado en una carpeta externa?",
+            "options": [
+              "a) Se borra automáticamente",
+              "b) Se preserva íntegramente al leer y guardar el documento",
+              "c) Se convierte en una tabla",
+              "d) Bloquea la apertura del archivo"
+            ]
+          },
+          {
+            "text": "¿Qué criterio de búsqueda puede evaluar un Filtro Inteligente (Smart Filter)?",
+            "options": [
+              "a) Fecha de modificación",
+              "b) Palabras clave asignadas",
+              "c) Estado de objetivos de escritura",
+              "d) Todas las anteriores son correctas"
+            ]
+          },
+          {
+            "text": "¿Cómo se compilan las Hojas Pegadas durante la exportación a PDF o DOCX?",
+            "options": [
+              "a) Cada hoja sale en un archivo PDF distinto",
+              "b) Se concatenan en un único flujo de texto continuo respetando la secuencia",
+              "c) Solo se exporta la primera hoja",
+              "d) Se genera un archivo ZIP"
+            ]
+          },
+          {
+            "text": "¿Dónde se guardan las relaciones de jerarquía y orden de los grupos en Odisea?",
+            "options": [
+              "a) En un archivo INI",
+              "b) En la tabla groups de library.odiseadb con ON DELETE CASCADE",
+              "c) En el registro de Windows",
+              "d) En la nube"
+            ]
+          },
+          {
+            "text": "¿Qué ventaja tiene subdividir un capítulo extenso en hojas pegadas breves?",
+            "options": [
+              "a) Permite fijar objetivos de escritura individuales por cada escena o subsección",
+              "b) Hace que el programa ocupe menos memoria",
+              "c) Es obligatorio por el sistema",
+              "d) Evita tener que usar palabras clave"
+            ]
+          }
+        ]
+      },
+      "solutions": {
+        "items": [
+          {
+            "correct_answer": "b) Ctrl + Shift + G",
+            "explanation": "Ctrl+Shift+G conmuta el estado glued_with_next en la base de datos y la interfaz."
+          },
+          {
+            "correct_answer": "b) Con una barra vertical continua entre los márgenes de las tarjetas",
+            "explanation": "El trazo vertical continuo une físicamente las tarjetas indicando su secuencia indivisible."
+          },
+          {
+            "correct_answer": "c) trash_permanent (papelera destructiva)",
+            "explanation": "Las 4 secciones son 'main', 'extras', 'templates' y 'notes'."
+          },
+          {
+            "correct_answer": "a) El crate notify",
+            "explanation": "El crate notify de Rust se enlaza a las APIs nativas del kernel de Windows para detectar eventos I/O al instante."
+          },
+          {
+            "correct_answer": "b) .ulyz / .odisea",
+            "explanation": ".ulyz es el paquete empaquetado canónico que almacena texto, metadatos y medios adjuntos."
+          },
+          {
+            "correct_answer": "b) Se preserva íntegramente al leer y guardar el documento",
+            "explanation": "Odisea respeta el encabezado YAML frontal para garantizar interoperabilidad con Hugo, Astro y Obsidian."
+          },
+          {
+            "correct_answer": "d) Todas las anteriores son correctas",
+            "explanation": "Los Smart Filters permiten combinar múltiples predicados de metadatos, estado y fechas."
+          },
+          {
+            "correct_answer": "b) Se concatenan en un único flujo de texto continuo respetando la secuencia",
+            "explanation": "El compilador fusiona los bloques de texto garantizando la continuidad de la lectura."
+          },
+          {
+            "correct_answer": "b) En la tabla groups de library.odiseadb con ON DELETE CASCADE",
+            "explanation": "La base SQLite garantiza que al suprimir un grupo padre se gestionen sus hijos de forma íntegra."
+          },
+          {
+            "correct_answer": "a) Permite fijar objetivos de escritura individuales por cada escena o subsección",
+            "explanation": "Facilita la metodología de micro-metas diarias sin fracturar la unidad del libro."
+          }
+        ]
+      }
+    },
+    {
+      "number": 6,
+      "title": "Dashboard de Escritura, Métricas y Objetivos (Goals)",
+      "short_title": "MÉTRICAS Y OBJETIVOS",
+      "block": "BLOQUE III — ORGANIZACIÓN Y PRODUCTIVIDAD",
+      "block_kicker": "BLOQUE III · ORGANIZACIÓN Y PRODUCTIVIDAD",
+      "objectives": [
+        "Interpretar las estadísticas en tiempo real: palabras, caracteres, oraciones y tiempo de lectura.",
+        "Configurar objetivos cuantitativos de escritura con fecha límite y cuota diaria automática.",
+        "Interpretar el código de color de 4 estados en los anillos circulares de progreso SVG.",
+        "Navegar ágilmente mediante el árbol de esquema (Outline) y rastrear enlaces entrantes (Backlinks)."
+      ],
+      "pages": [
+        {
+          "header_section": "MÉTRICAS Y RITMO DE LECTURA",
+          "html_content": "\n    \n            <div class=\"section-title\">\n                <span class=\"section-marker\"></span>\n                <span>6.1 Métricas de Prosa y Ritmo de Lectura en Vivo</span>\n            </div>\n    <p>El dominio de la prosa requiere consciencia cuantitativa del ritmo, la longitud y la densidad de las oraciones. El <strong>Dashboard de Odisea (Panel 4)</strong> reúne un sofisticado laboratorio métrico que procesa el documento en tiempo real sin degradar el rendimiento del editor:</p>\n\n    <ul>\n        <li><strong>Contadores Cuantitativos Instantáneos:</strong>\n            <ul>\n                <li><strong>Palabras:</strong> Contadas mediante el estándar Unicode de segmentación léxica.</li>\n                <li><strong>Caracteres con y sin espacios:</strong> Crucial para artículos periodísticos, convocatorias editoriales y límites estrictos de publicación.</li>\n                <li><strong>Estructura Formal:</strong> Recuento exacto de Oraciones, Párrafos, Líneas y Páginas estimadas según el estándar editorial de 250 palabras por página.</li>\n            </ul>\n        </li>\n        <li><strong>Velocidad y Tiempos de Lectura Estimados:</strong> Odisea calcula el tiempo que demandará la lectura de tu texto en tres ritmos calibrados:\n            <ul>\n                <li><em>Ritmo Lento (150 palabras/min):</em> Adecuado para discursos públicos, poesía o ponencias magistrales.</li>\n                <li><em>Ritmo Medio (220 palabras/min):</em> Velocidad estándar de lectura silenciosa en adultos.</li>\n                <li><em>Ritmo Rápido (300 palabras/min):</em> Lectura veloz orientada a escaneo visual de artículos técnicos.</li>\n            </ul>\n        </li>\n        <li><strong>Índice de Legibilidad Flesch-Szigriszt:</strong> Evaluación analítica del nivel de dificultad léxica calibrada para el idioma español (desde estilo periodístico accesible hasta prosa técnica de alta complejidad).</li>\n    </ul>\n\n    \n        <div class=\"callout callout-success\">\n            <span class=\"callout-title\">BUENA PRÁCTICA · CONTROL DEL RITMO PROSÓDICO</span>\n            <div class=\"callout-body\">\n                <p>Alternar oraciones breves y contundentes con periodos subordinados más extensos dota al texto de musicalidad. El panel de métricas te ayuda a detectar párrafos excesivamente densos antes de pasar a la fase de edición estilística.</p>\n            </div>\n        </div>\n    "
+        },
+        {
+          "header_section": "WRITING GOALS Y ANILLOS SVG",
+          "html_content": "\n    \n            <div class=\"section-title\">\n                <span class=\"section-marker\"></span>\n                <span>6.2 Writing Goals y Anillos Circulares Progresivos SVG</span>\n            </div>\n    <p>La disciplina de escribir a diario se sustenta en el establecimiento de metas claras y alcanzables. El sistema de <strong>Writing Goals</strong> de Odisea transforma los objetivos abstractos en una experiencia visual motivadora mediante micro-anillos de progreso SVG proyectados en la barra de estado y en el Dashboard:</p>\n\n    <p>Odisea admite tres modalidades de objetivo tanto para hojas individuales como para grupos enteros:</p>\n    <ol>\n        <li><strong>Al menos (At least):</strong> Fija una meta mínima indispensable (por ejemplo, 1,000 palabras por jornada de trabajo). Ideal para redactar el primer borrador de una novela.</li>\n        <li><strong>Como máximo (At most):</strong> Impone un techo estricto (por ejemplo, 300 palabras para un resumen ejecutivo o 5,000 caracteres para una columna de prensa).</li>\n        <li><strong>Aproximadamente (About):</strong> Define un rango objetivo con una tolerancia automática del ±10% alrededor de la cifra elegida.</li>\n    </ol>\n\n    \n        <div class=\"callout callout-milestone\">\n            <span class=\"callout-title\">HITO VISUAL · EL CÓDIGO DE COLOR CUATRICOLOR DEL PROGRESS RING</span>\n            <div class=\"callout-body\">\n                <p>El anillo de progreso SVG comunica el estado de tu objetivo al instante con cuatro transiciones cromáticas calibradas:<br>1. <strong>Naranja Cálido (#ff9500):</strong> Arranque de la sesión (del 0% al 30% del objetivo).<br>2. <strong>Azul Vibrante (#007aff):</strong> Escritura fluida en progreso (del 30% al 99%).<br>3. <strong>Verde Esmeralda (#34c759):</strong> ¡Objetivo completado con éxito! (100% de la meta).<br>4. <strong>Rojo Carmesí (#ff3b30):</strong> Advertencia de sobrepaso en la modalidad 'Como máximo'.</p>\n            </div>\n        </div>\n\n    <p>Además, al asignar una <strong>Fecha Límite (Deadline)</strong>, Odisea calcula automáticamente tu <em>cuota diaria requerida</em> en función de los días restantes y registra tu historial de escritura de los últimos 30 días para evaluar tu regularidad.</p>\n    "
+        },
+        {
+          "header_section": "ESQUEMA Y ENLACES ENTRANTES",
+          "html_content": "\n    \n            <div class=\"section-title\">\n                <span class=\"section-marker\"></span>\n                <span>6.3 El Árbol de Esquema (Outline) y Enlaces Entrantes (Backlinks)</span>\n            </div>\n    <p>Las otras dos pestañas esenciales del Dashboard potencian la visión global y la interconexión de tus textos:</p>\n\n    <ul>\n        <li><strong>Pestaña Esquema (Outline):</strong> Extrae dinámicamente todos los encabezados <code>#</code> a <code>######</code> presentes en la hoja activa (o en el conjunto de hojas pegadas). Se presentan como un árbol jerárquico indentado. Al hacer clic en cualquier sección, el editor se desplaza suavemente hasta ella situando el cursor en el encabezado.</li>\n        <li><strong>Pestaña Vista General (Overview):</strong> Consolida en una lista filtrable todos los enlaces externos, notas al pie, anotaciones y medios adjuntos de la hoja, permitiendo comprobar su validez sin tener que rastrearlos manualmente por los párrafos.</li>\n        <li><strong>Pestaña Enlaces Entrantes (Backlinks):</strong> Odisea implementa enlaces wiki internos bidireccionales mediante <code>[[Título de Hoja]]</code>. Esta pestaña lista instantáneamente todos los documentos de la biblioteca que enlazan hacia la hoja activa, fomentando la creación de redes de conocimiento no lineales (Zettelkasten / Knowledge Graph).</li>\n    </ul>\n\n    \n        <table class=\"table-technical\">\n            <colgroup><col style=\"width: 25%;\"><col style=\"width: 25%;\"><col style=\"width: 50%;\"></colgroup>\n            <thead>\n                <tr><th>Pestaña del Dashboard</th><th>Atajo de Acceso</th><th>Contenido y Funciones Principales</th></tr>\n            </thead>\n            <tbody>\n                <tr><td>Progreso y Metas</td><td>Panel 4 · Tab 1</td><td>Contadores instantáneos, Writing Goals, anillos SVG, cuota diaria e historial</td></tr><tr><td>Esquema (Outline)</td><td>Panel 4 · Tab 2</td><td>Navegación jerárquica instantánea por encabezados H1 a H6</td></tr><tr><td>Vista General</td><td>Panel 4 · Tab 3</td><td>Auditoría de Enlaces, Notas al pie (FN), Anotaciones y Medios adjuntos</td></tr><tr><td>Enlaces Entrantes</td><td>Panel 4 · Tab 4</td><td>Rastreo bidireccional de Backlinks entre hojas interconectadas</td></tr>\n            </tbody>\n        </table>\n    "
+        }
+      ],
+      "summary": {
+        "key_points": [
+          "El Dashboard (Ctrl+4) proporciona métricas completas de palabras, caracteres y legibilidad en vivo.",
+          "Ofrece tiempos de lectura estimados en tres ritmos: Lento (150 ppm), Medio (220 ppm) y Rápido (300 ppm).",
+          "Writing Goals admite 3 modos: Al menos (mínimo), Como máximo (límite) y Aproximadamente (±10%).",
+          "El anillo SVG cambia de color: Naranja (inicio), Azul (progreso), Verde (logro) y Rojo (exceso).",
+          "El Outline permite saltar entre encabezados H1..H6 y los Backlinks gestionan conexiones bidireccionales."
+        ],
+        "requirements": [
+          "Saber fijar un Writing Goal en una hoja y asignar una fecha límite.",
+          "Identificar el significado de cada color en el indicador circular de progreso.",
+          "Utilizar la pestaña Outline para desplazarse por documentos extensos."
+        ]
+      },
+      "questionnaire": {
+        "columns": 2,
+        "questions": [
+          {
+            "text": "¿Qué velocidad en palabras por minuto se asigna al ritmo de lectura 'Medio' en Odisea?",
+            "options": [
+              "a) 150 palabras/min",
+              "b) 220 palabras/min",
+              "c) 300 palabras/min",
+              "d) 500 palabras/min"
+            ]
+          },
+          {
+            "text": "¿Qué color adopta el anillo SVG cuando se alcanza exactamente el 100% de la meta de escritura?",
+            "options": [
+              "a) Azul vibrante",
+              "b) Verde esmeralda",
+              "c) Naranja cálido",
+              "d) Amarillo brillante"
+            ]
+          },
+          {
+            "text": "¿En qué modalidad de Writing Goal se torna rojo el indicador si se rebasa la cifra fijada?",
+            "options": [
+              "a) En modo 'Al menos'",
+              "b) En modo 'Como máximo' (At most)",
+              "c) En modo 'Aproximadamente'",
+              "d) En ninguna"
+            ]
+          },
+          {
+            "text": "¿Qué calcula Odisea automáticamente al fijar una fecha límite (Deadline) para un objetivo?",
+            "options": [
+              "a) El coste de impresión",
+              "b) La cuota diaria recomendada de palabras",
+              "c) El tamaño del archivo en disco",
+              "d) La fecha de caducidad"
+            ]
+          },
+          {
+            "text": "¿Qué muestra la pestaña 'Outline' en el Dashboard de Odisea?",
+            "options": [
+              "a) La lista de archivos eliminados",
+              "b) El árbol jerárquico de encabezados H1 a H6 para navegación instantánea",
+              "c) La paleta de colores del tema",
+              "d) Las contraseñas guardadas"
+            ]
+          },
+          {
+            "text": "¿Qué tolerancia de variación admite el modo de objetivo 'Aproximadamente'?",
+            "options": [
+              "a) ±2%",
+              "b) ±10% alrededor de la cifra objetivo",
+              "c) ±25%",
+              "d) ±50%"
+            ]
+          },
+          {
+            "text": "¿Cómo se crea un enlace bidireccional hacia otra hoja de la biblioteca en Markdown XL?",
+            "options": [
+              "a) Mediante [[Título de la Hoja]]",
+              "b) Con @link:hoja",
+              "c) Mediante un comando FTP",
+              "d) Arrastrando el ejecutable"
+            ]
+          },
+          {
+            "text": "¿Qué información recopila la pestaña 'Vista General' (Overview)?",
+            "options": [
+              "a) El clima local",
+              "b) La lista consolidada de enlaces, notas al pie, anotaciones y medios adjuntos",
+              "c) Los correos del usuario",
+              "d) El historial de navegación web"
+            ]
+          },
+          {
+            "text": "¿Cuántas palabras por página estándar utiliza Odisea para estimar la paginación impresa?",
+            "options": [
+              "a) 100 palabras",
+              "b) 250 palabras por página estándar",
+              "c) 500 palabras",
+              "d) 1000 palabras"
+            ]
+          },
+          {
+            "text": "¿Dónde se reflejan visualmente los micro-anillos de progreso además de en el Dashboard?",
+            "options": [
+              "a) En la barra de título de Windows",
+              "b) En la tarjeta de la hoja en la Lista de Hojas y en la barra de estado",
+              "c) En el fondo de pantalla",
+              "d) En el menú inicio"
+            ]
+          }
+        ]
+      },
+      "solutions": {
+        "items": [
+          {
+            "correct_answer": "b) 220 palabras/min",
+            "explanation": "220 ppm es la media internacional estandarizada para lectura comprensiva de prosa en adultos."
+          },
+          {
+            "correct_answer": "b) Verde esmeralda",
+            "explanation": "El verde esmeralda (#34c759) certifica visualmente que la meta diaria o capitular ha sido cumplida."
+          },
+          {
+            "correct_answer": "b) En modo 'Como máximo' (At most)",
+            "explanation": "En 'Como máximo', el rojo advierte que el texto ha excedido el límite editorial permitido."
+          },
+          {
+            "correct_answer": "b) La cuota diaria recomendada de palabras",
+            "explanation": "El algoritmo divide las palabras pendientes entre los días restantes hasta la fecha límite."
+          },
+          {
+            "correct_answer": "b) El árbol jerárquico de encabezados H1 a H6 para navegación instantánea",
+            "explanation": "Outline permite desplazarse por capítulos de decenas de miles de palabras en milisegundos."
+          },
+          {
+            "correct_answer": "b) ±10% alrededor de la cifra objetivo",
+            "explanation": "El modo 'Aproximadamente' considera cumplida la meta dentro del margen del 90% al 110%."
+          },
+          {
+            "correct_answer": "a) Mediante [[Título de la Hoja]]",
+            "explanation": "La sintaxis wiki [[...]] enlaza documentos alimentando la tabla interna de internal_links."
+          },
+          {
+            "correct_answer": "b) La lista consolidada de enlaces, notas al pie, anotaciones y medios adjuntos",
+            "explanation": "Permite auditar todos los recursos complementarios del documento desde una sola vista."
+          },
+          {
+            "correct_answer": "b) 250 palabras por página estándar",
+            "explanation": "250 palabras por página es el estándar editorial clásico de cuartilla mecanografiada."
+          },
+          {
+            "correct_answer": "b) En la tarjeta de la hoja en la Lista de Hojas y en la barra de estado",
+            "explanation": "El autor percibe el progreso de cada documento sin necesidad de abrir el Dashboard lateral."
+          }
+        ]
+      }
+    },
+    {
+      "number": 7,
+      "title": "Motor de Hojas de Estilo (.ulss) y Exportación Multi-Formato",
+      "short_title": "MOTOR ULSS Y EXPORTACIÓN",
+      "block": "BLOQUE IV — MAQUETACIÓN EDITORIAL Y PUBLICACIÓN",
+      "block_kicker": "BLOQUE IV · MAQUETACIÓN EDITORIAL",
+      "objectives": [
+        "Comprender la arquitectura de compilación del motor ULSS en Rust (lexer, parser, resolver, compiler).",
+        "Dominar la sintaxis de hojas de estilo .ulss: variables, mixins, cascada y selectores adyacentes.",
+        "Conocer las características tipográficas de los 11 estilos editoriales preinstalados de serie.",
+        "Operar el modal de exportación (Ctrl+E) para compilar en PDF, DOCX, ePub, HTML y Markdown plano."
+      ],
+      "pages": [
+        {
+          "header_section": "ARQUITECTURA DEL MOTOR ULSS",
+          "html_content": "\n    \n            <div class=\"section-title\">\n                <span class=\"section-marker\"></span>\n                <span>7.1 Arquitectura del Motor de Hojas de Estilo (.ulss) en Rust</span>\n            </div>\n    <p>La culminación del paradigma WYSIWYM en Odisea se materializa en su <strong>motor nativo de hojas de estilo de Ulysses (.ulss)</strong>, reimplementado íntegramente en Rust bajo el subsistema <code>src-tauri/src/ulss_engine/</code>. Este motor permite transformar cualquier manuscrito redactado en Markdown XL en un documento de calidad tipográfica idéntica a Adobe InDesign, gobernado por reglas de diseño reutilizables y desacopladas del texto:</p>\n\n    <ul>\n        <li><strong>Analizador Léxico (lexer.rs):</strong> Tokeniza selectores tipográficos (<code>defaults</code>, <code>heading-1</code>, <code>paragraph</code>, <code>inline-strong</code>), valores numéricos con unidades físicas (<code>pt</code>, <code>in</code>, <code>mm</code>, <code>cm</code>), fuentes con o sin comillas, y variables que inician con el prefijo <code>$</code>.</li>\n        <li><strong>Analizador Sintáctico (parser.rs):</strong> Construye el Árbol de Sintaxis Abstracta (AST) resolviendo directivas <code>@mixin</code>, selectores anidados y asignaciones de variables tanto con el operador igual (<code>$font = \"Charter\"</code>) como con dos puntos (<code>$color: #111111</code>).</li>\n        <li><strong>Resolutor de Cascada (resolver.rs):</strong> Aplica la herencia jerárquica estandarizada de Ulysses: las propiedades declaradas en <code>defaults</code> fluyen hacia <code>heading-all</code> y de ahí a <code>heading-1</code>..<code>heading-6</code>, resolviendo selectores adyacentes contextuales como <code>paragraph + paragraph</code>.</li>\n        <li><strong>Compilador de Diseño (compiler.rs):</strong> Traduce el AST a CSS tipográfico avanzado de alto rendimiento con soporte de alineación a rejilla base (<em>baseline-grid</em>) y expansión de columnas (<em>column-span: all</em>) para maquetaciones multicolumna modernas.</li>\n    </ul>\n\n    \n        <div class=\"callout callout-definition\">\n            <span class=\"callout-title\">DEFINICIÓN CLAVE · EL FORMATO ESTÁNDAR .ULSS</span>\n            <div class=\"callout-body\">\n                <p>El formato <code>.ulss</code> (Ulysses Style Sheet) es el estándar internacional de hojas de estilo para edición de prosa. Odisea es plenamente compatible con los miles de estilos comunitarios disponibles en el repositorio oficial de Ulysses (styles.ulysses.app), permitiendo importar cualquier archivo .ulss sin conversiones.</p>\n            </div>\n        </div>\n    "
+        },
+        {
+          "header_section": "LOS 11 ESTILOS PREINSTALADOS",
+          "html_content": "\n    \n            <div class=\"section-title\">\n                <span class=\"section-marker\"></span>\n                <span>7.2 Los 11 Estilos Editoriales Canónicos Incluidos de Serie</span>\n            </div>\n    <p>En el subdirectorio <code>./odisea_data/styles/</code>, Odisea incluye de serie una biblioteca completa de <strong>11 hojas de estilo .ulss</strong> optimizadas para los principales géneros literarios, académicos y corporativos:</p>\n\n    \n        <table class=\"table-technical\">\n            <colgroup><col style=\"width: 24%;\"><col style=\"width: 26%;\"><col style=\"width: 50%;\"></colgroup>\n            <thead>\n                <tr><th>Hoja de Estilo (.ulss)</th><th>Tipografías Base</th><th>Propósito y Características Editoriales</th></tr>\n            </thead>\n            <tbody>\n                <tr><td>Swiss Knife</td><td>Helvetica / System Sans</td><td>Diseño contemporáneo, neutro y universal; márgenes amplios y títulos limpios.</td></tr><tr><td>Novel (Manuscript)</td><td>Courier New (12pt / 24pt)</td><td>Estándar clásico de entrega editorial: doble espacio, márgenes de 1 pulgada y sangría.</td></tr><tr><td>Academic Paper</td><td>Times New Roman (12pt)</td><td>Formato riguroso para tesis y papers: notas al pie numeradas y citas en bloque.</td></tr><tr><td>Business Report</td><td>Plus Jakarta Sans / Arial</td><td>Documento corporativo moderno: tablas destacadas, cabeceras azul marino y sumarios.</td></tr><tr><td>Two-Column Magazine</td><td>Charter / Georgia</td><td>Diseño periodístico a dos columnas justificadas con micro-balanceo y letras capitulares.</td></tr><tr><td>Minimalist Essay</td><td>Charter Serif (11pt)</td><td>Prosa pura de ensayo humanístico: márgenes generosos y máxima ligereza visual.</td></tr><tr><td>Technical Docs</td><td>JetBrains Mono / Inter</td><td>Manuales de software e ingeniería: bloques de código resaltados y callouts coloridos.</td></tr><tr><td>Revision</td><td>Charter / Courier</td><td>Modo de corrección editorial: notas de autor, tachados en rojo y resaltados visibles.</td></tr><tr><td>Modern Novel</td><td>Georgia (11.5pt)</td><td>Novela contemporánea comercial: encabezados sutiles y foliación alterna.</td></tr><tr><td>Standard Academic</td><td>Garamond / Times</td><td>Estilo universitario tradicional con bibliografía al final y citas formateadas.</td></tr><tr><td>sample_style</td><td>System Fonts</td><td>Plantilla base documentada para la creación de nuevos estilos personalizados.</td></tr>\n            </tbody>\n        </table>\n\n    \n        <div class=\"callout callout-milestone\">\n            <span class=\"callout-title\">HITO TIPOGRÁFICO · EL SELECTOR ADYACENTE DE SANGRÍA</span>\n            <div class=\"callout-body\">\n                <p>En la edición profesional de libros, el primer párrafo de un capítulo <strong>nunca lleva sangría</strong>, mientras que los párrafos subsiguientes sí la llevan. El motor de Odisea implementa esta regla de forma automática mediante la regla ULSS <code>paragraph + paragraph { first-line-indent: 0.5in; }</code>, emulando la precisión de InDesign sin requerir marcas manuales.</p>\n            </div>\n        </div>\n    "
+        },
+        {
+          "header_section": "EL MODAL DE PREVISUALIZACIÓN",
+          "html_content": "\n    \n            <div class=\"section-title\">\n                <span class=\"section-marker\"></span>\n                <span>7.3 El Modal de Previsualización (Ctrl+E) y Formatos de Salida</span>\n            </div>\n    <p>Al pulsar <strong>Ctrl+E</strong> o seleccionar el botón de exportación en la barra superior, Odisea abre el <strong>Modal de Previsualización Editorial</strong> (<code>ExportPreviewModal.tsx</code>). Esta interfaz permite auditar el documento renderizado en tiempo real antes de generar el archivo final:</p>\n\n    <ul>\n        <li><strong>Selector de Formato de Salida:</strong>\n            <ul>\n                <li><strong>PDF Editorial:</strong> Renderizado vectorial con sangrado completo, numeración de páginas alterna (pares a la izquierda, impares a la derecha) y marcadores interactivos (outlines/bookmarks).</li>\n                <li><strong>DOCX (Microsoft Word):</strong> Documento estructurado con estilos nativos de Word (Título 1, Título 2, Citas, Tablas nativas) respetando la jerarquía de encabezados.</li>\n                <li><strong>ePub 3.0:</strong> Libro electrónico estándar para Apple Books, Kindle y lectores e-reader, con tabla de contenidos digital y tipografía escalable.</li>\n                <li><strong>HTML Autónomo:</strong> Archivo web autocontenido con estilos CSS incrustados e imágenes convertidas a Base64 para distribución inmediata.</li>\n                <li><strong>Markdown Plano (.md):</strong> Exportación limpia sin extensiones propietarias para publicación en plataformas estáticas (Astro, Hugo, Jekyll).</li>\n            </ul>\n        </li>\n        <li><strong>Conmutador de Estilos en Vivo:</strong> Cambia de estilo ULSS en el desplegable (por ejemplo, de <em>Swiss Knife</em> a <em>Novel Manuscript</em>) y observa cómo la previsualización se recompila en menos de 200 ms.</li>\n        <li><strong>Ajustes de Página:</strong> Selección de formato de papel (A4, Letter, A5, B5), orientación (Vertical / Horizontal) y configuración de márgenes personalizados.</li>\n    </ul>\n    "
+        }
+      ],
+      "summary": {
+        "key_points": [
+          "El motor ULSS en Rust tokeniza, parsea y resuelve estilos tipográficos con fidelidad absoluta a Ulysses.",
+          "Soporta variables ($var), mixins (@mixin) y selectores adyacentes (paragraph + paragraph).",
+          "Incluye 11 estilos predeterminados: Swiss Knife, Novel, Academic Paper, Technical Docs, etc.",
+          "El modal Ctrl+E permite previsualizar la composición antes de generar el archivo definitivo.",
+          "Exporta a 5 formatos mayores: PDF vectorial, DOCX con estilos, ePub 3, HTML y Markdown estándar."
+        ],
+        "requirements": [
+          "Saber abrir la previsualización editorial mediante el atajo Ctrl+E.",
+          "Identificar el estilo adecuado para cada proyecto (ej. Novel para manuscritos, Academic para tesis).",
+          "Comprender cómo se personalizan o añaden nuevos estilos en ./odisea_data/styles/."
+        ]
+      },
+      "questionnaire": {
+        "columns": 2,
+        "questions": [
+          {
+            "text": "¿Qué extensión tienen las hojas de estilo tipográficas canónicas de Ulysses y Odisea?",
+            "options": [
+              "a) .css",
+              "b) .ulss",
+              "c) .style",
+              "d) .theme"
+            ]
+          },
+          {
+            "text": "¿Cómo se declara una variable en el lenguaje de estilos .ulss?",
+            "options": [
+              "a) var font = 'Arial'",
+              "b) $font-name = 'Charter' o $font-name: 'Charter'",
+              "c) @font: 'Charter'",
+              "d) #font = 'Charter'"
+            ]
+          },
+          {
+            "text": "¿Qué regla ULSS se utiliza para aplicar sangría de primera línea solo a partir del segundo párrafo?",
+            "options": [
+              "a) paragraph:all { indent: true; }",
+              "b) paragraph + paragraph { first-line-indent: 0.5in; }",
+              "c) indent-after-first { 20px; }",
+              "d) paragraph:not(:first)"
+            ]
+          },
+          {
+            "text": "¿Cuántos estilos editoriales .ulss incluye Odisea preconfigurados en ./odisea_data/styles/?",
+            "options": [
+              "a) 2 estilos",
+              "b) 11 estilos",
+              "c) 50 estilos",
+              "d) 1 estilo"
+            ]
+          },
+          {
+            "text": "¿Qué estilo .ulss reproduce el formato canónico de entrega a doble espacio en Courier New para editoriales?",
+            "options": [
+              "a) Swiss Knife",
+              "b) Novel (Manuscript).ulss",
+              "c) Minimalist Essay",
+              "d) Business Report"
+            ]
+          },
+          {
+            "text": "¿Qué atajo de teclado lanza el modal de previsualización y exportación editorial?",
+            "options": [
+              "a) Ctrl + Shift + P",
+              "b) Ctrl + E",
+              "c) Alt + P",
+              "d) F12"
+            ]
+          },
+          {
+            "text": "¿A qué formatos permite compilar el motor de exportación de Odisea?",
+            "options": [
+              "a) Solo a texto plano .txt",
+              "b) PDF editorial, DOCX estructurado, ePub 3, HTML autónomo y Markdown plano",
+              "c) Únicamente a PDF",
+              "d) A formato propietario cifrado"
+            ]
+          },
+          {
+            "text": "¿Dónde se guardan los archivos finales exportados por Odisea de forma predeterminada?",
+            "options": [
+              "a) En C:\\Users\\Desktop",
+              "b) En ./odisea_data/exports/",
+              "c) En Mis Documentos",
+              "d) En la papelera"
+            ]
+          },
+          {
+            "text": "¿Qué directiva permite reutilizar bloques comunes de reglas en un archivo .ulss?",
+            "options": [
+              "a) @import",
+              "b) @mixin nombre { ... }",
+              "c) @include",
+              "d) @copy"
+            ]
+          },
+          {
+            "text": "¿Qué ventaja tiene la exportación ePub 3 generada por Odisea?",
+            "options": [
+              "a) Es solo una imagen escaneada",
+              "b) Incluye tabla de contenidos digital navegable y texto redimensionable para lectores e-reader",
+              "c) Requiere conexión permanente",
+              "d) Solo funciona en iPhone"
+            ]
+          }
+        ]
+      },
+      "solutions": {
+        "items": [
+          {
+            "correct_answer": "b) .ulss",
+            "explanation": "Las Ulysses Style Sheets (.ulss) son el formato estándar soportado por el motor en Rust de Odisea."
+          },
+          {
+            "correct_answer": "b) $font-name = 'Charter' o $font-name: 'Charter'",
+            "explanation": "El parser admite asignación con signo igual y con dos puntos para máxima compatibilidad."
+          },
+          {
+            "correct_answer": "b) paragraph + paragraph { first-line-indent: 0.5in; }",
+            "explanation": "El selector de hermano adyacente (+) aplica la regla únicamente cuando un párrafo sigue a otro párrafo."
+          },
+          {
+            "correct_answer": "b) 11 estilos",
+            "explanation": "Incluye Swiss Knife, Novel, Academic Paper, Business Report, Two-Column Magazine, etc."
+          },
+          {
+            "correct_answer": "b) Novel (Manuscript).ulss",
+            "explanation": "Cumple los requerimientos tradicionales de las agencias y editoriales literarias norteamericanas y europeas."
+          },
+          {
+            "correct_answer": "b) Ctrl + E",
+            "explanation": "Ctrl+E abre de forma inmediata el modal de previsualización antes de generar el archivo en disco."
+          },
+          {
+            "correct_answer": "b) PDF editorial, DOCX estructurado, ePub 3, HTML autónomo y Markdown plano",
+            "explanation": "Cubre todas las fases del ciclo editorial: imprenta, distribución digital, oficina e interoperabilidad web."
+          },
+          {
+            "correct_answer": "b) En ./odisea_data/exports/",
+            "explanation": "El principio de portabilidad absoluta asegura que las salidas queden recogidas en el subdirectorio exports."
+          },
+          {
+            "correct_answer": "b) @mixin nombre { ... }",
+            "explanation": "Los mixins permiten encapsular propiedades tipográficas repetitivas y aplicarlas en múltiples selectores."
+          },
+          {
+            "correct_answer": "b) Incluye tabla de contenidos digital navegable y texto redimensionable para lectores e-reader",
+            "explanation": "El archivo ePub cumple con los estándares IDPF/W3C con metadatos completos y maquetación fluida."
+          }
+        ]
+      }
+    },
+    {
+      "number": 8,
+      "title": "Conectores de Publicación Web y Mantenimiento Portable",
+      "short_title": "PUBLICACIÓN Y MANTENIMIENTO",
+      "block": "BLOQUE IV — MAQUETACIÓN EDITORIAL Y PUBLICACIÓN",
+      "block_kicker": "BLOQUE IV · MAQUETACIÓN EDITORIAL",
+      "objectives": [
+        "Configurar y utilizar los conectores de publicación web en WordPress, Ghost, Medium y Micro.blog.",
+        "Emplear la función 'Copy for Substack' para transferir prosa enriquecida al editor web de Substack.",
+        "Actualizar entradas ya publicadas de forma bidireccional identificadas con el icono de avión de papel.",
+        "Comprender el ciclo de respaldos automáticos Zstandard y la migración portable en Windows 11."
+      ],
+      "pages": [
+        {
+          "header_section": "CONECTORES DE PUBLICACIÓN WEB",
+          "html_content": "\n    \n            <div class=\"section-title\">\n                <span class=\"section-marker\"></span>\n                <span>8.1 Publicación Web Directa: WordPress, Ghost, Medium, Micro.blog y Substack</span>\n            </div>\n    <p>Para periodistas digitales, blogueros y ensayistas contemporáneos, el flujo de trabajo suele fracturarse al transferir el texto desde el procesador de escritorio al gestor de contenidos (CMS) web: imágenes que se desconfiguran, párrafos que pierden formato o etiquetas rotas. Odisea resuelve esta fricción integrando <strong>conectores de publicación web en la nube</strong> directamente desde el ejecutable nativo:</p>\n\n    <ul>\n        <li><strong>WordPress (REST API v2):</strong> Permite publicar nuevas entradas o <strong>actualizar entradas ya publicadas</strong> de forma bidireccional. Puedes configurar múltiples cuentas seguras, asignar el estado inicial (Borrador, Publicado, Programado con selector de fecha/hora), seleccionar categorías, añadir etiquetas y enviar la imagen destacada automáticamente desde los adjuntos locales.</li>\n        <li><strong>Ghost (Admin API):</strong> Generación autónoma de tokens criptográficos JWT en Rust (<code>publishers/ghost.rs</code>). Envía entradas estructuradas en HTML semántico limpio con imagen de cabecera y tags remotos.</li>\n        <li><strong>Medium & Micro.blog:</strong> Publicación instantánea en tus feeds personales mediante tokens de acceso directo. En Micro.blog, Odisea soporta además la actualización remota de microposts existentes.</li>\n        <li><strong>Función 'Copy for Substack':</strong> Substack cuenta con un editor web cerrado que rechaza la mayoría de códigos Markdown pegados. La función dedicada de Odisea transforma el documento Markdown XL en el <em>formato exacto de portapapeles enriquecido (HTML/Rich-Text MIME)</em> que acepta el editor de Substack, preservando subtítulos, citas en bloque, enlaces y notas al pie sin descuadres visuales.</li>\n    </ul>\n\n    \n        <div class=\"callout callout-milestone\">\n            <span class=\"callout-title\">HITO OPERATIVO · INDICADOR VISUAL DE PUBLICACIÓN EN LA NUBE</span>\n            <div class=\"callout-body\">\n                <p>Cuando una hoja ha sido enviada con éxito a un servicio web, su tarjeta en la Lista de Hojas incorpora automáticamente un elegante <strong>micro-icono de avión de papel</strong>. En el Dashboard lateral, la pestaña de publicación muestra el enlace permanente (permalink) remoto y permite sincronizar las modificaciones futuras con un solo clic.</p>\n            </div>\n        </div>\n    "
+        },
+        {
+          "header_section": "EL CICLO DE RESPALDOS ZSTANDARD",
+          "html_content": "\n    \n            <div class=\"section-title\">\n                <span class=\"section-marker\"></span>\n                <span>8.2 El Ciclo de Respaldo Automático con Zstandard (.odiseabak)</span>\n            </div>\n    <p>La peor pesadilla de un escritor es la pérdida accidental de días o meses de trabajo debido a fallos de hardware, cortes de suministro o borrados involuntarios. Odisea implementa un sistema de <strong>copias de seguridad continuas en segundo plano</strong> (<code>src-tauri/src/backups/</code>) con compresión Zstandard de alto ratio:</p>\n\n    <ul>\n        <li><strong>Instantáneas Horarias (hourly):</strong> Odisea genera automáticamente una copia comprimida cada 60 minutos de escritura activa en <code>./odisea_data/backups/hourly/</code>. Se conservan los últimos 24 respaldos horarios.</li>\n        <li><strong>Instantáneas Diarias (daily):</strong> Al concluir cada jornada, se consolida una copia diaria en <code>./odisea_data/backups/daily/</code>, preservando el historial de los últimos 7 días.</li>\n        <li><strong>Instantáneas Semanales (weekly):</strong> Cada semana se archiva un resguardo definitivo en <code>./odisea_data/backups/weekly/</code>, almacenando hasta 4 semanas consecutivas.</li>\n    </ul>\n\n    <div class=\"code-box\">\n        <pre><code class=\"language-text\"># Estructura del archivo de snapshot Zstandard (.odiseabak)\nodisea_backup_20261019_230000.odiseabak  [Compresión Zstd Level 3]\n├── library.odiseadb                     # Base de datos relacional completa con índices FTS5\n├── config.toml                          # Preferencias y configuración de usuario\n├── styles/                              # Hojas de estilo .ulss personalizadas\n└── manifest.json                        # Metadatos del snapshot: fecha, checksum SHA-256, versión</code></pre>\n    </div>\n\n    \n        <div class=\"callout callout-danger\">\n            <span class=\"callout-title\">SEGURIDAD DE DATOS · RESGUARDO PREVIO ANTES DE RESTAURAR</span>\n            <div class=\"callout-body\">\n                <p>Si necesitas restaurar una copia de seguridad anterior desde el menú de opciones, Odisea genera automáticamente un respaldo de emergencia de tu estado actual (<code>library.pre_restore.bak</code>) antes de sobreescribir la base de datos, garantizando que ninguna palabra se pierda en el proceso.</p>\n            </div>\n        </div>\n    "
+        },
+        {
+          "header_section": "MANTENIMIENTO Y MIGRACIÓN PORTABLE",
+          "html_content": "\n    \n            <div class=\"section-title\">\n                <span class=\"section-marker\"></span>\n                <span>8.3 Mantenimiento, Optimización FTS5 y Migración Portable</span>\n            </div>\n    <p>La salud a largo plazo de una biblioteca con cientos de proyectos y miles de hojas depende de un motor de almacenamiento eficiente. Odisea mantiene su base SQLite optimizada de forma totalmente invisible para el usuario:</p>\n\n    <ul>\n        <li><strong>Puntos de Control WAL (Write-Ahead Logging):</strong> Las escrituras en disco se registran en el diario WAL de SQLite a máxima velocidad sin bloquear la lectura de otros paneles. Al cerrar la aplicación, se ejecuta un <code>wal_checkpoint(TRUNCATE)</code> consolidando los datos en el archivo principal <code>library.odiseadb</code>.</li>\n        <li><strong>Búsqueda de Texto Completo FTS5:</strong> Cada vez que insertas, modificas o eliminas una hoja, triggers atómicos sincronizan la tabla virtual <code>sheets_fts</code>. Las búsquedas en la biblioteca devuelven resultados en menos de 5 milisegundos, incluso en bibliotecas de más de 100,000 páginas.</li>\n        <li><strong>Migración Portable Entre Equipos:</strong> Para trasladar todo tu entorno de trabajo a otro ordenador con Windows 11, basta con copiar la carpeta completa <code>Odisea_Win11_Portable</code> (o mantenerla en una memoria USB o unidad en la nube). Al ejecutar <code>Odisea.exe</code> en el nuevo equipo, la aplicación funcionará de inmediato con el 100% de tus datos, estilos, temas y configuración intactos.</li>\n    </ul>\n\n    \n        <table class=\"table-technical\">\n            <colgroup><col style=\"width: 28%;\"><col style=\"width: 28%;\"><col style=\"width: 44%;\"></colgroup>\n            <thead>\n                <tr><th>Escenario Operativo</th><th>Acción Recomendada</th><th>Procedimiento Técnico en Odisea</th></tr>\n            </thead>\n            <tbody>\n                <tr><td>Mover a un nuevo PC con Windows 11</td><td>Copiar carpeta Odisea_Win11_Portable</td><td>No requiere instalador ni activación; arranque instantáneo.</td></tr><tr><td>Respaldar toda la biblioteca</td><td>Archivar ./odisea_data/backups/</td><td>Contiene todos los snapshots horarios, diarios y semanales.</td></tr><tr><td>Actualizar un artículo en WordPress</td><td>Ctrl + Shift + P en la hoja activa</td><td>Detecta el ID remoto y actualiza la entrada sin duplicarla.</td></tr><tr><td>Publicar en Substack</td><td>Comando 'Copy for Substack' en la paleta</td><td>Pega directamente con Ctrl+V en el navegador web de Substack.</td></tr><tr><td>Restaurar un texto borrado</td><td>Menú Configuración > Restaurar Snapshot</td><td>Selecciona el backup .odiseabak deseado; genera .bak preventivo.</td></tr>\n            </tbody>\n        </table>\n    "
+        }
+      ],
+      "summary": {
+        "key_points": [
+          "Odisea publica y actualiza entradas en WordPress, Ghost, Medium y Micro.blog con un solo clic.",
+          "La función 'Copy for Substack' adapta el formato enriquecido al portapapeles para pegado sin fallos.",
+          "Las hojas publicadas lucen un micro-icono de avión de papel y registran su permalink remoto.",
+          "El subsistema de backups genera copias continuas comprimidas con Zstandard (hourly, daily, weekly).",
+          "Portabilidad garantizada: mover la carpeta Odisea_Win11_Portable traslada el 100% de la biblioteca."
+        ],
+        "requirements": [
+          "Saber introducir credenciales seguras (Application Passwords / JWT) en la configuración de publicación.",
+          "Conocer la ubicación de los archivos .odiseabak en ./odisea_data/backups/.",
+          "Comprender cómo se migra la carpeta portable a una memoria USB o servicio en la nube."
+        ]
+      },
+      "questionnaire": {
+        "columns": 2,
+        "questions": [
+          {
+            "text": "¿Qué API utiliza Odisea para conectarse con blogs y sitios de WordPress?",
+            "options": [
+              "a) XML-RPC obsoleto",
+              "b) WordPress REST API v2 con contraseñas de aplicación",
+              "c) Conexión directa a MySQL",
+              "d) Envío por correo POP3"
+            ]
+          },
+          {
+            "text": "¿Qué token criptográfico genera Odisea en Rust para autenticar con Ghost Admin API?",
+            "options": [
+              "a) Token OAuth1",
+              "b) Tokens JWT (JSON Web Tokens) firmados en tiempo real",
+              "c) Certificados SSL X.509",
+              "d) Claves PGP"
+            ]
+          },
+          {
+            "text": "¿Qué función facilita pegar prosa con formato intacto en el editor web de Substack?",
+            "options": [
+              "a) 'Export to Word'",
+              "b) 'Copy for Substack' (portapapeles enriquecido MIME)",
+              "c) 'Convert to PDF'",
+              "d) 'Screenshot to clipboard'"
+            ]
+          },
+          {
+            "text": "¿Cómo se distingue en la Lista de Hojas un documento que ya ha sido publicado en la web?",
+            "options": [
+              "a) Se pone el texto en color azul",
+              "b) Muestra un micro-icono vectorial de avión de papel",
+              "c) Aparece un candado cerrado",
+              "d) Se bloquea la edición"
+            ]
+          },
+          {
+            "text": "¿Permite Odisea actualizar una entrada que ya fue publicada en WordPress o Ghost sin duplicarla?",
+            "options": [
+              "a) No, siempre crea una entrada nueva",
+              "b) Sí, detecta el ID remoto y actualiza título, cuerpo y metadatos",
+              "c) Solo si se borra antes en la web",
+              "d) Requiere editar en el navegador"
+            ]
+          },
+          {
+            "text": "¿Qué algoritmo de compresión de alto rendimiento utiliza Odisea para sus backups automáticos?",
+            "options": [
+              "a) ZIP clásico",
+              "b) Zstandard (.odiseabak)",
+              "c) BZIP2",
+              "d) Compresión LZW"
+            ]
+          },
+          {
+            "text": "¿En qué tres frecuencias temporales clasifica Odisea sus copias de seguridad continuas?",
+            "options": [
+              "a) Minutaria, mensual y anual",
+              "b) Horaria (hourly), diaria (daily) y semanal (weekly)",
+              "c) Solo cuando el usuario lo pide",
+              "d) Cada vez que se pulsa Guardar"
+            ]
+          },
+          {
+            "text": "¿Qué archivo preventivo genera Odisea antes de restaurar un snapshot de copia de seguridad?",
+            "options": [
+              "a) backup_fatal.err",
+              "b) library.pre_restore.bak",
+              "c) recovery.sys",
+              "d) restore.log"
+            ]
+          },
+          {
+            "text": "¿Qué tabla virtual de SQLite gestiona las búsquedas ultrarrápidas de texto completo en Odisea?",
+            "options": [
+              "a) sheets_fulltext",
+              "b) sheets_fts (módulo FTS5 con triggers atómicos)",
+              "c) search_index_lucence",
+              "d) text_master"
+            ]
+          },
+          {
+            "text": "¿Qué pasos se requieren para migrar Odisea a otro ordenador con Windows 11?",
+            "options": [
+              "a) Reinstalar el programa y volver a escribir el registro de Windows",
+              "b) Simplemente copiar la carpeta Odisea_Win11_Portable entera al nuevo equipo",
+              "c) Exportar cada hoja una por una",
+              "d) Solicitar una clave de licencia nueva"
+            ]
+          }
+        ]
+      },
+      "solutions": {
+        "items": [
+          {
+            "correct_answer": "b) WordPress REST API v2 con contraseñas de aplicación",
+            "explanation": "REST API v2 es el protocolo oficial moderno y seguro recomendado por la Fundación WordPress."
+          },
+          {
+            "correct_answer": "b) Tokens JWT (JSON Web Tokens) firmados en tiempo real",
+            "explanation": "Ghost Admin API requiere autenticación mediante tokens JWT firmados con el algoritmo HMAC-SHA256."
+          },
+          {
+            "correct_answer": "b) 'Copy for Substack' (portapapeles enriquecido MIME)",
+            "explanation": "La función inyecta simultáneamente las variantes text/html y text/plain compatibles con Substack."
+          },
+          {
+            "correct_answer": "b) Muestra un micro-icono vectorial de avión de papel",
+            "explanation": "El micro-badge del avión de papel es el distintivo visual canónico de publicación remota."
+          },
+          {
+            "correct_answer": "b) Sí, detecta el ID remoto y actualiza título, cuerpo y metadatos",
+            "explanation": "Odisea almacena el publish_status_json en SQLite vinculando la hoja al post remoto."
+          },
+          {
+            "correct_answer": "b) Zstandard (.odiseabak)",
+            "explanation": "Zstandard ofrece ratios de compresión excepcionales con un impacto insignificante en la CPU."
+          },
+          {
+            "correct_answer": "b) Horaria (hourly), diaria (daily) y semanal (weekly)",
+            "explanation": "Este esquema en 3 niveles asegura puntos de restauración tanto recientes como históricos."
+          },
+          {
+            "correct_answer": "b) library.pre_restore.bak",
+            "explanation": "Garantiza una red de seguridad infalible en caso de restaurar una copia equivocada."
+          },
+          {
+            "correct_answer": "b) sheets_fts (módulo FTS5 con triggers atómicos)",
+            "explanation": "FTS5 indexa tokens de palabras completas permitiendo búsquedas booleanas en milisegundos."
+          },
+          {
+            "correct_answer": "b) Simplemente copiar la carpeta Odisea_Win11_Portable entera al nuevo equipo",
+            "explanation": "El aislamiento total en ./odisea_data/ garantiza portabilidad 'plug and play' inmediata."
+          }
+        ]
+      }
+    }
+  ]
+}

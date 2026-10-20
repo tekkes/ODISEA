@@ -1,0 +1,51 @@
+// Business Report Modern (.ulss)
+$font-sans = "Segoe UI"
+$color-corp = #0067c0
+$color-text = #1f2937
+
+document-settings {
+    page-size: "A4"
+    margin-top: 22mm
+    margin-bottom: 22mm
+    margin-left: 20mm
+    margin-right: 20mm
+}
+
+defaults {
+    font-family: $font-sans
+    font-size: 10pt
+    line-height: 15pt
+    font-color: $color-text
+    text-alignment: left
+}
+
+heading-1 {
+    font-family: $font-sans
+    font-size: 20pt
+    font-weight: bold
+    font-color: $color-corp
+    margin-top: 24pt
+    margin-bottom: 12pt
+    border-bottom-width: 1.5pt
+    border-bottom-color: $color-corp
+}
+
+heading-2 {
+    font-family: $font-sans
+    font-size: 14pt
+    font-weight: semibold
+    font-color: $color-corp
+    margin-top: 16pt
+    margin-bottom: 8pt
+}
+
+table {
+    border-width: 0.75pt
+    border-color: #d1d5db
+    cell-padding: 6pt
+}
+
+table-cell :header {
+    background-color: #f3f4f6
+    font-weight: bold
+}
