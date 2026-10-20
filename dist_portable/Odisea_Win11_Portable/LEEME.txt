@@ -1,5 +1,5 @@
 =============================================================
- Odisea v1.0 Portable para Windows 11
+ Odisea v1.0.1 Portable para Windows 11
 =============================================================
 
 Para iniciar la aplicación:

@@ -2,7 +2,7 @@
 setlocal enabledelayedexpansion
 
 echo =======================================================
-echo  Compilando y Preparando Odisea Portable v1.0
+echo  Compilando y Preparando Odisea Portable v1.0.1
 echo =======================================================
 echo.
 
@@ -22,18 +22,15 @@ echo.
 echo [2/3] Generando Iconos de Odisea...
 call node make_icons.cjs
 
-:: 3. Compilar Binario Nativo Rust en Modo Release con Frontend Incrustado
+:: 3. Compilar Binario Nativo Rust con Frontend Incrustado (Tauri Production)
 echo.
-echo [3/3] Compilando Binario Nativo Release...
-cd src-tauri
-call cargo build --release
+echo [3/3] Compilando Binario Nativo Release Incrustado...
+call npx @tauri-apps/cli build --no-bundle
 if !ERRORLEVEL! neq 0 (
-    echo [ERROR] Fallo la compilacion del binario nativo.
-    cd ..
+    echo [ERROR] Fallo la compilacion del binario nativo de produccion.
     pause
     exit /b !ERRORLEVEL!
 )
-cd ..
 
 :: 4. Desplegar ejecutable a las carpetas portables
 if exist "C:\Users\IsaNet\.cargo_target\odisea\release\Odisea.exe" (
@@ -46,7 +43,7 @@ if exist "C:\Users\IsaNet\.cargo_target\odisea\release\Odisea.exe" (
 
 echo.
 echo =======================================================
-echo  EXITO: Odisea v1.0 Portable listo en:
+echo  EXITO: Odisea v1.0.1 Portable listo en:
 echo  - dist_portable\Odisea_Win11_Portable\odisea.exe
 echo  - Directorio_Portable_Odisea\odisea.exe
 echo.
