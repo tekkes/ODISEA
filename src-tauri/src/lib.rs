@@ -50,6 +50,32 @@ fn cmd_set_theme(theme_id: String, theme_mode: String) -> Result<(), String> {
     save_config(&config)
 }
 
+#[tauri::command]
+fn cmd_save_session_state(
+    project_id: Option<String>,
+    group_id: Option<String>,
+    sheet_id: Option<String>,
+    filter: Option<String>,
+) -> Result<(), String> {
+    portable::config::save_session_state(project_id, group_id, sheet_id, filter)
+}
+
+#[tauri::command]
+fn cmd_record_history(item: portable::config::HistoryItem) -> Result<(), String> {
+    portable::config::record_history(item)
+}
+
+#[tauri::command]
+fn cmd_get_history() -> Vec<portable::config::HistoryItem> {
+    portable::config::get_history()
+}
+
+#[tauri::command]
+fn cmd_clear_history() -> Result<(), String> {
+    portable::config::clear_history()
+}
+
+
 // ---------------------------------------------------------------------------
 // Project Commands
 // ---------------------------------------------------------------------------
@@ -850,10 +876,14 @@ pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_opener::init())
         .invoke_handler(tauri::generate_handler![
-            // Config
+            // Config & Session & History
             cmd_get_config,
             cmd_save_config,
             cmd_set_theme,
+            cmd_save_session_state,
+            cmd_record_history,
+            cmd_get_history,
+            cmd_clear_history,
             // Projects
             cmd_list_projects,
             cmd_create_project,

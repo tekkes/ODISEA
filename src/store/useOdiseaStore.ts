@@ -122,6 +122,14 @@ export interface SubstackCopyResult {
   word_count: number;
 }
 
+export interface HistoryItem {
+  id: string;
+  item_type: 'project' | 'sheet';
+  title: string;
+  context: string;
+  timestamp: string;
+}
+
 export type FocusedPanel = 'library' | 'sheetlist' | 'editor';
 
 interface OdiseaState {
@@ -134,6 +142,7 @@ interface OdiseaState {
   activeSheet: Sheet | null;
   activeGlobalFilter: string | null;
   statistics: TextStatistics | null;
+  history: HistoryItem[];
 
   // View state & Focus navigation
   focusedPanel: FocusedPanel;
@@ -167,6 +176,13 @@ interface OdiseaState {
   deleteSheet: (id: string) => Promise<void>;
   updateWritingGoal: (sheetId: string, goalJson: string | null) => Promise<void>;
   updateSheetCreatedAt: (sheetId: string, newDate: string) => Promise<void>;
+
+  // Session & History actions
+  saveCurrentSession: () => Promise<void>;
+  loadHistory: () => Promise<void>;
+  recordHistory: (id: string, itemType: 'project' | 'sheet', title: string, context: string) => Promise<void>;
+  clearHistory: () => Promise<void>;
+  openHistoryItem: (item: HistoryItem) => Promise<void>;
 
   // Keyboard Navigation
   setFocusedPanel: (panel: FocusedPanel) => void;
@@ -233,6 +249,7 @@ export const useOdiseaStore = create<OdiseaState>((set, get) => ({
   activeSheet: null,
   activeGlobalFilter: 'all',
   statistics: null,
+  history: [],
 
   showLibrary: true,
   showSheetList: true,
@@ -276,7 +293,7 @@ export const useOdiseaStore = create<OdiseaState>((set, get) => ({
       // 4. Apply Theme preset
       ThemeEngine.applyPreset(resolvedThemeId);
 
-      // 4. Restore custom typography if saved
+      // 5. Restore custom typography if saved
       if (typeof localStorage !== 'undefined') {
         const savedTypo = localStorage.getItem('odisea_typography');
         if (savedTypo) {
@@ -299,25 +316,79 @@ export const useOdiseaStore = create<OdiseaState>((set, get) => ({
         }
       }
 
+      // 6. Fetch projects
       const projects = await invokeCommand<Project[]>('cmd_list_projects');
-      const groups = await invokeCommand<Group[]>('cmd_list_groups', { projectId: null });
-      const sheets = await invokeCommand<Sheet[]>('cmd_list_global_filter', { filter: 'all' });
 
-      const activeSheet = sheets.length > 0 ? sheets[0] : null;
+      // 7. Load history
+      let history: HistoryItem[] = [];
+      try {
+        history = await invokeCommand<HistoryItem[]>('cmd_get_history');
+      } catch {
+        history = config?.history || [];
+      }
+
+      // 8. Restore last active project, group, and sheet
+      let activeProjectId = config?.last_active_project_id || null;
+      let activeGroupId = config?.last_active_group_id || null;
+      let activeGlobalFilter = config?.last_active_filter || 'all';
+      let groups: Group[] = [];
+      let sheets: Sheet[] = [];
+      let activeSheet: Sheet | null = null;
+
+      if (activeProjectId && projects.some((p) => p.id === activeProjectId)) {
+        groups = await invokeCommand<Group[]>('cmd_list_groups', { projectId: activeProjectId });
+        activeGlobalFilter = null;
+        if (activeGroupId && groups.some((g) => g.id === activeGroupId)) {
+          sheets = await invokeCommand<Sheet[]>('cmd_list_sheets', { groupId: activeGroupId });
+        } else if (groups.length > 0) {
+          activeGroupId = groups[0].id;
+          sheets = await invokeCommand<Sheet[]>('cmd_list_sheets', { groupId: groups[0].id });
+        }
+      } else {
+        activeProjectId = null;
+        activeGroupId = null;
+        groups = await invokeCommand<Group[]>('cmd_list_groups', { projectId: null });
+        sheets = await invokeCommand<Sheet[]>('cmd_list_global_filter', { filter: activeGlobalFilter });
+      }
+
+      // Try selecting the last active sheet, or fallback to the first sheet
+      const targetSheetId = config?.last_active_sheet_id;
+      if (targetSheetId) {
+        activeSheet = sheets.find((s) => s.id === targetSheetId) || null;
+        if (!activeSheet) {
+          try {
+            const fetched = await invokeCommand<Sheet | null>('cmd_get_sheet', { sheetId: targetSheetId });
+            if (fetched) {
+              activeSheet = fetched;
+              if (!sheets.some((s) => s.id === fetched.id)) {
+                sheets = [fetched, ...sheets];
+              }
+            }
+          } catch {}
+        }
+      }
+      if (!activeSheet && sheets.length > 0) {
+        activeSheet = sheets[0];
+      }
+
       let statistics: TextStatistics | null = null;
       if (activeSheet) {
         statistics = await invokeCommand<TextStatistics>('cmd_get_statistics', { text: activeSheet.content_mdxl });
       }
 
       set({
-        activeThemeId: validThemeId,
+        activeThemeId: resolvedThemeId,
         themeMode: isDark ? 'dark' : 'light',
         projects,
         groups,
         sheets,
+        activeProjectId,
+        activeGroupId,
+        activeGlobalFilter,
         activeSheetId: activeSheet ? activeSheet.id : null,
         activeSheet,
         statistics,
+        history,
       });
 
       // Load publishing configuration
@@ -327,10 +398,99 @@ export const useOdiseaStore = create<OdiseaState>((set, get) => ({
     }
   },
 
+  saveCurrentSession: async () => {
+    const { activeProjectId, activeGroupId, activeSheetId, activeGlobalFilter } = get();
+    try {
+      await invokeCommand('cmd_save_session_state', {
+        projectId: activeProjectId,
+        groupId: activeGroupId,
+        sheetId: activeSheetId,
+        filter: activeGlobalFilter,
+      });
+    } catch (e) {
+      console.warn('Failed to save session state:', e);
+    }
+  },
+
+  loadHistory: async () => {
+    try {
+      const history = await invokeCommand<HistoryItem[]>('cmd_get_history');
+      set({ history });
+    } catch (e) {
+      console.warn('Failed to load history:', e);
+    }
+  },
+
+  recordHistory: async (id, itemType, title, context) => {
+    const item: HistoryItem = {
+      id,
+      item_type: itemType,
+      title,
+      context,
+      timestamp: new Date().toISOString(),
+    };
+    try {
+      await invokeCommand('cmd_record_history', { item });
+      set((state) => {
+        const filtered = state.history.filter((h) => !(h.id === id && h.item_type === itemType));
+        return { history: [item, ...filtered].slice(0, 50) };
+      });
+    } catch (e) {
+      console.warn('Failed to record history:', e);
+    }
+  },
+
+  clearHistory: async () => {
+    try {
+      await invokeCommand('cmd_clear_history');
+      set({ history: [] });
+    } catch (e) {
+      console.warn('Failed to clear history:', e);
+    }
+  },
+
+  openHistoryItem: async (item: HistoryItem) => {
+    if (item.item_type === 'project') {
+      await get().setActiveProject(item.id);
+      if (get().groups.length > 0) {
+        await get().setActiveGroup(get().groups[0].id);
+      }
+    } else if (item.item_type === 'sheet') {
+      try {
+        const sheet = await invokeCommand<Sheet | null>('cmd_get_sheet', { sheetId: item.id });
+        if (sheet) {
+          if (sheet.group_id) {
+            const allGroups = await invokeCommand<Group[]>('cmd_list_groups', { projectId: null });
+            const group = allGroups.find((g) => g.id === sheet.group_id);
+            if (group && group.project_id) {
+              await get().setActiveProject(group.project_id);
+              await get().setActiveGroup(group.id);
+            } else if (group) {
+              await get().setActiveGroup(group.id);
+            }
+          } else {
+            await get().setGlobalFilter('all');
+          }
+          await get().setActiveSheet(sheet);
+        }
+      } catch (e) {
+        console.warn('Failed to open sheet from history:', e);
+      }
+    }
+    get().closeModal();
+  },
+
   setActiveProject: async (id) => {
     set({ activeProjectId: id, activeGlobalFilter: null });
     const groups = await invokeCommand<Group[]>('cmd_list_groups', { projectId: id });
     set({ groups });
+    if (id) {
+      const proj = get().projects.find((p) => p.id === id);
+      if (proj) {
+        get().recordHistory(proj.id, 'project', proj.name, 'Proyecto');
+      }
+    }
+    get().saveCurrentSession();
   },
 
   setActiveGroup: async (id) => {
@@ -344,15 +504,20 @@ export const useOdiseaStore = create<OdiseaState>((set, get) => ({
         set({ activeSheetId: null, activeSheet: null, statistics: null });
       }
     }
+    get().saveCurrentSession();
   },
 
   setActiveSheet: async (sheet) => {
     if (sheet) {
       const statistics = await invokeCommand<TextStatistics>('cmd_get_statistics', { text: sheet.content_mdxl });
       set({ activeSheetId: sheet.id, activeSheet: sheet, statistics });
+      const currentProj = get().projects.find((p) => p.id === get().activeProjectId);
+      const ctx = currentProj ? `Proyecto: ${currentProj.name}` : 'Biblioteca';
+      get().recordHistory(sheet.id, 'sheet', sheet.title || 'Sin título', ctx);
     } else {
       set({ activeSheetId: null, activeSheet: null, statistics: null });
     }
+    get().saveCurrentSession();
   },
 
   setGlobalFilter: async (filter) => {
@@ -364,6 +529,7 @@ export const useOdiseaStore = create<OdiseaState>((set, get) => ({
     } else {
       set({ activeSheetId: null, activeSheet: null, statistics: null });
     }
+    get().saveCurrentSession();
   },
 
   updateSheetContent: async (id, title, content) => {

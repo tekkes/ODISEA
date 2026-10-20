@@ -22,6 +22,7 @@ import {
   Star,
   Paperclip,
   Check,
+  History,
 } from 'lucide-react';
 
 interface CommandPaletteProps {
@@ -84,6 +85,13 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
         createNewSheet();
         setFocusedPanel('editor');
       },
+    },
+    {
+      id: 'open_history',
+      title: 'Historial de Proyectos y Documentos (Ctrl+H)',
+      category: 'Navegación',
+      icon: History,
+      run: () => openModal('history'),
     },
     {
       id: 'export_preview',

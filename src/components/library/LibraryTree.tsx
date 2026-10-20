@@ -6,7 +6,7 @@ import { ExternalFolders } from './ExternalFolders';
 import { SmartFilterModal } from './SmartFilterModal';
 import { GroupIconPicker } from './GroupIconPicker';
 import { useOdiseaStore } from '../../store/useOdiseaStore';
-import { SlidersHorizontal, Plus, FolderPlus } from 'lucide-react';
+import { SlidersHorizontal, Plus, FolderPlus, History } from 'lucide-react';
 
 const OdiseaLogo: React.FC<{ size?: number; className?: string }> = ({ size = 15, className = '' }) => (
   <svg
@@ -97,6 +97,13 @@ export const LibraryTree: React.FC = () => {
           )}
         </div>
         <div className="flex items-center gap-1">
+          <button
+            title="Historial de Proyectos y Documentos (Ctrl+H)"
+            onClick={() => openModal('history')}
+            className="p-1 rounded text-[var(--color-text-muted)] hover:text-[var(--color-accent)] hover:bg-[var(--color-bg-hover)] cursor-pointer"
+          >
+            <History size={14} className="micro-icon" />
+          </button>
           <button
             title="Crear Filtro Inteligente"
             onClick={() => setIsSmartFilterOpen(true)}

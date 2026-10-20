@@ -1,13 +1,19 @@
 =============================================================
- Odisea Portable para Windows 11
+ Odisea v1.0 Portable para Windows 11
 =============================================================
 
-Para iniciar la aplicacion:
-1. Haz doble clic en 'Iniciar_Odisea.bat' (la primera vez compila el lanzador nativo 'Iniciar_Odisea.exe' en medio segundo con el compilador de Windows).
-2. A partir de ahi, puedes abrir directamente 'Iniciar_Odisea.exe' haciendo doble clic.
+Para iniciar la aplicación:
+1. Haz doble clic directamente en 'odisea.exe'.
+   (No requiere archivos .bat, ni scripts, ni consolas).
 
-Notas de portabilidad:
-- Todos tus datos, proyectos, borradores y configuraciones se guardan
-  en la carpeta local './odisea_data/'.
-- No requiere instalacion de Node, Python ni Rust.
-- 100% compatible con Windows 11.
+Características y Portabilidad:
+- Ejecutable único nativo autónomo: 'odisea.exe' con icono 'O' azul sobre fondo blanco.
+- 100% Portable para Windows 11: no requiere permisos de administrador ni
+  instalación de Node.js, React, Python ni dependencias externas.
+- Persistencia total: Todos tus proyectos, hojas, temas e historial se guardan
+  única y exclusivamente en la subcarpeta './odisea_data/'.
+- Restauración de sesión: Al abrirse, Odisea conserva la elección del modo claro/oscuro
+  y el proyecto/documento en el que estabas trabajando en la sesión previa.
+- Historial rápido: Pulsa Ctrl+H o el icono de historial en la barra lateral para
+  consultar y saltar entre tus proyectos y documentos recientes.
+=============================================================

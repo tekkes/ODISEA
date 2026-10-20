@@ -69,6 +69,15 @@ pub struct PublishersConfig {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct HistoryItem {
+    pub id: String,
+    pub item_type: String, // "project" | "sheet"
+    pub title: String,
+    pub context: String,   // project name, group name or date
+    pub timestamp: String,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct OdiseaConfig {
     pub theme_mode: String,
     pub active_theme: String,
@@ -81,6 +90,16 @@ pub struct OdiseaConfig {
     pub show_dashboard: bool,
     pub auto_backup_hours: u32,
     pub spell_check_language: String,
+    #[serde(default)]
+    pub last_active_project_id: Option<String>,
+    #[serde(default)]
+    pub last_active_group_id: Option<String>,
+    #[serde(default)]
+    pub last_active_sheet_id: Option<String>,
+    #[serde(default)]
+    pub last_active_filter: Option<String>,
+    #[serde(default)]
+    pub history: Vec<HistoryItem>,
     #[serde(default)]
     pub external_folders: Vec<ExternalFolderConfig>,
     #[serde(default)]
@@ -103,6 +122,11 @@ impl Default for OdiseaConfig {
             show_dashboard: false,
             auto_backup_hours: 1,
             spell_check_language: "es".to_string(),
+            last_active_project_id: None,
+            last_active_group_id: None,
+            last_active_sheet_id: None,
+            last_active_filter: Some("all".to_string()),
+            history: Vec::new(),
             external_folders: Vec::new(),
             llm: LlmConfig::default(),
             publishers: PublishersConfig::default(),
@@ -137,3 +161,39 @@ pub fn save_config(config: &OdiseaConfig) -> Result<(), String> {
     fs::write(path, content).map_err(|e| e.to_string())?;
     Ok(())
 }
+
+pub fn record_history(item: HistoryItem) -> Result<(), String> {
+    let mut config = load_config();
+    config.history.retain(|h| !(h.id == item.id && h.item_type == item.item_type));
+    config.history.insert(0, item);
+    if config.history.len() > 60 {
+        config.history.truncate(60);
+    }
+    save_config(&config)
+}
+
+pub fn get_history() -> Vec<HistoryItem> {
+    let config = load_config();
+    config.history
+}
+
+pub fn clear_history() -> Result<(), String> {
+    let mut config = load_config();
+    config.history.clear();
+    save_config(&config)
+}
+
+pub fn save_session_state(
+    project_id: Option<String>,
+    group_id: Option<String>,
+    sheet_id: Option<String>,
+    filter: Option<String>,
+) -> Result<(), String> {
+    let mut config = load_config();
+    config.last_active_project_id = project_id;
+    config.last_active_group_id = group_id;
+    config.last_active_sheet_id = sheet_id;
+    config.last_active_filter = filter;
+    save_config(&config)
+}
+

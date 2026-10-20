@@ -10,6 +10,7 @@ import {
   BackupRestoreModal,
   SettingsModal,
   CommandPalette,
+  HistoryModal,
 } from './components/modals';
 
 export const App: React.FC = () => {
@@ -125,6 +126,13 @@ export const App: React.FC = () => {
         return;
       }
 
+      // Ctrl+H: History of Projects and Documents
+      if (isCtrlOrCmd && e.key.toLowerCase() === 'h') {
+        e.preventDefault();
+        openModal('history');
+        return;
+      }
+
       // Ctrl+Alt+T: Theme Studio
       if (isCtrlOrCmd && e.altKey && e.key.toLowerCase() === 't') {
         e.preventDefault();
@@ -191,6 +199,11 @@ export const App: React.FC = () => {
 
       <CommandPalette
         isOpen={activeModal === 'command_palette'}
+        onClose={closeModal}
+      />
+
+      <HistoryModal
+        isOpen={activeModal === 'history'}
         onClose={closeModal}
       />
     </div>

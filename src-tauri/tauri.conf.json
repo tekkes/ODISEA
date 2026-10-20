@@ -14,7 +14,6 @@
     "windows": [
       {
         "title": "Odisea",
-        "icon": "icons/128x128.png",
         "width": 1280,
         "height": 820,
         "minWidth": 900,

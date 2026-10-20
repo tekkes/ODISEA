@@ -146,6 +146,9 @@ mod tests {
 
     #[test]
     fn test_zstd_snapshot_creation_and_decompression() {
+        if let Ok(conn) = crate::db::open_connection() {
+            let _ = crate::db::initialize_database(&conn);
+        }
         let snap_path = create_zstd_snapshot("hourly").expect("Failed to create snapshot");
         assert!(snap_path.exists());
 

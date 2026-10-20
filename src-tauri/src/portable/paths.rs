@@ -7,10 +7,8 @@ static INITIALIZED: AtomicBool = AtomicBool::new(false);
 pub fn get_portable_root() -> PathBuf {
     if let Ok(exe_path) = std::env::current_exe() {
         if let Some(parent) = exe_path.parent() {
-            // If running tests or cargo build inside target/..., check if we are in target
-            let parent_str = parent.to_string_lossy();
-            if !parent_str.contains("target\\debug") && !parent_str.contains("target/debug") 
-                && !parent_str.contains("odisea_target") {
+            let parent_str = parent.to_string_lossy().to_lowercase();
+            if !parent_str.contains("target") && !parent_str.contains("deps") {
                 return parent.to_path_buf();
             }
         }

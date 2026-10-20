@@ -134,6 +134,9 @@ mod tests {
 
     #[test]
     fn test_backup_inspection_and_granular_restore() {
+        if let Ok(conn) = crate::db::open_connection() {
+            let _ = crate::db::initialize_database(&conn);
+        }
         let snap_path = create_zstd_snapshot("hourly").expect("Snapshot created");
 
         let inspection = inspect_backup_snapshot(&snap_path).expect("Inspected");

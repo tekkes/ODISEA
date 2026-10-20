@@ -147,7 +147,10 @@ fn main() {
     if !icons_dir.exists() {
         let _ = fs::create_dir_all(icons_dir);
     }
-    generate_thick_o_ico(&icons_dir.join("icon.ico"));
+    let ico_path = icons_dir.join("icon.ico");
+    if !ico_path.exists() {
+        generate_thick_o_ico(&ico_path);
+    }
 
     tauri_build::build()
 }

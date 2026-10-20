@@ -1,4 +1,2 @@
-# Target directory relative to project root to avoid hardcoded absolute paths
 [build]
-target-dir = "target"
-
+target-dir = "C:\\Users\\IsaNet\\.cargo_target\\odisea"
