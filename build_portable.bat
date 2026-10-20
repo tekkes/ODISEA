@@ -2,7 +2,7 @@
 setlocal enabledelayedexpansion
 
 echo =======================================================
-echo  Compilando y Preparando Odisea Portable v1.0.1
+echo  Compilando y Preparando Odisea Portable v1.0.2
 echo =======================================================
 echo.
 
@@ -43,7 +43,7 @@ if exist "C:\Users\IsaNet\.cargo_target\odisea\release\Odisea.exe" (
 
 echo.
 echo =======================================================
-echo  EXITO: Odisea v1.0.1 Portable listo en:
+echo  EXITO: Odisea v1.0.2 Portable listo en:
 echo  - dist_portable\Odisea_Win11_Portable\odisea.exe
 echo  - Directorio_Portable_Odisea\odisea.exe
 echo.

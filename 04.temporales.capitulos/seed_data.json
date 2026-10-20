@@ -1,0 +1,229 @@
+{
+  "projects": [
+    {
+      "id": "cb8f4826-6b30-40b5-9c99-693c40ad8082",
+      "name": "Manual Interactivo de Odisea",
+      "icon": "book-open",
+      "color": "#007aff",
+      "is_archived": 0,
+      "export_style_id": "Swiss Knife",
+      "export_format": "pdf",
+      "sort_order": 0,
+      "created_at": "2026-10-19T21:13:17.597265+00:00",
+      "updated_at": "2026-10-19T21:13:17.597265+00:00"
+    }
+  ],
+  "groups": [
+    {
+      "id": "8bbc2176-0e7a-4a88-be0c-731b648a4476",
+      "project_id": "cb8f4826-6b30-40b5-9c99-693c40ad8082",
+      "parent_group_id": null,
+      "section_type": "main",
+      "name": "01. Primeros Pasos y Ergonomía",
+      "icon": "compass",
+      "color": "#007aff",
+      "writing_goal_json": null,
+      "sort_order": 0
+    },
+    {
+      "id": "f05d16ad-4b50-48ac-bd6a-1496d209a365",
+      "project_id": "cb8f4826-6b30-40b5-9c99-693c40ad8082",
+      "parent_group_id": null,
+      "section_type": "main",
+      "name": "02. Sintaxis Markdown XL (28 Etiquetas)",
+      "icon": "code",
+      "color": "#34c759",
+      "writing_goal_json": null,
+      "sort_order": 1
+    },
+    {
+      "id": "045d2e1e-dec0-4d20-9c19-5c53ec4620d3",
+      "project_id": "cb8f4826-6b30-40b5-9c99-693c40ad8082",
+      "parent_group_id": null,
+      "section_type": "main",
+      "name": "03. Metas de Escritura y Dashboard",
+      "icon": "target",
+      "color": "#ff9500",
+      "writing_goal_json": null,
+      "sort_order": 2
+    },
+    {
+      "id": "6bda3a40-976c-4e28-a006-c58ea809d363",
+      "project_id": "cb8f4826-6b30-40b5-9c99-693c40ad8082",
+      "parent_group_id": null,
+      "section_type": "main",
+      "name": "04. Exportación ULSS y Publicación Web",
+      "icon": "send",
+      "color": "#af52de",
+      "writing_goal_json": null,
+      "sort_order": 3
+    },
+    {
+      "id": "c7fd2a46-ef5a-47d4-9ce5-8b0649b3e944",
+      "project_id": "cb8f4826-6b30-40b5-9c99-693c40ad8082",
+      "parent_group_id": null,
+      "section_type": "notes",
+      "name": "Notas y Referencias Rápidas",
+      "icon": "file-text",
+      "color": "#8e8e93",
+      "writing_goal_json": null,
+      "sort_order": 4
+    }
+  ],
+  "sheets": [
+    {
+      "id": "3a18e84d-238d-454a-a8b1-806cd021ef09",
+      "group_id": "8bbc2176-0e7a-4a88-be0c-731b648a4476",
+      "title": "¡Bienvenido a Odisea para Windows 11!",
+      "content_mdxl": "olfs# ¡Bienvenido a Odisea para Windows 11!\n\nOdisea es la primera experiencia de escritura inmersiva de alta fidelidad inspirada en **Ulysses para macOS**, desarrollada íntegramente para la arquitectura moderna de **Windows 11**.\n\n## La Filosofía Odisea: Tu Entorno de Prosa Puro\nOdisea está diseñada con una arquitectura **Micro-UI de alta densidad visual**: cada icono mide exactamente 16 píxeles, cada etiqueta es una micro-píldora tipográfica y ningún elemento decorativo roba espacio a tus palabras.\n\n### Arquitectura de 3+1 Paneles Fluidos\n1. **Pgfanel 1: Biblioteca (Ctrl+1)**: Organiza tus proyectos, grupos jerárquicos, carpetas externas sincronizadas y filtros inteligentes.\n2. **Panel 2: Lista de Hojas (Ctrl+2)**: Gestiona tus textos con vista previa de dos líneas, fechas relativas, micro-badges y estado de publicación en la nube.\n3. **Panel 3: Editor WYSIWYM (Ctrl+3)**: Lienzo tipográfico en tiempo real sin recargas, con las 28 etiquetas semánticas de Markdown XL.\n4. **Panel 4: Dashboard y Objetivos (Ctrl+4)**: Panel flotante o acoplable con métricas en vivo, esquema de encabezados y control de objetivos de escritura.\n\n> \"La sencillez no es la ausencia de funciones, sino la claridad absoluta de propósito.\"\n\n### Atajos Esenciales para Escribir sin Ratón\n- **Ctrl+P**: Paleta de Comandos unificada para ejecutar cualquier acción al instante.\n- **Ctrl+N**: Crear una nueva hoja en el grupo activo.\n- **Ctrl+Shift+N**: Crear un nuevo grupo.\n- **Ctrl+Shift+P**: Publicar en WordPress, Ghost, Medium o Micro.blog.\n- **Ctrl+E**: Abrir la ventana de exportación editorial con motor de estilos ULSS.\n- **F11**: Modo Pantalla Completa y Enfoque Zen.\n",
+      "markup_dialect": "markdown_xl",
+      "is_favorite": 1,
+      "is_material": 0,
+      "glued_with_next": 0,
+      "sort_order": 0,
+      "writing_goal_json": "{\"target\": 500, \"type\": \"at_least\", \"unit\": \"words\", \"current\": 240, \"deadline\": null}",
+      "publish_status_json": null,
+      "created_at": "2026-10-19T21:13:17.597265+00:00",
+      "updated_at": "2026-10-20T13:44:45.175570600+00:00",
+      "deleted_at": null
+    },
+    {
+      "id": "40abf26f-33b4-4241-b67d-f5cc159a3986",
+      "group_id": "f05d16ad-4b50-48ac-bd6a-1496d209a365",
+      "title": "Guía Completa de la Sintaxis Markdown XL",
+      "content_mdxl": "# Guía Completa de la Sintaxis Markdown XL\n\nMarkdown XL amplía la sintaxis tradicional de Markdown para convertir el editor en un entorno de maquetación semántica sin perder la legibilidad del texto plano.\n\n## 1. Formato de Carácter y Énfasis\n- **Negrita**: `**texto fuerte**` o `__texto destacado__`\n- *Cursiva*: `*énfasis sutil*` o `_pensamiento interior_`\n- ::Texto Resaltado con Marcador Fluorescente:: (`::marcado::`)\n- ||Texto Tachado o Descartado|| (`||eliminado||`)\n- Código en línea: `''let buffer = [0u8; 1024];''`\n- Texto crudo sin interpretar: `++\\frac{a}{b}++`\n\n## 2. Párrafos Estructurados y Bloques Especiales\n> Este es un bloque de cita editorial.\n> Puede extenderse a través de múltiples párrafos manteniendo la elegancia visual.\n\n|\" Bloque de verso o poesía:\n|\" Las palabras navegan en silencio,\n|\" trazando senderos sobre el lienzo blanco.\n\n%% Este es un bloque de comentario privado.\n%% No se incluirá en ninguna exportación a PDF, DOCX ni HTML. %%\n\n## 3. Anotaciones, Comentarios y Notas al Pie\nLas notas al pie no intrusivas se redactan directamente en el flujo: (fn: Las notas al pie de Odisea se expanden en un micro-popover sin interrumpir tu concentración).\nTambién dispones de anotaciones al margen {a: Esta es una nota de revisión editorial} y comentarios de autor {revisar fuente bibliográfica antes de imprenta}.\n\n## 4. Tablas Interactivas y Fórmulas Matemáticas\nLas tablas se adaptan perfectamente a tu documento:\n\n| Función | Atajo Global | Estado |\n| :--- | :---: | ---: |\n| Paleta de Comandos | Ctrl+P | Activo |\n| Exportación Editorial | Ctrl+E | Activo |\n| Publicación Web | Ctrl+Shift+P | Activo |\n\nY las ecuaciones matemáticas se renderizan con precisión KaTeX:\n$$\n\\oint_C \\mathbf{B} \\cdot d\\mathbf{l} = \\mu_0 \\left( I_{\\text{enc}} + \\varepsilon_0 \\frac{d\\Phi_E}{dt} \\right)\n$$\n",
+      "markup_dialect": "markdown_xl",
+      "is_favorite": 0,
+      "is_material": 0,
+      "glued_with_next": 0,
+      "sort_order": 0,
+      "writing_goal_json": "{\"target\": 600, \"type\": \"at_least\", \"unit\": \"words\", \"current\": 320, \"deadline\": null}",
+      "publish_status_json": null,
+      "created_at": "2026-10-19T21:13:17.597265+00:00",
+      "updated_at": "2026-10-19T21:13:17.597265+00:00",
+      "deleted_at": null
+    },
+    {
+      "id": "a436937e-116a-4639-b881-06e096d30912",
+      "group_id": "045d2e1e-dec0-4d20-9c19-5c53ec4620d3",
+      "title": "Metas de Escritura y Dashboard de Análisis",
+      "content_mdxl": "# Metas de Escritura y Dashboard de Análisis\n\nEl **Dashboard de Odisea (Ctrl+4)** transforma la métrica de tus textos en una palanca de hábito y concentración constante.\n\n## Anillos Progresivos de Escritura (Writing Goals)\nPuedes fijar objetivos individuales por cada hoja o acumulativos para un grupo entero:\n- **Al menos (At least)**: Ideal para cuotas diarias mínimas (ej. 1,000 palabras por jornada).\n- **Como máximo (At most)**: Esencial para artículos académicos, abstracts o columnas de prensa con límite estricto de caracteres.\n- **Aproximadamente (About)**: Permite una tolerancia del ±10% alrededor de tu meta.\n\n### Estados de Color del Indicador Circular:\n1. **Naranja cálido**: Inicio de sesión (0% a 30% del progreso).\n2. **Azul vibrante**: Escritura fluida en progreso (30% a 99%).\n3. **Verde esmeralda**: ¡Objetivo completado con éxito! (100%).\n4. **Rojo carmesí**: Advertencia de exceso en modo \"Como máximo\".\n\n## Estadísticas en Tiempo Real\nEn la barra inferior y en la pestaña de progreso del Dashboard dispones de:\n- Conteo instantáneo de Palabras, Caracteres, Caracteres sin espacios.\n- Estructura métrica: Oraciones, Párrafos, Líneas y Páginas estimadas.\n- Velocidad de lectura estimada en tres ritmos: Lento (150 ppm), Medio (220 ppm) y Rápido (300 ppm).\n- Esquema jerárquico interactivo (Outline) para saltar de inmediato a cualquier sección `H1` a `H6`.\n",
+      "markup_dialect": "markdown_xl",
+      "is_favorite": 0,
+      "is_material": 0,
+      "glued_with_next": 0,
+      "sort_order": 0,
+      "writing_goal_json": "{\"target\": 400, \"type\": \"at_least\", \"unit\": \"words\", \"current\": 210, \"deadline\": null}",
+      "publish_status_json": null,
+      "created_at": "2026-10-19T21:13:17.597265+00:00",
+      "updated_at": "2026-10-19T21:13:17.597265+00:00",
+      "deleted_at": null
+    },
+    {
+      "id": "3421c5b8-8984-4aa1-8fcb-dd36190449e9",
+      "group_id": "6bda3a40-976c-4e28-a006-c58ea809d363",
+      "title": "Exportación Editorial (.ulss) y Publicación en la Nube",
+      "content_mdxl": "# Exportación Editorial (.ulss) y Publicación en la Nube\n\nOdisea incorpora un motor de renderizado y compilación de vanguardia que separa el contenido textual de su diseño tipográfico final.\n\n## El Motor de Hojas de Estilo de Ulysses (.ulss)\nLas hojas de estilo `.ulss` permiten aplicar reglas tipográficas avanzadas con variables (`$font-serif = \"Charter\"`), mixins, herencia en cascada y selectores contextuales (`paragraph + paragraph` para sangría de primera línea).\n\n### Estilos Editoriales Incluidos de Serie:\n- **Swiss Knife**: Diseño limpio, contemporáneo y universal.\n- **Novel (Manuscript)**: Formato canónico de entrega editorial a doble espacio con tipografía monoespaciada.\n- **Academic Paper**: Estilo formal para tesis y papers con citas al pie y referencias numeradas.\n- **Business Report**: Documento corporativo con tablas destacadas y portadas sobrias.\n- **Two-Column Magazine**: Diseño periodístico a dos columnas con justificación equilibrada.\n- **Minimalist Essay**: Prosa pura centrada en márgenes amplios.\n\n## Publicación Directa a la Web (Ctrl+Shift+P)\nConecta tus cuentas directamente y publica sin salir de Odisea:\n- **WordPress REST API v2**: Envía borradores o actualiza entradas existentes con categorías y etiquetas.\n- **Ghost Admin API**: Publicación directa con integración de imágenes destacadas.\n- **Medium & Micro.blog**: Sincronización instantánea con tu feed personal.\n- **Copy for Substack**: Copia con un clic el contenido transformado exactamente en el portapapeles enriquecido que acepta el editor de Substack.\n",
+      "markup_dialect": "markdown_xl",
+      "is_favorite": 0,
+      "is_material": 0,
+      "glued_with_next": 0,
+      "sort_order": 0,
+      "writing_goal_json": "{\"target\": 450, \"type\": \"at_least\", \"unit\": \"words\", \"current\": 250, \"deadline\": null}",
+      "publish_status_json": null,
+      "created_at": "2026-10-19T21:13:17.597265+00:00",
+      "updated_at": "2026-10-19T21:13:17.597265+00:00",
+      "deleted_at": null
+    },
+    {
+      "id": "42db3baf-01ff-4034-8892-789a68874d07",
+      "group_id": "c7fd2a46-ef5a-47d4-9ce5-8b0649b3e944",
+      "title": "Referencia Rápida de Atajos y Consejos Pro",
+      "content_mdxl": "# Referencia Rápida de Atajos y Consejos Pro\n\nGuarda esta hoja en tus favoritos o márcala como material de referencia.\n\n## Tabla Maestra de Atajos de Teclado\n| Acción | Atajo Windows 11 | Descripción |\n| :--- | :--- | :--- |\n| **Paleta de Comandos** | `Ctrl + P` | Acceso universal a todos los comandos |\n| **Mostrar/Ocultar Biblioteca** | `Ctrl + 1` | Alterna el panel de navegación de proyectos |\n| **Mostrar/Ocultar Hojas** | `Ctrl + 2` | Alterna la lista de documentos |\n| **Modo Editor Único** | `Ctrl + 3` | Oculta Biblioteca y Lista para máxima inmersión |\n| **Dashboard y Estadísticas** | `Ctrl + 4` | Despliega métricas, metas y esquema |\n| **Pegar Hojas (Glue)** | `Ctrl + Shift + G` | Une la hoja actual con la siguiente |\n| **Exportar Documento** | `Ctrl + E` | Previsualiza y compila con estilos .ulss |\n| **Publicar en la Web** | `Ctrl + Shift + P` | Envía a WordPress, Ghost, Medium o Substack |\n| **Modo Pantalla Completa** | `F11` | Oculta la barra de tareas y decoraciones del sistema |\n| **Nueva Hoja** | `Ctrl + N` | Inserta una hoja inmediatamente debajo |\n| **Nuevo Grupo** | `Ctrl + Shift + N` | Crea una carpeta en la biblioteca activa |\n\n## Portabilidad Total Garantizada\nRecuerda que Odisea es **100% portable**:\n- Todos tus textos, estilos, temas, copias de seguridad e índices FTS5 residen exclusivamente en la carpeta `./odisea_data/` junto a `Odisea.exe`.\n- Puedes mover la carpeta entera a una memoria USB o a tu almacenamiento en la nube sin requerir derechos de administrador ni dejar rastros en el Registro de Windows.\n",
+      "markup_dialect": "markdown_xl",
+      "is_favorite": 1,
+      "is_material": 1,
+      "glued_with_next": 0,
+      "sort_order": 0,
+      "writing_goal_json": null,
+      "publish_status_json": null,
+      "created_at": "2026-10-19T21:13:17.597265+00:00",
+      "updated_at": "2026-10-19T21:13:17.597265+00:00",
+      "deleted_at": null
+    }
+  ],
+  "keywords": [
+    {
+      "id": "2feea124-dd94-430e-9ff4-1531930aa200",
+      "project_id": "cb8f4826-6b30-40b5-9c99-693c40ad8082",
+      "name": "Tutorial",
+      "color": "#007aff"
+    },
+    {
+      "id": "9e865d78-c3ae-4621-a90d-632b5835d98f",
+      "project_id": "cb8f4826-6b30-40b5-9c99-693c40ad8082",
+      "name": "Markdown XL",
+      "color": "#34c759"
+    },
+    {
+      "id": "86b5a825-8e7c-4ab2-b028-261b26f14204",
+      "project_id": "cb8f4826-6b30-40b5-9c99-693c40ad8082",
+      "name": "Atajos",
+      "color": "#ff9500"
+    },
+    {
+      "id": "90817b83-4644-4133-a29c-f82cb5aa7036",
+      "project_id": "cb8f4826-6b30-40b5-9c99-693c40ad8082",
+      "name": "Publicación",
+      "color": "#af52de"
+    },
+    {
+      "id": "a075dfce-9821-4699-9bce-3c9c90a2137a",
+      "project_id": "cb8f4826-6b30-40b5-9c99-693c40ad8082",
+      "name": "Editorial",
+      "color": "#ff2d55"
+    }
+  ],
+  "sheet_keywords": [
+    {
+      "sheet_id": "3a18e84d-238d-454a-a8b1-806cd021ef09",
+      "keyword_id": "2feea124-dd94-430e-9ff4-1531930aa200"
+    },
+    {
+      "sheet_id": "3a18e84d-238d-454a-a8b1-806cd021ef09",
+      "keyword_id": "86b5a825-8e7c-4ab2-b028-261b26f14204"
+    },
+    {
+      "sheet_id": "40abf26f-33b4-4241-b67d-f5cc159a3986",
+      "keyword_id": "2feea124-dd94-430e-9ff4-1531930aa200"
+    },
+    {
+      "sheet_id": "40abf26f-33b4-4241-b67d-f5cc159a3986",
+      "keyword_id": "9e865d78-c3ae-4621-a90d-632b5835d98f"
+    },
+    {
+      "sheet_id": "a436937e-116a-4639-b881-06e096d30912",
+      "keyword_id": "2feea124-dd94-430e-9ff4-1531930aa200"
+    },
+    {
+      "sheet_id": "3421c5b8-8984-4aa1-8fcb-dd36190449e9",
+      "keyword_id": "2feea124-dd94-430e-9ff4-1531930aa200"
+    },
+    {
+      "sheet_id": "3421c5b8-8984-4aa1-8fcb-dd36190449e9",
+      "keyword_id": "90817b83-4644-4133-a29c-f82cb5aa7036"
+    },
+    {
+      "sheet_id": "3421c5b8-8984-4aa1-8fcb-dd36190449e9",
+      "keyword_id": "a075dfce-9821-4699-9bce-3c9c90a2137a"
+    },
+    {
+      "sheet_id": "42db3baf-01ff-4034-8892-789a68874d07",
+      "keyword_id": "86b5a825-8e7c-4ab2-b028-261b26f14204"
+    },
+    {
+      "sheet_id": "42db3baf-01ff-4034-8892-789a68874d07",
+      "keyword_id": "2feea124-dd94-430e-9ff4-1531930aa200"
+    }
+  ]
+}

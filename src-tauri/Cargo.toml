@@ -1,6 +1,6 @@
 [package]
 name = "odisea"
-version = "1.0.1"
+version = "1.0.2"
 description = "Odisea - Ulysses replica for Windows 11"
 authors = ["Odisea Team"]
 license = "MIT"

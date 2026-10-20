@@ -149,6 +149,14 @@ pub fn initialize_database(conn: &Connection) -> Result<()> {
         END;"
     )?;
 
+    // Auto-seed default tutorial project with 5 interactive sheets if the database is newly initialized
+    let project_count: i64 = conn
+        .query_row("SELECT count(*) FROM projects", [], |r| r.get(0))
+        .unwrap_or(0);
+    if project_count == 0 {
+        crate::db::seed::seed_default_tutorial(conn)?;
+    }
+
     Ok(())
 }
 

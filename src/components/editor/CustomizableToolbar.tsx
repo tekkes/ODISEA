@@ -278,14 +278,14 @@ export const CustomizableToolbar: React.FC<CustomizableToolbarProps> = ({
       </div>
 
       {/* Center: Dialect Badge with "Convert Markup" Dropdown */}
-      <div className="relative flex items-center">
+      <div className="relative flex items-center shrink-0 mx-1">
         <button
           onClick={() => setIsDialectDropdownOpen(!isDialectDropdownOpen)}
           title="Convertir dialecto de marcado (Edit > Convert Markup)"
-          className="micro-badge bg-[var(--color-accent)]/12 text-[var(--color-accent)] font-mono text-[10px] hover:bg-[var(--color-accent)]/20 transition-colors flex items-center gap-1 cursor-pointer"
+          className="micro-badge shrink-0 whitespace-nowrap overflow-hidden bg-[var(--color-accent)]/12 text-[var(--color-accent)] font-mono text-[clamp(8px,0.85vw,10px)] leading-none hover:bg-[var(--color-accent)]/20 transition-all flex items-center gap-1 px-2 py-0.5 h-[18px] max-h-[18px] border border-[var(--color-accent)]/20 rounded cursor-pointer select-none"
         >
-          <span>{currentDialectDef.name}</span>
-          <ChevronDown size={10} className="micro-icon opacity-70" />
+          <span className="truncate max-w-[90px]">{currentDialectDef.name}</span>
+          <ChevronDown size={9} className="micro-icon opacity-70 shrink-0" />
         </button>
 
         {isDialectDropdownOpen && (

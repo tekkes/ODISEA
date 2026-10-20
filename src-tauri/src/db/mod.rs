@@ -6,6 +6,7 @@ pub mod filters;
 pub mod keywords;
 pub mod backlinks;
 pub mod fts;
+pub mod seed;
 
 pub use schema::*;
 pub use projects::*;
@@ -15,3 +16,4 @@ pub use filters::*;
 pub use keywords::*;
 pub use backlinks::*;
 pub use fts::*;
+pub use seed::*;

@@ -61,6 +61,8 @@ svg.micro-icon {
   line-height: 14px;
   padding: 1px 5px;
   border-radius: 4px;
+  white-space: nowrap;
+  box-sizing: border-box;
 }
 
 /* Custom Scrollbar */

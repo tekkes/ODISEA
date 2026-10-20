@@ -10,6 +10,8 @@ target/
 
 # Local webview cache / temp data
 **/odisea_data/webview_profile/
+**/odisea_data/backups/
+*.odiseabak*
 *.log
 debug_test.txt
 .DS_Store
