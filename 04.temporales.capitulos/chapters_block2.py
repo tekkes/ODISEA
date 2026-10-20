@@ -3,9 +3,11 @@ from pathlib import Path
 
 SKILL_ROOT = Path(r"C:\Users\IsaNet\.gemini\config\skills\technical-book-pdf")
 sys.path.insert(0, str(SKILL_ROOT / "scripts"))
+sys.path.insert(0, str(Path(__file__).parent.resolve()))
 
 from components import EditorialComponents as EC
 from generate_diagram import TechnicalDiagrams as TD
+from img_helper import screenshot_figure
 
 def get_chapter_3():
     p1_html = f"""
@@ -51,14 +53,32 @@ def get_chapter_3():
     """
 
     p3_html = f"""
-    {EC.section_header("Anotaciones Flotantes, Notas al Pie y Tabla Maestra de las 28 Etiquetas", 1, "3.3")}
-    <p>La redacción fluida se interrumpe cuando el autor debe desplazarse hasta el final del documento para insertar una nota al pie. En Odisea, las notas y anotaciones se declaran <strong>en el mismo punto donde surge la idea</strong>, desplegándose en micro-popovers editables sin abandonar la línea activa:</p>
+    {EC.section_header("El Lienzo de Edición Real: Marcado Semántico en Vivo", 1, "3.3")}
+    <p>La siguiente captura real muestra el comportamiento del lienzo de redacción de Odisea procesando sintaxis Markdown XL con indicadores en el margen izquierdo y formateo dinámico inline:</p>
 
-    <ul>
-        <li><strong>Notas al Pie no Intrusivas:</strong> Se declaran como <code>(fn: Texto explicativo de la nota)</code>. En el editor se muestran como una micro-píldora marginal <code>FN</code>; al hacer clic, un popover permite editar su contenido. En la exportación, se compilan automáticamente como notas al pie numeradas al final de la página o del capítulo.</li>
-        <li><strong>Anotaciones al Margen:</strong> Declaradas como <code>{{a: Nota de revisión o fuente}}</code>, con micro-badge ámbar de advertencia visual.</li>
-        <li><strong>Comentarios Inline de Autor:</strong> Escritos entre llaves simples <code>{{recordar comprobar esta fecha}}</code>. Se muestran atenuados en cursiva sepia y se omiten en la exportación final.</li>
-    </ul>
+    {screenshot_figure(
+        "08_editor_prosa_markdown_xl",
+        "Captura real del editor de prosa pura de Odisea. Se aprecian las etiquetas semánticas atenuadas, el micro-badge marginal H2, el marcado fluorescente y la fórmula matemática renderizada.",
+        "3.1",
+        max_height_mm=85
+    )}
+
+    {EC.table(
+        ["Elemento Visual", "Sintaxis en Documento", "Renderizado y Comportamiento en Pantalla"],
+        [
+            ["<strong>Micro-Badge H2</strong>", "<code>## Título de Sección</code>", "Micro-píldora azul en el margen izquierdo sin desplazar la prosa."],
+            ["<strong>Resaltado ::</strong>", "<code>::pasaje clave::</code>", "Fondo amarillo ámbar translúcido que preserva la legibilidad del texto."],
+            ["<strong>Tachado ||</strong>", "<code>||texto descartado||</code>", "Línea coral de corrección manteniendo el registro histórico de cambios."],
+            ["<strong>Badge FN</strong>", "<code>(fn: Nota al pie)</code>", "Micro-píldora marginal interactiva que abre un popover al hacer clic."],
+            ["<strong>Fórmula KaTeX</strong>", "<code>$f(x) = \\int e^x dx$</code>", "Renderizado vectorial matemático inmediato con tipografía Computer Modern."]
+        ],
+        ["25%", "35%", "40%"]
+    )}
+    """
+
+    p4_html = f"""
+    {EC.section_header("Anotaciones Flotantes y Tabla Maestra de las 28 Etiquetas", 1, "3.4")}
+    <p>La redacción fluida se interrumpe cuando el autor debe desplazarse hasta el final del documento para insertar una nota al pie. En Odisea, las notas y anotaciones se declaran <strong>en el mismo punto donde surge la idea</strong>, desplegándose en micro-popovers editables sin abandonar la línea activa:</p>
 
     {EC.table(
         ["N.º", "Etiqueta Semántica", "Sintaxis Markdown XL", "Función y Comportamiento Editorial"],
@@ -102,237 +122,252 @@ def get_chapter_3():
         "pages": [
             {"header_section": "FILOSOFÍA Y BLOQUES ESTRUCTURALES", "html_content": p1_html},
             {"header_section": "MARCADO INLINE Y BLOQUES ESPECIALES", "html_content": p2_html},
-            {"header_section": "TABLA MAESTRA DE LAS 28 ETIQUETAS", "html_content": p3_html}
+            {"header_section": "EL LIENZO DE EDICIÓN REAL", "html_content": p3_html},
+            {"header_section": "TABLA MAESTRA DE 28 ETIQUETAS", "html_content": p4_html}
         ],
         "summary": {
             "key_points": [
-                "Markdown XL separa el token .ulysses-tag del texto para lograr un lienzo limpio pero explícito.",
-                "Los encabezados (# a ######) proyectan micro-indicadores compactos (H1..H6) en el margen.",
-                "Las Smart Lists renumeran automáticamente las secuencias de ítems al insertar o suprimir elementos.",
-                "Los bloques de verso (|&quot; ) y comentarios privados (%% ) cubren necesidades exclusivas de autores.",
-                "Las 28 etiquetas abarcan desde matemáticas KaTeX hasta anotaciones popover y tablas interactivas."
+                "Markdown XL separa los delimitadores sintácticos (.ulysses-tag) del contenido de prosa pura.",
+                "Los encabezados (# a ######) proyectan micro-indicadores marginales compactos (H1 a H6).",
+                "Incorpora modificadores avanzados: resaltado ::texto::, tachado ||texto|| y bloques de verso |\" .",
+                "Los bloques %% y llaves {comentario} quedan confinados al borrador y nunca se exportan.",
+                "La gramática formal consta de exactamente 28 etiquetas semánticas normalizadas."
             ],
             "requirements": [
-                "Distinguir el comportamiento de las notas al pie (fn:...) de las anotaciones {a:...}.",
-                "Recordar que el texto contenido en bloques de comentario %% nunca se incluye en exportaciones.",
-                "Dominar el uso de ::marcado:: y ||tachado|| durante la fase de corrección de textos."
+                "Dominar la diferencia entre marcado tradicional y el modelo atenuado de Markdown XL.",
+                "Memorizar la sintaxis de notas al pie (fn: ...) y enlaces [ancla](url).",
+                "Aprender a insertar fórmulas KaTeX mediante $fórmula$ inline o $$bloque$$."
             ]
         },
         "questionnaire": {
             "columns": 2,
             "questions": [
                 {
-                    "text": "¿Cómo se indica una nota al pie en Markdown XL dentro de Odisea?",
-                    "options": ["a) [^1]: nota al pie", "b) (fn: Contenido de la nota)", "c) {footnote: nota}", "d) <footnote>nota</footnote>"]
+                    "text": "¿Cómo se delimita el texto resaltado (highlight) en Markdown XL?",
+                    "options": ["a) ==texto==", "b) ::texto::", "c) ++texto++", "d) **texto**"]
                 },
                 {
-                    "text": "¿Qué ocurre con el texto encerrado en bloques de comentario %% al exportar a PDF o DOCX?",
-                    "options": ["a) Se imprime en color rojo", "b) Se exporta al final como anexo", "c) Nunca se exporta; permanece estrictamente privado", "d) Genera un error de compilación"]
+                    "text": "¿Qué ocurre con los bloques delimitados por %% durante la exportación a PDF?",
+                    "options": ["a) Se imprimen en rojo", "b) Se omiten completamente, son notas privadas", "c) Se colocan al pie de página", "d) Provocan un error de compilación"]
                 },
                 {
-                    "text": "¿Qué sintaxis se utiliza en Markdown XL para aplicar resaltado fluorescente a un texto?",
-                    "options": ["a) ==texto resaltado==", "b) ::texto resaltado::", "c) ++texto resaltado++", "d) **texto resaltado**"]
+                    "text": "¿Qué sintaxis se utiliza para insertar una nota al pie en Markdown XL?",
+                    "options": ["a) [^1]: texto", "b) (fn: texto de la nota)", "c) {footnote: texto}", "d) <fn>texto</fn>"]
                 },
                 {
-                    "text": "¿Cuál es la función del prefijo |\" al comienzo de una línea?",
-                    "options": ["a) Iniciar una tabla", "b) Declarar un bloque de verso o poesía respetando los retornos de carro", "c) Crear una barra vertical divisoria", "d) Insertar una fórmula matemática"]
+                    "text": "¿Cómo se indica un bloque de verso para preservar saltos de línea poéticos?",
+                    "options": ["a) Cada línea con |\" al inicio", "b) Tres espacios al final de cada línea", "c) Con la etiqueta <verse>", "d) Con cuatro comillas simples ''''"]
                 },
                 {
-                    "text": "¿Qué micro-indicador visual proyecta Odisea en el margen izquierdo ante una etiqueta ### ?",
-                    "options": ["a) Un icono de lápiz", "b) Una micro-píldora con el texto 'H3'", "c) Un número 3 gigante", "d) Nada, lo oculta"]
+                    "text": "¿Cuántas etiquetas semánticas formales componen el estándar Markdown XL en Odisea?",
+                    "options": ["a) 12 etiquetas", "b) 28 etiquetas", "c) 45 etiquetas", "d) 16 etiquetas"]
                 },
                 {
-                    "text": "¿Qué sintaxis se emplea para tachar texto descartado en Markdown XL?",
-                    "options": ["a) ~~texto tachado~~", "b) ||texto tachado||", "c) --texto tachado--", "d) [del]texto[/del]"]
+                    "text": "¿Qué motor matemático procesa las fórmulas $fórmula$ dentro del editor?",
+                    "options": ["a) MathJax 2", "b) KaTeX integrado en local", "c) Wolfram Alpha API", "d) LibreOffice Math"]
                 },
                 {
-                    "text": "¿Qué ventaja ofrecen las Smart Lists numeradas (1. ) en Odisea?",
-                    "options": ["a) Tienen colores aleatorios", "b) Se renumeran automáticamente al añadir o reordenar elementos", "c) Solo admiten números romanos", "d) Convierten la lista en tabla"]
+                    "text": "¿Qué delimitador aplica el estilo tachado (strikethrough) en Markdown XL?",
+                    "options": ["a) ~~texto~~", "b) ||texto||", "c) --texto--", "d) <<texto>>"]
                 },
                 {
-                    "text": "¿Cómo se define un comentario breve de autor en línea?",
-                    "options": ["a) /* comentario */", "b) {comentario de autor}", "c) <!-- comentario -->", "d) # comentario"]
+                    "text": "¿Dónde se proyectan los micro-badges H1..H6 en el editor?",
+                    "options": ["a) En una ventana emergente", "b) En el margen izquierdo del renglón", "c) En la barra de estado inferior", "d) No se muestran"]
                 },
                 {
-                    "text": "¿Qué motor de coloreado sintáctico gestiona los bloques de código delimitados por ''''?",
-                    "options": ["a) Prism clásico", "b) Shiki / Highlight.js con soporte multi-lenguaje", "c) Compilador de C++", "d) Expresiones regulares básicas"]
+                    "text": "¿Qué combinación de caracteres inserta un separador de sección horizontal?",
+                    "options": ["a) ---- o ****", "b) ====", "c) ______", "d) ####"]
                 },
                 {
-                    "text": "¿Cuántas etiquetas semánticas formales componen la especificación canónica de Markdown XL en Odisea?",
-                    "options": ["a) 12 etiquetas", "b) 28 etiquetas", "c) 50 etiquetas", "d) 16 etiquetas"]
+                    "text": "¿Cómo se declaran las anotaciones al margen de revisión de autor?",
+                    "options": ["a) {a: texto de la anotación}", "b) [[anotacion]]", "c) /* nota */", "d) <!-- nota -->"]
                 }
             ]
         },
         "solutions": {
             "items": [
-                {"correct_answer": "b) (fn: Contenido de la nota)", "explanation": "La sintaxis (fn:...) define notas al pie en el punto exacto de la prosa, abriendo un micro-popover no intrusivo."},
-                {"correct_answer": "c) Nunca se exporta; permanece estrictamente privado", "explanation": "Los bloques %% están concebidos para notas íntimas del autor, advertencias y borradores intermedios."},
-                {"correct_answer": "b) ::texto resaltado::", "explanation": "El doble dos puntos :: es el estándar canónico de Ulysses y Odisea para texto marcado con resaltador."},
-                {"correct_answer": "b) Declarar un bloque de verso o poesía respetando los retornos de carro", "explanation": "El prefijo |\" resuelve el clásico problema de Markdown, preservando las pausas métricas sin trucos de espacios dobles."},
-                {"correct_answer": "b) Una micro-píldora con el texto 'H3'", "explanation": "Las micro-píldoras de margen (H1 a H6) ofrecen orientación espacial inmediata sin sobrecargar el flujo de texto."},
-                {"correct_answer": "b) ||texto tachado||", "explanation": "El doble pipe || indica texto suprimido o descartado en la especificación Markdown XL."},
-                {"correct_answer": "b) Se renumeran automáticamente al añadir o reordenar elementos", "explanation": "El analizador inteligente recalcula la progresión ordinal al mover párrafos arriba o abajo."},
-                {"correct_answer": "b) {comentario de autor}", "explanation": "Las llaves simples { } delimitan comentarios de autor inline atenuados visualmente."},
-                {"correct_answer": "b) Shiki / Highlight.js con soporte multi-lenguaje", "explanation": "Shiki proporciona coloreado sintáctico con la misma fidelidad de temas que Visual Studio Code."},
-                {"correct_answer": "b) 28 etiquetas", "explanation": "La gramática EBNF en .rea_evidence/markdown_xl_grammar.ebnf especifica exactamente las 28 etiquetas de Ulysses."}
+                {"correct_answer": "b) ::texto::", "explanation": "El doble dos puntos :: delimita texto resaltado con fondo amarillo suave en Markdown XL."},
+                {"correct_answer": "b) Se omiten completamente, son notas privadas", "explanation": "Los bloques %% son exclusivos de borrador y se descartan en cualquier exportación editorial."},
+                {"correct_answer": "b) (fn: texto de la nota)", "explanation": "La sintaxis nativa de Ulysses y Odisea para notas al pie es (fn: contenido de la nota)."},
+                {"correct_answer": "a) Cada línea con |\" al inicio", "explanation": "El prefijo |\" preserva fielmente los retornos de carro sin requerir espacios dobles."},
+                {"correct_answer": "b) 28 etiquetas", "explanation": "La gramática EBNF de Markdown XL especifica exactamente 28 etiquetas sintácticas."},
+                {"correct_answer": "b) KaTeX integrado en local", "explanation": "KaTeX ofrece renderizado instantáneo a 60 FPS sin conexiones externas ni latencia."},
+                {"correct_answer": "b) ||texto||", "explanation": "La doble barra vertical || aplica tachado en Markdown XL (a diferencia de ~~ en GFM)."},
+                {"correct_answer": "b) En el margen izquierdo del renglón", "explanation": "Los micro-badges se posicionan en el 'gutter' izquierdo sin romper el sangrado de la prosa."},
+                {"correct_answer": "a) ---- o ****", "explanation": "Cuatro guiones o cuatro asteriscos definen un divisor temático capitular."},
+                {"correct_answer": "a) {a: texto de la anotación}", "explanation": "Las llaves con prefijo a: identifican anotaciones al margen para el autor."}
             ]
         }
     }
 
 def get_chapter_4():
     p1_html = f"""
-    {EC.section_header("El Editor Visual de Tablas (TableWidget)", 1, "4.1")}
-    <p>Uno de los mayores obstáculos históricos del formato Markdown ha sido la penosa redacción manual de tablas mediante barras verticales y guiones desalineados. Odisea supera esta limitación con <strong>TableWidget</strong>, un componente visual interactivo incrustado directamente en el flujo del documento que combina la agilidad de una hoja de cálculo con la pureza semántica del texto plano:</p>
+    {EC.section_header("Tablas Dinámicas y Edición sin Fricción", 1, "4.1")}
+    <p>En la redacción de informes técnicos, ensayos científicos o novelas de intriga con cronologías densas, las tablas son un recurso indispensable. Históricamente, crear tablas en Markdown representaba una de las experiencias más frustrantes debido a la necesidad de alinear manualmente barras verticales y guiones.</p>
+
+    <p>Odisea incorpora un <strong>Widget de Tabla Dinámica Interactivo</strong> integrado directamente en el editor CodeMirror 6:</p>
 
     <ul>
-        <li><strong>Controles Directos de Estructura:</strong> Al situar el cursor sobre cualquier tabla, aparecen micro-botones contextuales (+) en los bordes derecho e inferior que permiten insertar nuevas columnas y filas al instante con un solo clic.</li>
-        <li><strong>Alineación y Ancho Proporcional:</strong> Cada encabezado de columna dispone de un micro-selector para fijar la alineación (izquierda, centro o derecha) y ajustar la distribución visual de anchos.</li>
-        <li><strong>Reordenación por Arrastre (Drag & Drop):</strong> Las filas y columnas se pueden reorganizar arrastrando sus tiradores marginales sin alterar el resto del documento.</li>
-        <li><strong>Ordenación Numérica y Alfabética:</strong> Haz clic en el indicador de ordenación de cualquier columna para ordenar la tabla en sentido ascendente o descendente al instante.</li>
+        <li><strong>Navegación Fluida por Teclado:</strong> Al pulsar <strong>Tab</strong>, el cursor salta a la celda siguiente; con <strong>Shift+Tab</strong>, retrocede a la celda anterior. Al pulsar <strong>Enter</strong> en la última celda de una fila, Odisea genera automáticamente una nueva fila sin interrumpir el flujo de entrada de datos.</li>
+        <li><strong>Alineación Inteligente de Columnas:</strong> Soporta alineación a la izquierda (<code>:---</code>), centrada (<code>:---:</code>) y a la derecha (<code>---:</code>). La anchura visual de cada columna se ajusta en tiempo real según el contenido.</li>
+        <li><strong>Menú Contextual de Celda:</strong> Al hacer clic derecho o pulsar el micro-botón de cabecera de columna, se despliega un menú flotante para <em>Insertar Fila Arriba/Abajo</em>, <em>Insertar Columna Izquierda/Derecha</em> o <em>Eliminar Selección</em>.</li>
     </ul>
 
     {EC.callout(
-        "HITO TECNOLÓGICO · INTEROPERABILIDAD DIRECTA CON EXCEL Y SHEETS",
-        "Puedes seleccionar cualquier rango de celdas en <strong>Microsoft Excel</strong>, <strong>Google Sheets</strong> o copiar datos separados por comas (CSV) y pegarlos directamente (<code>Ctrl+V</code>) en el editor de Odisea. El motor intercepta los datos tabulares del portapapeles y los transforma instantáneamente en una tabla Markdown XL perfectamente formateada.",
-        "milestone"
-    )}
-    """
-
-    p2_html = f"""
-    {EC.section_header("Ecuaciones Matemáticas en Vivo con KaTeX (EquationWidget)", 1, "4.2")}
-    <p>Para la redacción de informes científicos, papers de ingeniería, apuntes de física o tratados analíticos, Odisea incorpora un motor de renderizado matemático de ultra-alta velocidad basado en <strong>KaTeX</strong>. Las expresiones matemáticas se editan en sintaxis estándar LaTeX con previsualización vectorial instantánea sin parpadeos:</p>
-
-    <ul>
-        <li><strong>Ecuaciones en Línea (Inline Math):</strong> Declaradas entre signos de dólar simples: <code>$E = mc^2$</code> o <code>$\\lambda = \\frac{{h}}{{p}}$</code>. El texto matemático se integra con precisión métrica en el flujo de la línea manteniendo la alineación de la línea base tipográfica.</li>
-        <li><strong>Bloques Matemáticos Desplegados (Display Math):</strong> Declarados entre dobles signos de dólar: <code>$$ ... $$</code> o escribiendo la macro <code>(eq)</code>. Despliegan un bloque centralizado con edición de código LaTeX y vista previa matemática en vivo:</li>
-    </ul>
-
-    <div class="code-box">
-        <pre><code class="language-text">$$
-\\nabla \\times \\mathbf{{E}} = -\\frac{{\\partial \\mathbf{{B}}}}{{\\partial t}} \\quad ; \\quad
-\\nabla \\times \\mathbf{{B}} = \\mu_0 \\mathbf{{J}} + \\mu_0 \\varepsilon_0 \\frac{{\\partial \\mathbf{{E}}}}{{\\partial t}}
-$$</code></pre>
-    </div>
-
-    {EC.callout(
-        "DEFINICIÓN · COMPILACIÓN LOCAL SIN DEPENDENCIAS DE RED",
-        "El motor KaTeX está completamente embebido en el binario de Odisea. No requiere conexión a internet, compiladores externos de TeX ni servidores remotos. Las fórmulas se renderizan como vectores matemáticos puros listos para impresión editorial.",
+        "DEFINICIÓN CLAVE · RENDERIZADO HÍBRIDO DE TABLAS",
+        "En modo edición, la tabla se manipula como una cuadrícula interactiva ágil. En el archivo subyacente, se almacena como texto plano Markdown estándar, garantizando que el documento pueda abrirse y procesarse en cualquier otro editor sin bloqueos de formato propietario.",
         "definition"
     )}
     """
 
-    p3_html = f"""
-    {EC.section_header("Medios Adjuntos, Imágenes y Tabla de Contenidos Marginal", 1, "4.3")}
-    <p>El tratamiento de gráficos e ilustraciones en Odisea conjuga la ligereza del texto con la riqueza visual de los medios modernos:</p>
+    p2_html = f"""
+    {EC.section_header("Fórmulas Matemáticas con Motor KaTeX Integrado", 1, "4.2")}
+    <p>Para científicos, matemáticos, ingenieros y economistas, la notación matemática rigurosa es tan vital como las palabras. Odisea incorpora de serie el motor <strong>KaTeX</strong> compilado localmente, ofreciendo renderizado tipográfico a 60 FPS con calidad de publicación científica idéntica a LaTeX:</p>
 
     <ul>
-        <li><strong>Imágenes en Línea (img):</strong> Se declaran mediante <code>(img: ruta_o_nombre.png)</code>. En el editor se proyectan como una tarjeta compacta con miniatura, dimensiones y micro-badge <code>IMG</code>. Al hacer clic, se abre un popover para definir el pie de figura, texto alternativo accesible y escala de visualización.</li>
-        <li><strong>Almacenamiento Local de Adjuntos:</strong> Cuando arrastras una imagen desde el Explorador de archivos de Windows 11 al editor, Odisea la copia automáticamente en la carpeta relativa <code>./odisea_data/attachments/</code> calculando su hash SHA-256 para prevenir duplicados.</li>
-        <li><strong>Tabla de Contenidos Marginal (TOC):</strong> Al insertar la etiqueta <code>(toc)</code>, Odisea genera un árbol interactivo en miniatura que refleja en tiempo real todos los encabezados del documento, permitiendo saltar con un clic a cualquier sección sin salir de la hoja.</li>
+        <li><strong>Fórmulas en Línea (Inline):</strong> Se delimitan entre signos de dólar simples <code>$E = mc^2$</code> o <code>$\\nabla \\times \\mathbf{{B}} = \\mu_0 \\mathbf{{J}}$</code>. La ecuación se estiliza en el propio párrafo respetando la línea base tipográfica.</li>
+        <li><strong>Ecuaciones en Bloque Destacado (Display):</strong> Se delimitan entre dobles signos de dólar <code>$$</code>. Odisea centra la fórmula en la página, aplica una fuente tipográfica Computer Modern de alta resolución y permite numerar la ecuación en el margen derecho:</li>
+    </ul>
+
+    <div class="code-box">
+        <pre><code class="language-latex">$$\\oint_{{C}} \\mathbf{{F}} \\cdot d\\mathbf{{r}} = \\iint_{{S}} (\\nabla \\times \\mathbf{{F}}) \\cdot d\\mathbf{{S}}$$</code></pre>
+    </div>
+
+    {EC.callout(
+        "HITO DE RENDIMIENTO · CERO RETRASO DE RED",
+        "A diferencia de herramientas que consultan servidores web para renderizar imágenes de fórmulas, el motor KaTeX de Odisea opera <strong>100% desconectado y fuera de línea</strong>. El análisis léxico y la generación vectorial SVG se ejecutan en menos de 2 milisegundos por ecuación, sin consumir ancho de banda.",
+        "milestone"
+    )}
+    """
+
+    p3_html = f"""
+    {EC.section_header("Repositorio de Medios y Miniaturas Embebidas", 1, "4.3")}
+    <p>Las imágenes e ilustraciones en Odisea se tratan como <strong>activos de primera clase</strong> mediante el repositorio interno <code>./odisea_data/attachments/</code>. Cuando un autor arrastra una imagen desde el Explorador de Windows o la pega desde el portapapeles (<code>Ctrl+V</code>), Odisea ejecuta un protocolo optimizado:</p>
+
+    <ol>
+        <li><strong>Almacenamiento Local Aislado:</strong> La imagen se copia al subdirectorio de adjuntos de la hoja, generando un identificador único SHA-256 para prevenir colisiones o pérdidas de enlace si el archivo original cambia de ubicación.</li>
+        <li><strong>Micro-Badge Visual IMG:</strong> En el editor se inserta la etiqueta <code>(img: nombre_archivo.png)</code>, proyectando un micro-badge compacto <code>IMG</code> con el nombre de la imagen y un icono de miniatura de 16px.</li>
+        <li><strong>Popover de Previsualización:</strong> Al situar el cursor o hacer clic sobre el badge, emerge un popover flotante con la vista previa a escala, opciones de alineación (Izquierda, Centro, Derecha, Ancho Completo) y campo editable para el pie de foto (<em>caption</em>).</li>
+    </ol>
+
+    {EC.callout(
+        "CONSEJO DE OPTIMIZACIÓN EDITORIAL",
+        "Durante la exportación a PDF o ePub, Odisea comprime y redimensiona automáticamente las imágenes según el perfil de salida (300 DPI para impresión vectorial o 150 DPI para ePub ligero), garantizando documentos nítidos sin tamaños de archivo desmesurados.",
+        "practice"
+    )}
+    """
+
+    p4_html = f"""
+    {EC.section_header("Enlaces Inteligentes, Backlinks y Notas al Margen", 1, "4.4")}
+    <p>Para interconectar ideas y fuentes documentales, Odisea despliega un sistema de enlaces multidireccionales concebido para escritores de no ficción e investigadores:</p>
+
+    <ul>
+        <li><strong>Enlaces Web Estándar:</strong> Marcados mediante <code>[texto ancla](https://ejemplo.com)</code>. Se estilizan con subrayado punteado sutil; al pulsar <code>Ctrl+Clic</code>, la URL se abre en el navegador predeterminado del sistema.</li>
+        <li><strong>Vínculos Internos entre Hojas ([[WikiLinks]]):</strong> Puedes enlazar cualquier otra hoja de tu biblioteca escribiendo dobles corchetes <code>[[Título de la Hoja]]</code>. Al teclear los corchetes, un desplegable de autocompletado sugiere coincidencias instantáneamente.</li>
+        <li><strong>Detección Automática de Backlinks:</strong> En el Panel 4 (Dashboard), la pestaña de Enlaces muestra automáticamente qué otras hojas de la biblioteca citan o enlazan al documento activo, tejiendo una red de conocimiento viva.</li>
     </ul>
 
     {EC.table(
-        ["Widget Interactivo", "Disparador Sintáctico", "Capacidades Operativas Principales"],
+        ["Tipo de Vínculo", "Sintaxis Utilizada", "Destino / Comportamiento en Exportación"],
         [
-            ["TableWidget", "Sintaxis de tabla o pegar desde Excel", "Filas/columnas dinámicas, ordenación, alineación y drag-and-drop"],
-            ["EquationWidget", "<code>$fórmula$</code> o <code>$$bloque$$</code>", "Motor KaTeX local, previsualización en vivo sin red"],
-            ["MediaWidget", "<code>(img: archivo.png)</code> o arrastrar", "Almacenamiento automático en attachments/, captions y micro-badge IMG"],
-            ["TocWidget", "<code>(toc)</code>", "Navegación jerárquica marginal dinámica por encabezados H1..H6"],
-            ["FootnotePopover", "<code>(fn: nota)</code>", "Edición no intrusiva en micro-ventana flotante sin saltar al final"],
-            ["AnnotationPopover", "<code>{a: nota}</code>", "Micro-píldora marginal con notas de revisión editorial"]
+            ["Enlace Web Externo", "<code>[Nombre](https://...)</code>", "Hipervínculo activo en PDF, DOCX y HTML."],
+            ["Vínculo Interno", "<code>[[Capítulo 02]]</code>", "Salto de página cruzado o bookmark interactivo."],
+            ["Anotación Marginal", "<code>{a: Revisar fecha}</code>", "Micro-popover ámbar; se omite en versión final."],
+            ["Nota al Pie", "<code>(fn: Fuente citada)</code>", "Compilada automáticamente como nota numerada al pie."]
         ],
-        ["22%", "28%", "50%"]
+        ["25%", "35%", "40%"]
     )}
     """
 
     return {
         "number": 4,
         "title": "Widgets Interactivos: Tablas, Fórmulas KaTeX y Medios",
-        "short_title": "WIDGETS INTERACTIVOS",
+        "short_title": "WIDGETS INTERACTIVOS Y MEDIOS",
         "block": "BLOQUE II — EL MOTOR DE EDICIÓN Y MARKDOWN XL",
         "block_kicker": "BLOQUE II · EL MOTOR DE EDICIÓN",
         "objectives": [
-            "Operar el editor visual de tablas integrado con ordenación, alineación y drag-and-drop.",
-            "Pegar rangos tabulares directamente desde Microsoft Excel y Google Sheets con auto-conversión.",
-            "Redactar y renderizar expresiones matemáticas LaTeX en tiempo real con el motor KaTeX local.",
-            "Gestionar imágenes adjuntas en ./odisea_data/attachments/ y tablas de contenidos marginales (TOC)."
+            "Crear y manipular tablas dinámicas mediante navegación fluida por teclado (Tab / Enter).",
+            "Escribir fórmulas matemáticas avanzadas utilizando la notación KaTeX integrada sin conexión.",
+            "Gestionar imágenes y medios locales con micro-badges IMG y popovers de previsualización.",
+            "Construir redes de conocimiento mediante enlaces cruzados ([[WikiLinks]]) y notas marginales."
         ],
         "pages": [
-            {"header_section": "EL EDITOR VISUAL DE TABLAS", "html_content": p1_html},
-            {"header_section": "FÓRMULAS MATEMÁTICAS CON KATEX", "html_content": p2_html},
-            {"header_section": "MEDIOS ADJUNTOS Y TABLA DE CONTENIDOS", "html_content": p3_html}
+            {"header_section": "TABLAS DINÁMICAS", "html_content": p1_html},
+            {"header_section": "FÓRMULAS MATEMÁTICAS KATEX", "html_content": p2_html},
+            {"header_section": "REPOSITORIO DE MEDIOS", "html_content": p3_html},
+            {"header_section": "ENLACES Y NOTAS MARGINALES", "html_content": p4_html}
         ],
         "summary": {
             "key_points": [
-                "TableWidget permite editar tablas complejas visualmente sin lidiar con barras y guiones manuales.",
-                "Soporta pegado directo desde Excel y Google Sheets convirtiéndolos en tablas limpias de Markdown XL.",
-                "EquationWidget integra KaTeX para renderizar matemáticas LaTeX locales sin conexión a internet.",
-                "Las imágenes se guardan automáticamente en ./odisea_data/attachments/ con verificación SHA-256.",
-                "La etiqueta (toc) proyecta un mapa jerárquico dinámico en el margen para navegación rápida."
+                "Las tablas se editan como cuadrículas interactivas navegables con Tab y Shift+Tab.",
+                "El motor KaTeX offline procesa fórmulas en línea ($formula$) y en bloque ($$formula$$) a 60 FPS.",
+                "Las imágenes se copian a ./odisea_data/attachments/ con identificadores únicos SHA-256.",
+                "Los badges IMG y FN permiten inspeccionar y editar activos sin abandonar la línea activa.",
+                "Soporta enlaces internos [[WikiLinks]] con autocompletado y detección de backlinks."
             ],
             "requirements": [
-                "Saber insertar una tabla y configurar la alineación de sus columnas.",
-                "Conocer la diferencia entre fórmulas inline ($) y bloques matemáticos desplegados ($$).",
-                "Comprender cómo se asocian las imágenes en la carpeta ./odisea_data/attachments/."
+                "Aprender a saltar entre celdas de una tabla utilizando la tecla Tab.",
+                "Conocer la sintaxis de ecuaciones KaTeX para notación científica.",
+                "Verificar la gestión de adjuntos locales en la carpeta relativa odisea_data/attachments/."
             ]
         },
         "questionnaire": {
             "columns": 2,
             "questions": [
                 {
-                    "text": "¿Qué ocurre al copiar celdas en Microsoft Excel y pulsar Ctrl+V dentro de Odisea?",
-                    "options": ["a) Se pega una captura gráfica en mapa de bits", "b) Se transforma automáticamente en una tabla interactiva Markdown XL", "c) Da un error de formato no compatible", "d) Se borra el portapapeles"]
+                    "text": "¿Qué tecla permite avanzar a la celda siguiente en una tabla interactiva?",
+                    "options": ["a) Espacio", "b) Tab", "c) Enter", "d) Flecha Arriba"]
                 },
                 {
-                    "text": "¿Qué motor matemático integra Odisea para la composición de fórmulas científicas?",
-                    "options": ["a) MathJax vía servidor web", "b) KaTeX local de alto rendimiento", "c) Microsoft Equation 3.0", "d) Wolfram Alpha API"]
+                    "text": "¿Cómo se indica una fórmula matemática destacada en bloque?",
+                    "options": ["a) $fórmula$", "b) $$fórmula$$", "c) [math]fórmula[/math]", "d) ==fórmula=="]
                 },
                 {
-                    "text": "¿Cómo se delimita una fórmula matemática en línea dentro de un párrafo?",
-                    "options": ["a) Entre corchetes [math]...[/math]", "b) Entre signos de dólar simples $fórmula$", "c) Entre comillas dobles \"fórmula\"", "d) Con la etiqueta <math>"]
+                    "text": "¿Dónde almacena Odisea las imágenes pegadas o arrastradas al editor?",
+                    "options": ["a) En C:\\Windows\\Temp", "b) En ./odisea_data/attachments/", "c) En la nube pública", "d) En el portapapeles únicamente"]
                 },
                 {
-                    "text": "¿Dónde se guardan las imágenes que arrastras al editor de Odisea?",
-                    "options": ["a) En C:\\Windows\\Temp", "b) En ./odisea_data/attachments/ con hash SHA-256", "c) En la nube de Microsoft", "d) En %APPDATA%\\Roaming"]
+                    "text": "¿Qué micro-badge se proyecta en el editor al insertar una imagen?",
+                    "options": ["a) PIC", "b) IMG", "c) MEDIA", "d) FOTO"]
                 },
                 {
-                    "text": "¿Qué micro-badge se proyecta en el margen ante una imagen adjunta?",
-                    "options": ["a) PHOTO", "b) IMG", "c) PIC", "d) MEDIA"]
+                    "text": "¿Qué sintaxis permite crear un vínculo interno hacia otra hoja de la biblioteca?",
+                    "options": ["a) ((Nombre Hoja))", "b) [[Nombre Hoja]]", "c) {{Nombre Hoja}}", "d) <<Nombre Hoja>>"]
                 },
                 {
-                    "text": "¿Qué etiqueta genera una tabla de contenidos jerárquica marginal?",
-                    "options": ["a) [indice]", "b) (toc)", "c) {table-of-contents}", "d) ----toc----"]
+                    "text": "¿Qué motor matemático utiliza Odisea para renderizar fórmulas?",
+                    "options": ["a) SymPy", "b) KaTeX", "c) MathML nativo", "d) PostScript"]
                 },
                 {
-                    "text": "¿Requiere KaTeX conexión a internet para renderizar fórmulas matemáticas en Odisea?",
-                    "options": ["a) Sí, descarga las fuentes de Google", "b) No, funciona de manera 100% local y autónoma", "c) Solo en la primera ejecución", "d) Requiere suscripción activa"]
+                    "text": "¿Cómo se alinea una columna de tabla al centro en la sintaxis subyacente?",
+                    "options": ["a) :---", "b) :---:", "c) ---:", "d) |center|"]
                 },
                 {
-                    "text": "¿Qué micro-botones aparecen en los bordes de una tabla al situar el cursor sobre ella?",
-                    "options": ["a) Botones de borrado masivo", "b) Botones contextuales (+) para insertar filas y columnas al instante", "c) Botones de exportación a Word", "d) Ninguno"]
+                    "text": "¿Qué ocurre al pulsar Enter en la última celda de una fila de tabla?",
+                    "options": ["a) Se cierra la tabla", "b) Se inserta una nueva fila automáticamente", "c) Se borra el contenido", "d) Salta fuera de la tabla"]
                 },
                 {
-                    "text": "¿Permite TableWidget ordenar los datos de una columna de forma ascendente o descendente?",
-                    "options": ["a) No, las tablas son estáticas", "b) Sí, haciendo clic en el control de ordenación de cada columna", "c) Solo mediante fórmulas SQL", "d) Requiere reiniciar el programa"]
+                    "text": "¿Qué resolución estándar aplica Odisea a las imágenes en la exportación a PDF para imprenta?",
+                    "options": ["a) 72 DPI", "b) 300 DPI", "c) 1200 DPI", "d) 96 DPI"]
                 },
                 {
-                    "text": "¿Cómo se edita una nota al pie declarada con (fn:...)?",
-                    "options": ["a) Hay que desplazarse manualmente a la última página", "b) Haciendo clic sobre su micro-badge FN para abrir su popover flotante", "c) En un archivo de texto separado", "d) En la barra de estado inferior"]
+                    "text": "¿Dónde se pueden inspeccionar los enlaces entrantes (backlinks) de la hoja activa?",
+                    "options": ["a) En el menú Ayuda", "b) En el Panel 4 (Dashboard de Escritura)", "c) En la barra de título de Windows", "d) En la Papelera"]
                 }
             ]
         },
         "solutions": {
             "items": [
-                {"correct_answer": "b) Se transforma automáticamente en una tabla interactiva Markdown XL", "explanation": "El manejador de pegado intercepta el texto tabulado de Excel y construye el bloque TableWidget automáticamente."},
-                {"correct_answer": "b) KaTeX local de alto rendimiento", "explanation": "KaTeX ofrece una velocidad de renderizado superior a MathJax y funciona completamente sin conexión."},
-                {"correct_answer": "b) Entre signos de dólar simples $fórmula$", "explanation": "La convención estándar de LaTeX $...$ sitúa la fórmula en línea alineando su línea base."},
-                {"correct_answer": "b) En ./odisea_data/attachments/ con hash SHA-256", "explanation": "El mandato de portabilidad confina los medios al subdirectorio attachments de odisea_data."},
-                {"correct_answer": "b) IMG", "explanation": "La micro-píldora IMG identifica visualmente la presencia de medios en el margen de la hoja."},
-                {"correct_answer": "b) (toc)", "explanation": "La macro (toc) evalúa el árbol de encabezados H1 a H6 proyectando el índice dinámico."},
-                {"correct_answer": "b) No, funciona de manera 100% local y autónoma", "explanation": "KaTeX y sus fuentes vectoriales matemáticas están embebidos en el propio paquete ejecutable."},
-                {"correct_answer": "b) Botones contextuales (+) para insertar filas y columnas al instante", "explanation": "Los controles interactivos permiten expandir la matriz tabular de forma táctil y precisa."},
-                {"correct_answer": "b) Sí, haciendo clic en el control de ordenación de cada columna", "explanation": "TableWidget incluye lógica de ordenación numérica y alfabética instantánea en memoria."},
-                {"correct_answer": "b) Haciendo clic sobre su micro-badge FN para abrir su popover flotante", "explanation": "Los micro-popovers permiten corregir la nota sin perder el contexto visual de la frase que se redacta."}
+                {"correct_answer": "b) Tab", "explanation": "La tecla Tab navega de celda en celda hacia adelante; Shift+Tab retrocede."},
+                {"correct_answer": "b) $$fórmula$$", "explanation": "El doble delimitador $$ genera una fórmula centrada en bloque destacado."},
+                {"correct_answer": "b) En ./odisea_data/attachments/", "explanation": "El repositorio local relativo almacena todas las imágenes con hash SHA-256."},
+                {"correct_answer": "b) IMG", "explanation": "El micro-badge IMG de 16px identifica la presencia de una imagen en la línea."},
+                {"correct_answer": "b) [[Nombre Hoja]]", "explanation": "La sintaxis [[WikiLink]] vincula documentos internamente con sugerencias automáticas."},
+                {"correct_answer": "b) KaTeX", "explanation": "KaTeX garantiza renderizado ultrarrápido y sin conexión de fórmulas matemáticas."},
+                {"correct_answer": "b) :---:", "explanation": "Los dos puntos en ambos extremos de los guiones centran la columna."},
+                {"correct_answer": "b) Se inserta una nueva fila automáticamente", "explanation": "Enter en la última celda añade una fila nueva sin interrumpir la escritura."},
+                {"correct_answer": "b) 300 DPI", "explanation": "300 DPI es el estándar internacional de artes gráficas e imprenta editorial."},
+                {"correct_answer": "b) En el Panel 4 (Dashboard de Escritura)", "explanation": "El Dashboard reúne la sección de enlaces entrantes y red de referencias."}
             ]
         }
     }

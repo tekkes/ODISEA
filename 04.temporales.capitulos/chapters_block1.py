@@ -3,9 +3,11 @@ from pathlib import Path
 
 SKILL_ROOT = Path(r"C:\Users\IsaNet\.gemini\config\skills\technical-book-pdf")
 sys.path.insert(0, str(SKILL_ROOT / "scripts"))
+sys.path.insert(0, str(Path(__file__).parent.resolve()))
 
 from components import EditorialComponents as EC
 from generate_diagram import TechnicalDiagrams as TD
+from img_helper import screenshot_figure
 
 def get_chapter_1():
     p1_html = f"""
@@ -26,7 +28,7 @@ def get_chapter_1():
         TD.layered_architecture_svg(
             ["Windows 11 Fluent UI", "CodeMirror 6 Editor", "WebView2 Runtime"],
             "TAURI 2.0 & RUST NATIVE CORE",
-            ["SQLite FTS5 Library\nBase de datos local", "ULSS Style Engine\nCompilador tipográfico", "Zstandard Snapshots\nBackups en segundo plano"]
+            ["SQLite FTS5 Library\\nBase de datos local", "ULSS Style Engine\\nCompilador tipográfico", "Zstandard Snapshots\\nBackups en segundo plano"]
         ),
         "Arquitectura técnica en capas desacopladas de Odisea para Windows 11: presentación web de alta velocidad sobre un núcleo nativo en Rust con persistencia local.",
         "1.1"
@@ -98,6 +100,30 @@ def get_chapter_1():
     )}
     """
 
+    p4_html = f"""
+    {EC.section_header("Anatomía Operativa de la Interfaz: Pantallazo Real y Controles", 1, "1.4")}
+    <p>La siguiente captura real refleja el entorno de redacción de Odisea ejecutándose de forma nativa en Windows 11 en <strong>Modo Oscuro Carbon</strong>, mostrando la sincronía de sus tres paneles y la barra superior de herramientas compacta:</p>
+
+    {screenshot_figure(
+        "01_interfaz_principal_oscura",
+        "Captura real de la interfaz de Odisea v1.0.1 en Modo Oscuro Carbon. Se aprecia la Biblioteca (izq.), la Lista de Hojas con previsualización (centro), el Editor con sintaxis Markdown XL y la barra de estado inferior.",
+        "1.2",
+        max_height_mm=88
+    )}
+
+    {EC.table(
+        ["Zona / Control", "Función Operativa", "Comportamiento / Atajo Directo"],
+        [
+            ["<strong>Panel 1: Biblioteca</strong>", "Navegación por proyectos, grupos y filtros", "Alterna con <code>Ctrl+1</code>. Arrastre para reordenar."],
+            ["<strong>Panel 2: Lista Hojas</strong>", "Explorador de documentos y tarjetas de prosa", "Alterna con <code>Ctrl+2</code>. Búsqueda y ordenación."],
+            ["<strong>Panel 3: Editor Zen</strong>", "Lienzo de escritura con marcado semántico", "Alterna con <code>Ctrl+3</code>. Libre de barras flotantes."],
+            ["<strong>Toolbar Superior</strong>", "Acceso directo a vistas, modos y utilidades", "Iconos vectoriales de 16px con tooltip informativo."],
+            ["<strong>Barra de Estado</strong>", "Métricas en vivo: palabras, meta y tiempo lectura", "Actualización continua en segundo plano sin lag."]
+        ],
+        ["28%", "40%", "32%"]
+    )}
+    """
+
     return {
         "number": 1,
         "title": "Filosofía, Ergonomía y Arquitectura del Sistema",
@@ -113,7 +139,8 @@ def get_chapter_1():
         "pages": [
             {"header_section": "EL MANIFIESTO DE PROSA PURA", "html_content": p1_html},
             {"header_section": "EL MANDATO MICRO-UI", "html_content": p2_html},
-            {"header_section": "PORTABILIDAD Y ARQUITECTURA", "html_content": p3_html}
+            {"header_section": "PORTABILIDAD Y ARQUITECTURA", "html_content": p3_html},
+            {"header_section": "ANATOMÍA DE LA INTERFAZ REAL", "html_content": p4_html}
         ],
         "summary": {
             "key_points": [
@@ -219,7 +246,34 @@ def get_chapter_2():
     """
 
     p2_html = f"""
-    {EC.section_header("Modos de Visualización y Concentración Inmersiva", 1, "2.2")}
+    {EC.section_header("El Entorno Diurno en Modo Claro y Desglose de Controles", 1, "2.2")}
+    <p>Para jornadas de redacción diurnas o entornos con abundante luz natural, Odisea incorpora el tema <strong>Modo Claro Minimalista</strong>, con fondo blanco cálido (#fafafa) y contrastes calibrados para reducir la tensión acomodativa ocular:</p>
+
+    {screenshot_figure(
+        "02_interfaz_principal_clara",
+        "Captura real de Odisea en Modo Claro. Obsérvese la barra superior con los botones de control, la organización jerárquica de la Biblioteca y la lista de documentos clasificados por fecha.",
+        "2.2",
+        max_height_mm=88
+    )}
+
+    {EC.table(
+        ["Botón / Icono", "Nombre de Función", "Acción Ejecutada al Pulsar"],
+        [
+            ["<code>[ | ]</code>", "Alternar Biblioteca", "Oculta o muestra la columna de proyectos y grupos (<code>Ctrl+1</code>)."],
+            ["<code>[ || ]</code>", "Alternar Lista de Hojas", "Repliega la lista de documentos para dejar solo el editor (<code>Ctrl+2</code>)."],
+            ["<code>[ ≡ ]</code>", "Modo Typewriter", "Fija la línea de escritura activa en el centro vertical de la ventana."],
+            ["<code>[ ⊙ ]</code>", "Modo Enfoque (Focus)", "Atenúa todos los párrafos secundarios para resaltar la frase activa."],
+            ["<code>[ ⚡ ]</code>", "Paleta de Comandos", "Despliega el buscador universal de acciones y estilos (<code>Ctrl+P</code>)."],
+            ["<code>[ 🕒 ]</code>", "Historial Reciente", "Abre el modal de navegación rápida entre documentos (<code>Ctrl+H</code>)."],
+            ["<code>[ 📊 ]</code>", "Inspector de Métricas", "Despliega el Panel 4 lateral con metas y estadísticas (<code>Ctrl+4</code>)."],
+            ["<code>[ ⎋ ]</code>", "Exportación Editorial", "Abre el previsualizador y compilador de estilos ULSS (<code>Ctrl+E</code>)."]
+        ],
+        ["18%", "30%", "52%"]
+    )}
+    """
+
+    p3_html = f"""
+    {EC.section_header("Modos de Visualización y Concentración Inmersiva", 1, "2.3")}
     <p>La redacción profesional atraviesa distintas fases: desde la planificación y estructura de capítulos hasta la inmersión profunda en la prosa o la revisión de estilo. Odisea se adapta a cada momento con tres modos de trabajo instantáneos:</p>
 
     <ol>
@@ -235,11 +289,24 @@ def get_chapter_2():
     )}
 
     <p>Asimismo, el <strong>Modo Enfoque (Focus Mode)</strong> atenúa sutilmente todos los párrafos del documento salvo el párrafo o la oración que estás redactando activamente, eliminando cualquier distracción periférica.</p>
+
+    {EC.callout(
+        "REGLA DE CONMUTACIÓN SIN RATÓN",
+        "Puedes pasar del modo de organización en 3 paneles a la escritura inmersiva pura en menos de un segundo pulsando sucesivamente <code>Ctrl+1</code> y <code>Ctrl+2</code>. Para retornar a la biblioteca completa, repite la misma secuencia.",
+        "takeaway"
+    )}
     """
 
-    p3_html = f"""
-    {EC.section_header("La Paleta de Comandos (Ctrl+P) y Temas Visuales Canónicos", 1, "2.3")}
+    p4_html = f"""
+    {EC.section_header("La Paleta de Comandos (Ctrl+P) y Temas Visuales Canónicos", 1, "2.4")}
     <p>Odisea incorpora una <strong>Command Palette</strong> universal accesible en cualquier instante mediante <strong>Ctrl+P</strong>. Este centro de operaciones permite buscar documentos por título o contenido completo, alternar hojas de estilo ULSS, cambiar el tema visual o desencadenar exportaciones sin apartar las manos del teclado:</p>
+
+    {screenshot_figure(
+        "04_paleta_comandos",
+        "Captura real de la Paleta de Comandos unificada (Ctrl+P) con buscador difuso, visualización de categorías operativas (Navegación, Vistas, Exportación) y asignación de atajos de teclado.",
+        "2.3",
+        max_height_mm=88
+    )}
 
     {EC.table(
         ["Atajo de Teclado", "Acción Ejecutada", "Contexto / Efecto"],
@@ -255,17 +322,6 @@ def get_chapter_2():
         ],
         ["25%", "35%", "40%"]
     )}
-
-    <p>En el apartado estético, Odisea incluye <strong>7 temas canónicos (.ultheme)</strong> con soporte dual-mode (claro y oscuro conmutables en caliente):</p>
-    <ul>
-        <li><strong>Minimalista:</strong> Fiel a Ulysses macOS; lienzo blanco cálido (#fafafa) y tipografía carbón suave.</li>
-        <li><strong>Modo Oscuro (Carbon):</strong> Gris carbón profundo (#18181b) calibrado para redacción nocturna prolongada.</li>
-        <li><strong>Solarizado (Light/Dark):</strong> Paleta de Ethan Schoonover optimizada para legibilidad analítica.</li>
-        <li><strong>Sepia Pergamino:</strong> Tonalidad cálida de papel clásico (#f4ecd8) con acentos terracota editoriales.</li>
-        <li><strong>Windows 11 Mica:</strong> Efecto translúcido Fluent Design con micro-bordes acrílicos luminosos.</li>
-        <li><strong>Nordic Frost:</strong> Paleta ártica escandinava (#2e3440) con contrastes cian glacial.</li>
-        <li><strong>Monokai Editorial:</strong> Contraste vibrante sobre fondo antracita con acentos oro y magenta.</li>
-    </ul>
     """
 
     return {
@@ -282,8 +338,9 @@ def get_chapter_2():
         ],
         "pages": [
             {"header_section": "LOS CUATRO PANELES FLUIDOS", "html_content": p1_html},
-            {"header_section": "MODOS DE VISUALIZACIÓN Y ENFOQUE", "html_content": p2_html},
-            {"header_section": "PALETA DE COMANDOS Y TEMAS", "html_content": p3_html}
+            {"header_section": "ENTORNO DIURNO Y CONTROLES", "html_content": p2_html},
+            {"header_section": "MODOS DE VISUALIZACIÓN Y ENFOQUE", "html_content": p3_html},
+            {"header_section": "PALETA DE COMANDOS Y ATAJOS", "html_content": p4_html}
         ],
         "summary": {
             "key_points": [

@@ -43,29 +43,29 @@ def build_full_manual_json() -> dict:
                 {
                     "title": "BLOQUE I — FUNDAMENTOS Y ERGONOMÍA DE ESCRITURA",
                     "chapters": [
-                        {"title": "Capítulo 1 — Filosofía, Ergonomía y Arquitectura del Sistema", "page": "6"},
+                        {"title": "Capítulo 1 — Filosofía, Ergonomía y Arquitectura del Sistema", "page": "4"},
                         {"title": "Capítulo 2 — La Interfaz Fluida de 3+1 Paneles y Navegación sin Ratón", "page": "12"}
                     ]
                 },
                 {
                     "title": "BLOQUE II — EL MOTOR DE EDICIÓN Y MARKDOWN XL",
                     "chapters": [
-                        {"title": "Capítulo 3 — La Sintaxis Markdown XL: Las 28 Etiquetas Semánticas", "page": "18"},
-                        {"title": "Capítulo 4 — Widgets Interactivos: Tablas, Fórmulas KaTeX y Medios", "page": "24"}
+                        {"title": "Capítulo 3 — La Sintaxis Markdown XL: Las 28 Etiquetas Semánticas", "page": "20"},
+                        {"title": "Capítulo 4 — Widgets Interactivos: Tablas, Fórmulas KaTeX y Medios", "page": "28"}
                     ]
                 },
                 {
                     "title": "BLOQUE III — ORGANIZACIÓN Y PRODUCTIVIDAD",
                     "chapters": [
-                        {"title": "Capítulo 5 — Gestión Documental, Hojas Pegadas y Carpetas Externas", "page": "30"},
-                        {"title": "Capítulo 6 — Dashboard de Escritura, Métricas y Objetivos (Goals)", "page": "36"}
+                        {"title": "Capítulo 5 — Gestión Documental, Hojas Pegadas y Carpetas Externas", "page": "36"},
+                        {"title": "Capítulo 6 — Dashboard de Escritura, Métricas y Objetivos (Goals)", "page": "44"}
                     ]
                 },
                 {
                     "title": "BLOQUE IV — MAQUETACIÓN EDITORIAL Y PUBLICACIÓN",
                     "chapters": [
-                        {"title": "Capítulo 7 — Motor de Estilos ULSS y Exportación Multi-Formato", "page": "42"},
-                        {"title": "Capítulo 8 — Conectores de Publicación Web y Mantenimiento Portable", "page": "48"}
+                        {"title": "Capítulo 7 — Motor de Estilos ULSS y Exportación Multi-Formato", "page": "52"},
+                        {"title": "Capítulo 8 — Conectores de Publicación Web y Mantenimiento Portable", "page": "60"}
                     ]
                 }
             ]

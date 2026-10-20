@@ -16,4 +16,7 @@ Características y Portabilidad:
   y el proyecto/documento en el que estabas trabajando en la sesión previa.
 - Historial rápido: Pulsa Ctrl+H o el icono de historial en la barra lateral para
   consultar y saltar entre tus proyectos y documentos recientes.
+- Manual Oficial de Instrucciones: Consulta el documento 'Manual_de_Instrucciones_Odisea.pdf'
+  incluido en esta carpeta para la guía completa con pantallazos reales, descripción
+  de todos los botones, atajos de teclado y especificación de Markdown XL y estilos ULSS.
 =============================================================

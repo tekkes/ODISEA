@@ -59,6 +59,27 @@ function getMockFallback<T>(cmd: string, _args?: Record<string, unknown>): T {
       }
       return {} as T;
     }
+    case 'cmd_get_history':
+      return [
+        {
+          id: 'sheet-1',
+          item_type: 'sheet',
+          title: 'Capítulo 1: El Umbral Desconocido',
+          context: 'Novela: Odisea 2026 / Parte I: El Viaje',
+          timestamp: new Date(Date.now() - 1000 * 60 * 15).toISOString(),
+        },
+        {
+          id: 'proj-1',
+          item_type: 'project',
+          title: 'Novela: Odisea 2026',
+          context: 'Proyecto Principal',
+          timestamp: new Date(Date.now() - 1000 * 60 * 120).toISOString(),
+        },
+      ] as T;
+    case 'cmd_save_session_state':
+    case 'cmd_record_history':
+    case 'cmd_clear_history':
+      return undefined as T;
     case 'cmd_list_projects':
       return [
         {

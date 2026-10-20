@@ -3,9 +3,11 @@ from pathlib import Path
 
 SKILL_ROOT = Path(r"C:\Users\IsaNet\.gemini\config\skills\technical-book-pdf")
 sys.path.insert(0, str(SKILL_ROOT / "scripts"))
+sys.path.insert(0, str(Path(__file__).parent.resolve()))
 
 from components import EditorialComponents as EC
 from generate_diagram import TechnicalDiagrams as TD
+from img_helper import screenshot_figure
 
 def get_chapter_7():
     p1_html = f"""
@@ -56,22 +58,44 @@ def get_chapter_7():
     """
 
     p3_html = f"""
-    {EC.section_header("El Modal de Previsualización (Ctrl+E) y Formatos de Salida", 1, "7.3")}
-    <p>Al pulsar <strong>Ctrl+E</strong> o seleccionar el botón de exportación en la barra superior, Odisea abre el <strong>Modal de Previsualización Editorial</strong> (<code>ExportPreviewModal.tsx</code>). Esta interfaz permite auditar el documento renderizado en tiempo real antes de generar el archivo final:</p>
+    {EC.section_header("El Modal de Exportación Editorial y Publicación (Ctrl+E)", 1, "7.3")}
+    <p>Al pulsar <strong>Ctrl+E</strong> o seleccionar el botón de exportación en la barra superior, Odisea abre el <strong>Modal de Previsualización y Exportación Editorial</strong> (<code>ExportPreviewModal.tsx</code>). Esta interfaz permite auditar el documento renderizado en tiempo real antes de generar el archivo final:</p>
+
+    {screenshot_figure(
+        "07_modal_exportacion_publicacion",
+        "Captura real del Modal de Exportación y Publicación (Ctrl+E). Incluye selector de formatos (PDF, DOCX, ePub, HTML), previsualizador en vivo con motor ULSS compilado y pestaña de publicación web.",
+        "7.1",
+        max_height_mm=88
+    )}
+
+    {EC.table(
+        ["Control / Pestaña", "Función Técnica", "Opciones y Parámetros Disponibles"],
+        [
+            ["<strong>Selector de Formato</strong>", "Elige el motor de compilación de salida.", "Pestañas: PDF, DOCX, ePub, HTML, RTF y Publicación Web."],
+            ["<strong>Desplegable de Estilos</strong>", "Aplica hojas de estilo .ulss al manuscrito.", "Selección instantánea entre los 11 estilos preinstalados."],
+            ["<strong>Previsualización en Vivo</strong>", "Auditoría visual idéntica al documento final.", "Zoom dinámico, foliación y navegación de páginas."],
+            ["<strong>Configuración de Página</strong>", "Ajuste de parámetros físicos del documento.", "Formatos A4, Letter, A5; orientación y márgenes."],
+            ["<strong>Botón 'Exportar'</strong>", "Compila y guarda el archivo en disco.", "Destino automático en ./odisea_data/exports/."]
+        ],
+        ["26%", "38%", "36%"]
+    )}
+    """
+
+    p4_html = f"""
+    {EC.section_header("Tipografía Avanzada: Rejilla Base y Maquetación Editorial", 1, "7.4")}
+    <p>La calidad estética de una publicación radica en la regularidad rítmica de sus líneas. El motor de diseño tipográfico de Odisea introduce conceptos propios de la alta tipografía que lo sitúan a la vanguardia de los entornos de redacción en Windows 11:</p>
 
     <ul>
-        <li><strong>Selector de Formato de Salida:</strong>
-            <ul>
-                <li><strong>PDF Editorial:</strong> Renderizado vectorial con sangrado completo, numeración de páginas alterna (pares a la izquierda, impares a la derecha) y marcadores interactivos (outlines/bookmarks).</li>
-                <li><strong>DOCX (Microsoft Word):</strong> Documento estructurado con estilos nativos de Word (Título 1, Título 2, Citas, Tablas nativas) respetando la jerarquía de encabezados.</li>
-                <li><strong>ePub 3.0:</strong> Libro electrónico estándar para Apple Books, Kindle y lectores e-reader, con tabla de contenidos digital y tipografía escalable.</li>
-                <li><strong>HTML Autónomo:</strong> Archivo web autocontenido con estilos CSS incrustados e imágenes convertidas a Base64 para distribución inmediata.</li>
-                <li><strong>Markdown Plano (.md):</strong> Exportación limpia sin extensiones propietarias para publicación en plataformas estáticas (Astro, Hugo, Jekyll).</li>
-            </ul>
-        </li>
-        <li><strong>Conmutador de Estilos en Vivo:</strong> Cambia de estilo ULSS en el desplegable (por ejemplo, de <em>Swiss Knife</em> a <em>Novel Manuscript</em>) y observa cómo la previsualización se recompila en menos de 200 ms.</li>
-        <li><strong>Ajustes de Página:</strong> Selección de formato de papel (A4, Letter, A5, B5), orientación (Vertical / Horizontal) y configuración de márgenes personalizados.</li>
+        <li><strong>Alineación a Rejilla Base (Baseline Grid Alignment):</strong> Todas las líneas de texto, independientemente de que se trate de encabezados de gran tamaño, subtítulos, citas o tablas, se fuerzan a encajar en una rejilla vertical uniforme (generalmente de 12 a 16 puntos). Esto evita que las líneas de texto de páginas opuestas o columnas adyacentes queden desfasadas visualmente.</li>
+        <li><strong>Control de Huérfanas y Viudas (Widows & Orphans):</strong> En la compilación a PDF, el motor aplica de forma predeterminada la regla <code>orphans: 2; widows: 2;</code>, impidiendo que una sola línea de texto quede descolgada al final o al inicio de una página.</li>
+        <li><strong>Letras Capitulares (Drop Caps):</strong> Definidas mediante el selector <code>paragraph:first-child::first-letter</code> en las hojas ULSS, estilizando la letra inicial con un tamaño equivalente a 3 líneas de texto y sangría contigua estilizada.</li>
     </ul>
+
+    {EC.callout(
+        "REGLA DE CONVERSIÓN VECTORIAL PURA",
+        "Durante la generación de PDFs, todo el texto se compila como trazados tipográficos vectoriales seleccionables, indexables y compatibles con la norma ISO 19005-1 (PDF/A) para preservación documental a largo plazo.",
+        "takeaway"
+    )}
     """
 
     return {
@@ -89,7 +113,8 @@ def get_chapter_7():
         "pages": [
             {"header_section": "ARQUITECTURA DEL MOTOR ULSS", "html_content": p1_html},
             {"header_section": "LOS 11 ESTILOS PREINSTALADOS", "html_content": p2_html},
-            {"header_section": "EL MODAL DE PREVISUALIZACIÓN", "html_content": p3_html}
+            {"header_section": "EL MODAL DE PREVISUALIZACIÓN", "html_content": p3_html},
+            {"header_section": "TIPOGRAFÍA Y REJILLA BASE", "html_content": p4_html}
         ],
         "summary": {
             "key_points": [
@@ -100,228 +125,246 @@ def get_chapter_7():
                 "Exporta a 5 formatos mayores: PDF vectorial, DOCX con estilos, ePub 3, HTML y Markdown estándar."
             ],
             "requirements": [
-                "Saber abrir la previsualización editorial mediante el atajo Ctrl+E.",
-                "Identificar el estilo adecuado para cada proyecto (ej. Novel para manuscritos, Academic para tesis).",
-                "Comprender cómo se personalizan o añaden nuevos estilos en ./odisea_data/styles/."
+                "Localizar los estilos preinstalados en la carpeta ./odisea_data/styles/.",
+                "Abrir el modal de previsualización mediante el atajo Ctrl+E.",
+                "Aprender a conmutar entre estilos ULSS para comparar resultados tipográficos."
             ]
         },
         "questionnaire": {
             "columns": 2,
             "questions": [
                 {
-                    "text": "¿Qué extensión tienen las hojas de estilo tipográficas canónicas de Ulysses y Odisea?",
-                    "options": ["a) .css", "b) .ulss", "c) .style", "d) .theme"]
+                    "text": "¿Qué extensión tienen las hojas de estilo tipográfico nativas de Ulysses y Odisea?",
+                    "options": ["a) .css", "b) .ulss", "c) .sass", "d) .theme"]
                 },
                 {
-                    "text": "¿Cómo se declara una variable en el lenguaje de estilos .ulss?",
-                    "options": ["a) var font = 'Arial'", "b) $font-name = 'Charter' o $font-name: 'Charter'", "c) @font: 'Charter'", "d) #font = 'Charter'"]
+                    "text": "¿En qué lenguaje de programación está implementado el motor de compilación ULSS de Odisea?",
+                    "options": ["a) Python", "b) Rust nativo", "c) JavaScript en el navegador", "d) C++"]
                 },
                 {
-                    "text": "¿Qué regla ULSS se utiliza para aplicar sangría de primera línea solo a partir del segundo párrafo?",
-                    "options": ["a) paragraph:all { indent: true; }", "b) paragraph + paragraph { first-line-indent: 0.5in; }", "c) indent-after-first { 20px; }", "d) paragraph:not(:first)"]
+                    "text": "¿Qué regla ULSS aplica sangría solo a partir del segundo párrafo de un capítulo?",
+                    "options": ["a) paragraph + paragraph { first-line-indent: ... }", "b) paragraph:all { indent: true }", "c) indent-second: 0.5in", "d) p2 { margin-left: 20px }"]
                 },
                 {
-                    "text": "¿Cuántos estilos editoriales .ulss incluye Odisea preconfigurados en ./odisea_data/styles/?",
-                    "options": ["a) 2 estilos", "b) 11 estilos", "c) 50 estilos", "d) 1 estilo"]
+                    "text": "¿Cuántas hojas de estilo .ulss canónicas se incluyen preinstaladas en Odisea?",
+                    "options": ["a) 3 estilos", "b) 11 estilos", "c) 25 estilos", "d) 50 estilos"]
                 },
                 {
-                    "text": "¿Qué estilo .ulss reproduce el formato canónico de entrega a doble espacio en Courier New para editoriales?",
-                    "options": ["a) Swiss Knife", "b) Novel (Manuscript).ulss", "c) Minimalist Essay", "d) Business Report"]
+                    "text": "¿Qué atajo de teclado abre directamente el modal de Previsualización y Exportación?",
+                    "options": ["a) Ctrl + Shift + E", "b) Ctrl + E", "c) Alt + X", "d) Ctrl + P"]
                 },
                 {
-                    "text": "¿Qué atajo de teclado lanza el modal de previsualización y exportación editorial?",
-                    "options": ["a) Ctrl + Shift + P", "b) Ctrl + E", "c) Alt + P", "d) F12"]
+                    "text": "¿Qué tipografía base utiliza la hoja de estilo 'Novel (Manuscript)' de serie?",
+                    "options": ["a) Arial", "b) Courier New a doble espacio", "c) Comic Sans", "d) Papyrus"]
                 },
                 {
-                    "text": "¿A qué formatos permite compilar el motor de exportación de Odisea?",
-                    "options": ["a) Solo a texto plano .txt", "b) PDF editorial, DOCX estructurado, ePub 3, HTML autónomo y Markdown plano", "c) Únicamente a PDF", "d) A formato propietario cifrado"]
+                    "text": "¿Cuál es la función del resolutor de cascada (resolver.rs) en el motor ULSS?",
+                    "options": ["a) Borrar archivos temporales", "b) Propagar la herencia desde defaults hacia selectores específicos", "c) Encriptar el PDF", "d) Descargar fuentes de internet"]
                 },
                 {
-                    "text": "¿Dónde se guardan los archivos finales exportados por Odisea de forma predeterminada?",
-                    "options": ["a) En C:\\Users\\Desktop", "b) En ./odisea_data/exports/", "c) En Mis Documentos", "d) En la papelera"]
+                    "text": "¿Qué formato de libro electrónico estándar genera Odisea para lectores e-reader?",
+                    "options": ["a) MOBI antiguo", "b) ePub 3.0 con tabla de contenidos", "c) FB2", "d) AZW3"]
                 },
                 {
-                    "text": "¿Qué directiva permite reutilizar bloques comunes de reglas en un archivo .ulss?",
-                    "options": ["a) @import", "b) @mixin nombre { ... }", "c) @include", "d) @copy"]
+                    "text": "¿Qué estándar internacional de preservación documental cumple el exportador a PDF?",
+                    "options": ["a) ISO 9001", "b) ISO 19005-1 (PDF/A vectorial)", "c) W3C WCAG 1.0", "d) POSIX 2008"]
                 },
                 {
-                    "text": "¿Qué ventaja tiene la exportación ePub 3 generada por Odisea?",
-                    "options": ["a) Es solo una imagen escaneada", "b) Incluye tabla de contenidos digital navegable y texto redimensionable para lectores e-reader", "c) Requiere conexión permanente", "d) Solo funciona en iPhone"]
+                    "text": "¿En qué carpeta relativa se guardan los archivos generados por defecto?",
+                    "options": ["a) C:\\Mis Documentos", "b) ./odisea_data/exports/", "c) %TEMP%", "d) Escritorio"]
                 }
             ]
         },
         "solutions": {
             "items": [
-                {"correct_answer": "b) .ulss", "explanation": "Las Ulysses Style Sheets (.ulss) son el formato estándar soportado por el motor en Rust de Odisea."},
-                {"correct_answer": "b) $font-name = 'Charter' o $font-name: 'Charter'", "explanation": "El parser admite asignación con signo igual y con dos puntos para máxima compatibilidad."},
-                {"correct_answer": "b) paragraph + paragraph { first-line-indent: 0.5in; }", "explanation": "El selector de hermano adyacente (+) aplica la regla únicamente cuando un párrafo sigue a otro párrafo."},
-                {"correct_answer": "b) 11 estilos", "explanation": "Incluye Swiss Knife, Novel, Academic Paper, Business Report, Two-Column Magazine, etc."},
-                {"correct_answer": "b) Novel (Manuscript).ulss", "explanation": "Cumple los requerimientos tradicionales de las agencias y editoriales literarias norteamericanas y europeas."},
-                {"correct_answer": "b) Ctrl + E", "explanation": "Ctrl+E abre de forma inmediata el modal de previsualización antes de generar el archivo en disco."},
-                {"correct_answer": "b) PDF editorial, DOCX estructurado, ePub 3, HTML autónomo y Markdown plano", "explanation": "Cubre todas las fases del ciclo editorial: imprenta, distribución digital, oficina e interoperabilidad web."},
-                {"correct_answer": "b) En ./odisea_data/exports/", "explanation": "El principio de portabilidad absoluta asegura que las salidas queden recogidas en el subdirectorio exports."},
-                {"correct_answer": "b) @mixin nombre { ... }", "explanation": "Los mixins permiten encapsular propiedades tipográficas repetitivas y aplicarlas en múltiples selectores."},
-                {"correct_answer": "b) Incluye tabla de contenidos digital navegable y texto redimensionable para lectores e-reader", "explanation": "El archivo ePub cumple con los estándares IDPF/W3C con metadatos completos y maquetación fluida."}
+                {"correct_answer": "b) .ulss", "explanation": "El formato .ulss (Ulysses Style Sheet) define la tipografía y márgenes editoriales."},
+                {"correct_answer": "b) Rust nativo", "explanation": "El motor en Rust compila y procesa el AST tipográfico en milisegundos con seguridad de memoria."},
+                {"correct_answer": "a) paragraph + paragraph { first-line-indent: ... }", "explanation": "El selector adyacente identifica cualquier párrafo precedido por otro párrafo."},
+                {"correct_answer": "b) 11 estilos", "explanation": "Odisea incluye 11 hojas de estilo canónicas optimizadas para novelas, tesis, reportes y manuales."},
+                {"correct_answer": "b) Ctrl + E", "explanation": "Ctrl+E lanza la previsualización editorial con conmutador de estilos y formatos."},
+                {"correct_answer": "b) Courier New a doble espacio", "explanation": "Es el estándar tradicional exigido por agencias literarias y editoriales comerciales."},
+                {"correct_answer": "b) Propagar la herencia desde defaults hacia selectores específicos", "explanation": "Garantiza que las propiedades comunes se hereden sin duplicar declaraciones."},
+                {"correct_answer": "b) ePub 3.0 con tabla de contenidos", "explanation": "ePub 3 es el estándar moderno adoptado por Apple Books, Google Play y Kobo."},
+                {"correct_answer": "b) ISO 19005-1 (PDF/A vectorial)", "explanation": "Garantiza fidelidad visual idéntica en cualquier visor y preservación a largo plazo."},
+                {"correct_answer": "b) ./odisea_data/exports/", "explanation": "Mantiene el aislamiento del paquete portable en su carpeta relativa de datos."}
             ]
         }
     }
 
 def get_chapter_8():
     p1_html = f"""
-    {EC.section_header("Publicación Web Directa: WordPress, Ghost, Medium, Micro.blog y Substack", 1, "8.1")}
-    <p>Para periodistas digitales, blogueros y ensayistas contemporáneos, el flujo de trabajo suele fracturarse al transferir el texto desde el procesador de escritorio al gestor de contenidos (CMS) web: imágenes que se desconfiguran, párrafos que pierden formato o etiquetas rotas. Odisea resuelve esta fricción integrando <strong>conectores de publicación web en la nube</strong> directamente desde el ejecutable nativo:</p>
+    {EC.section_header("Arquitectura de Conectividad Cloud y Protocolos de Publicación", 1, "8.1")}
+    <p>Para el ensayista moderno, el periodista digital o el creador de newsletters, redactar es solo la mitad del viaje; la otra mitad es difundir las ideas en las plataformas de mayor audiencia. Odisea incorpora un subsistema de <strong>Publicación Directa en la Web</strong> desacoplado y seguro:</p>
 
     <ul>
-        <li><strong>WordPress (REST API v2):</strong> Permite publicar nuevas entradas o <strong>actualizar entradas ya publicadas</strong> de forma bidireccional. Puedes configurar múltiples cuentas seguras, asignar el estado inicial (Borrador, Publicado, Programado con selector de fecha/hora), seleccionar categorías, añadir etiquetas y enviar la imagen destacada automáticamente desde los adjuntos locales.</li>
-        <li><strong>Ghost (Admin API):</strong> Generación autónoma de tokens criptográficos JWT en Rust (<code>publishers/ghost.rs</code>). Envía entradas estructuradas en HTML semántico limpio con imagen de cabecera y tags remotos.</li>
-        <li><strong>Medium & Micro.blog:</strong> Publicación instantánea en tus feeds personales mediante tokens de acceso directo. En Micro.blog, Odisea soporta además la actualización remota de microposts existentes.</li>
-        <li><strong>Función 'Copy for Substack':</strong> Substack cuenta con un editor web cerrado que rechaza la mayoría de códigos Markdown pegados. La función dedicada de Odisea transforma el documento Markdown XL en el <em>formato exacto de portapapeles enriquecido (HTML/Rich-Text MIME)</em> que acepta el editor de Substack, preservando subtítulos, citas en bloque, enlaces y notas al pie sin descuadres visuales.</li>
+        <li><strong>Conectores Nativos en Rust:</strong> A diferencia de extensiones vulnerables de terceros, los conectores de publicación de Odisea están escritos en Rust en <code>src-tauri/src/publishing/</code>, garantizando transferencias cifradas con TLS 1.3 sin intermediarios ni telemetría.</li>
+        <li><strong>Plataformas Compatibles de Serie:</strong>
+            <ul>
+                <li><strong>WordPress (REST API v2):</strong> Publicación en sitios autoalojados (WordPress.org) o en WordPress.com, con autenticación mediante contraseñas de aplicación (<em>Application Passwords</em>).</li>
+                <li><strong>Ghost (Admin API v4/v5):</strong> Conexión con blogs modernos mediante tokens JWT generados localmente.</li>
+                <li><strong>Medium (OAuth2 / Integration Tokens):</strong> Envío directo a perfiles personales o publicaciones asociadas.</li>
+                <li><strong>Micro.blog (Micropub Protocol):</strong> Publicación ágil en el estándar abierto del Fediverso e IndieWeb.</li>
+                <li><strong>Substack / Newsletters:</strong> Exportación formateada lista para entrega por correo electrónico con maquetación limpia.</li>
+            </ul>
+        </li>
     </ul>
 
     {EC.callout(
-        "HITO OPERATIVO · INDICADOR VISUAL DE PUBLICACIÓN EN LA NUBE",
-        "Cuando una hoja ha sido enviada con éxito a un servicio web, su tarjeta en la Lista de Hojas incorpora automáticamente un elegante <strong>micro-icono de avión de papel</strong>. En el Dashboard lateral, la pestaña de publicación muestra el enlace permanente (permalink) remoto y permite sincronizar las modificaciones futuras con un solo clic.",
-        "milestone"
+        "DEFINICIÓN CLAVE · SEGURIDAD DE CREDENCIALES PORTABLES",
+        "Las credenciales y tokens de acceso se almacenan de forma cifrada en <code>./odisea_data/config.toml</code> utilizando criptografía AES-256-GCM. Al mover la carpeta portable de un ordenador a otro, tus credenciales viajan contigo sin exponerse en el Administrador de Credenciales de Windows ni en la nube.",
+        "definition"
     )}
     """
 
     p2_html = f"""
-    {EC.section_header("El Ciclo de Respaldo Automático con Zstandard (.odiseabak)", 1, "8.2")}
-    <p>La peor pesadilla de un escritor es la pérdida accidental de días o meses de trabajo debido a fallos de hardware, cortes de suministro o borrados involuntarios. Odisea implementa un sistema de <strong>copias de seguridad continuas en segundo plano</strong> (<code>src-tauri/src/backups/</code>) con compresión Zstandard de alto ratio:</p>
+    {EC.section_header("Flujo Operativo de Publicación desde Odisea", 1, "8.2")}
+    <p>El proceso para difundir un artículo o capítulo desde Odisea está diseñado para completarse en menos de diez segundos sin salir de la aplicación:</p>
 
-    <ul>
-        <li><strong>Instantáneas Horarias (hourly):</strong> Odisea genera automáticamente una copia comprimida cada 60 minutos de escritura activa en <code>./odisea_data/backups/hourly/</code>. Se conservan los últimos 24 respaldos horarios.</li>
-        <li><strong>Instantáneas Diarias (daily):</strong> Al concluir cada jornada, se consolida una copia diaria en <code>./odisea_data/backups/daily/</code>, preservando el historial de los últimos 7 días.</li>
-        <li><strong>Instantáneas Semanales (weekly):</strong> Cada semana se archiva un resguardo definitivo en <code>./odisea_data/backups/weekly/</code>, almacenando hasta 4 semanas consecutivas.</li>
-    </ul>
-
-    <div class="code-box">
-        <pre><code class="language-text"># Estructura del archivo de snapshot Zstandard (.odiseabak)
-odisea_backup_20261019_230000.odiseabak  [Compresión Zstd Level 3]
-├── library.odiseadb                     # Base de datos relacional completa con índices FTS5
-├── config.toml                          # Preferencias y configuración de usuario
-├── styles/                              # Hojas de estilo .ulss personalizadas
-└── manifest.json                        # Metadatos del snapshot: fecha, checksum SHA-256, versión</code></pre>
-    </div>
-
-    {EC.callout(
-        "SEGURIDAD DE DATOS · RESGUARDO PREVIO ANTES DE RESTAURAR",
-        "Si necesitas restaurar una copia de seguridad anterior desde el menú de opciones, Odisea genera automáticamente un respaldo de emergencia de tu estado actual (<code>library.pre_restore.bak</code>) antes de sobreescribir la base de datos, garantizando que ninguna palabra se pierda en el proceso.",
-        "danger"
-    )}
+    <ol>
+        <li><strong>Invocación Rápida (Ctrl+Shift+P):</strong> Pulsa <code>Ctrl+Shift+P</code> o accede a la pestaña <em>Publicar</em> dentro del modal de exportación (<code>Ctrl+E</code>).</li>
+        <li><strong>Selección de Plataforma y Cuenta:</strong> Elige en el desplegable la cuenta de destino (por ejemplo, <em>Blog Corporativo Ghost</em> o <em>Revista WordPress</em>).</li>
+        <li><strong>Configuración de Metadatos Editoriales:</strong>
+            <ul>
+                <li><em>Título del Post:</em> Se toma automáticamente del primer encabezado <code># </code> de la hoja.</li>
+                <li><em>Slug de URL:</em> Generación automática normalizada (ejemplo: <code>/el-manifiesto-de-prosa-pura</code>).</li>
+                <li><em>Extracto / Sumario:</em> Tomado de las dos primeras oraciones o definido manualmente.</li>
+                <li><em>Etiquetas (Tags):</em> Las palabras clave de Odisea se convierten automáticamente en tags de la plataforma.</li>
+            </ul>
+        </li>
+        <li><strong>Estado de Publicación:</strong> Selecciona entre publicar como <strong>Borrador (Draft)</strong> para una última revisión en el panel web, publicar como <strong>Privado</strong> o publicar de forma <strong>Pública e Inmediata</strong>.</li>
+        <li><strong>Subida Automática de Medios:</strong> Las imágenes asociadas a la hoja en <code>./odisea_data/attachments/</code> se cargan a la biblioteca multimedia del CMS remoto y sus enlaces se sustituyen de forma transparente.</li>
+    </ol>
     """
 
     p3_html = f"""
-    {EC.section_header("Mantenimiento, Optimización FTS5 y Migración Portable", 1, "8.3")}
-    <p>La salud a largo plazo de una biblioteca con cientos de proyectos y miles de hojas depende de un motor de almacenamiento eficiente. Odisea mantiene su base SQLite optimizada de forma totalmente invisible para el usuario:</p>
+    {EC.section_header("Registro y Auditoría del Estado de Publicación", 1, "8.3")}
+    <p>Una vez completada la publicación, Odisea registra la trazabilidad del documento en su base relacional <code>library.odiseadb</code> para evitar duplicidades accidentales o desincronizaciones:</p>
 
     <ul>
-        <li><strong>Puntos de Control WAL (Write-Ahead Logging):</strong> Las escrituras en disco se registran en el diario WAL de SQLite a máxima velocidad sin bloquear la lectura de otros paneles. Al cerrar la aplicación, se ejecuta un <code>wal_checkpoint(TRUNCATE)</code> consolidando los datos en el archivo principal <code>library.odiseadb</code>.</li>
-        <li><strong>Búsqueda de Texto Completo FTS5:</strong> Cada vez que insertas, modificas o eliminas una hoja, triggers atómicos sincronizan la tabla virtual <code>sheets_fts</code>. Las búsquedas en la biblioteca devuelven resultados en menos de 5 milisegundos, incluso en bibliotecas de más de 100,000 páginas.</li>
-        <li><strong>Migración Portable Entre Equipos:</strong> Para trasladar todo tu entorno de trabajo a otro ordenador con Windows 11, basta con copiar la carpeta completa <code>Odisea_Win11_Portable</code> (o mantenerla en una memoria USB o unidad en la nube). Al ejecutar <code>Odisea.exe</code> en el nuevo equipo, la aplicación funcionará de inmediato con el 100% de tus datos, estilos, temas y configuración intactos.</li>
+        <li><strong>Micro-Badge de Avión de Papel:</strong> En la Lista de Hojas (Panel 2), la tarjeta del documento muestra un elegante icono vectorial de 14px de un avión de papel, certificando que el manuscrito ya vive en la web.</li>
+        <li><strong>Sincronización Bidireccional de Estado:</strong> Al reabrir el modal de publicación sobre una hoja ya publicada, Odisea ofrece dos acciones inmediatas: <em>Actualizar Post Existente</em> (sobrescribiendo cambios) o <em>Ver en Navegador</em> (abriendo la URL pública directa).</li>
+        <li><strong>Historial de Envíos:</strong> Cada evento de publicación guarda un registro con timestamp ISO 8601, plataforma de destino, código de respuesta HTTP del servidor y URL asignada.</li>
+    </ul>
+
+    {EC.callout(
+        "BUENA PRÁCTICA · FLUJO BORRADOR SEGURO",
+        "Se recomienda publicar siempre inicialmente en estado <strong>Borrador (Draft)</strong>. Esto te permite verificar la maquetación final en el tema visual específico de tu sitio web antes de notificar a tus suscriptores.",
+        "practice"
+    )}
+    """
+
+    p4_html = f"""
+    {EC.section_header("Ciclo de Vida Portable, Actualizaciones y Mantenimiento", 1, "8.4")}
+    <p>Mantener una suite de software profesional en Windows 11 durante años exige un ciclo de vida predecible y procedimientos de actualización que no comprometan la biblioteca del autor:</p>
+
+    <ul>
+        <li><strong>Actualización del Binario Portable:</strong> Para actualizar Odisea a una versión superior (por ejemplo, de v1.0.1 a futuras versiones), el usuario únicamente debe descargar el nuevo archivo <code>Odisea.exe</code> y sustituir el binario existente en la carpeta <code>Odisea_Win11_Portable/</code>. La carpeta <code>./odisea_data/</code> con todos tus escritos, estilos y copias permanecerá intacta.</li>
+        <li><strong>Migraciones Automáticas de Esquema SQLite:</strong> Cada versión nueva incorpora scripts de migración que se ejecutan al vuelo al detectar un <code>PRAGMA user_version</code> anterior, agregando columnas o tablas sin riesgo de pérdida de datos.</li>
+        <li><strong>Auditoría de Integridad SHA-256:</strong> Cada versión oficial se entrega acompañada del archivo <code>CERTIFICADO_CALIDAD_ODISEA.md</code>, que contiene el hash criptográfico oficial para verificar que el binario no ha sido manipulado por malware.</li>
     </ul>
 
     {EC.table(
-        ["Escenario Operativo", "Acción Recomendada", "Procedimiento Técnico en Odisea"],
+        ["Componente de Datos", "Ubicación en ./odisea_data/", "Estrategia de Copia y Preservación"],
         [
-            ["Mover a un nuevo PC con Windows 11", "Copiar carpeta Odisea_Win11_Portable", "No requiere instalador ni activación; arranque instantáneo."],
-            ["Respaldar toda la biblioteca", "Archivar ./odisea_data/backups/", "Contiene todos los snapshots horarios, diarios y semanales."],
-            ["Actualizar un artículo en WordPress", "Ctrl + Shift + P en la hoja activa", "Detecta el ID remoto y actualiza la entrada sin duplicarla."],
-            ["Publicar en Substack", "Comando 'Copy for Substack' en la paleta", "Pega directamente con Ctrl+V en el navegador web de Substack."],
-            ["Restaurar un texto borrado", "Menú Configuración > Restaurar Snapshot", "Selecciona el backup .odiseabak deseado; genera .bak preventivo."]
+            ["Biblioteca Relacional", "<code>library.odiseadb</code>", "Respaldada automáticamente por SQLite WAL y backups Zstd."],
+            ["Hojas de Estilo Propias", "<code>styles/*.ulss</code>", "Archivos de texto editables con cualquier editor de código."],
+            ["Temas Personalizados", "<code>themes/*.ultheme</code>", "Ficheros JSON/CSS independientes copiables entre equipos."],
+            ["Archivos e Imágenes", "<code>attachments/</code>", "Medios físicos clasificados por identificador SHA-256."],
+            ["Copias de Seguridad", "<code>backups/weekly/*.odiseabak</code>", "Archivos zstd autónomos restaurables en cualquier momento."]
         ],
-        ["28%", "28%", "44%"]
+        ["28%", "34%", "38%"]
     )}
     """
 
     return {
         "number": 8,
         "title": "Conectores de Publicación Web y Mantenimiento Portable",
-        "short_title": "PUBLICACIÓN Y MANTENIMIENTO",
+        "short_title": "PUBLICACIÓN WEB Y MANTENIMIENTO",
         "block": "BLOQUE IV — MAQUETACIÓN EDITORIAL Y PUBLICACIÓN",
         "block_kicker": "BLOQUE IV · MAQUETACIÓN EDITORIAL",
         "objectives": [
-            "Configurar y utilizar los conectores de publicación web en WordPress, Ghost, Medium y Micro.blog.",
-            "Emplear la función 'Copy for Substack' para transferir prosa enriquecida al editor web de Substack.",
-            "Actualizar entradas ya publicadas de forma bidireccional identificadas con el icono de avión de papel.",
-            "Comprender el ciclo de respaldos automáticos Zstandard y la migración portable en Windows 11."
+            "Configurar los conectores web nativos en Rust para WordPress, Ghost, Medium y Micro.blog.",
+            "Publicar manuscritos en la web con subida automática de imágenes y conversión de tags.",
+            "Interpretar los micro-badges de publicación y gestionar el enlace con posts remotos.",
+            "Ejecutar actualizaciones del binario Odisea.exe y políticas de respaldo de ./odisea_data/."
         ],
         "pages": [
-            {"header_section": "CONECTORES DE PUBLICACIÓN WEB", "html_content": p1_html},
-            {"header_section": "EL CICLO DE RESPALDOS ZSTANDARD", "html_content": p2_html},
-            {"header_section": "MANTENIMIENTO Y MIGRACIÓN PORTABLE", "html_content": p3_html}
+            {"header_section": "CONECTIVIDAD CLOUD Y PROTOCOLOS", "html_content": p1_html},
+            {"header_section": "FLUJO OPERATIVO DE PUBLICACIÓN", "html_content": p2_html},
+            {"header_section": "REGISTRO Y ESTADO DE PUBLICACIÓN", "html_content": p3_html},
+            {"header_section": "MANTENIMIENTO DEL PAQUETE PORTABLE", "html_content": p4_html}
         ],
         "summary": {
             "key_points": [
-                "Odisea publica y actualiza entradas en WordPress, Ghost, Medium y Micro.blog con un solo clic.",
-                "La función 'Copy for Substack' adapta el formato enriquecido al portapapeles para pegado sin fallos.",
-                "Las hojas publicadas lucen un micro-icono de avión de papel y registran su permalink remoto.",
-                "El subsistema de backups genera copias continuas comprimidas con Zstandard (hourly, daily, weekly).",
-                "Portabilidad garantizada: mover la carpeta Odisea_Win11_Portable traslada el 100% de la biblioteca."
+                "Los conectores de publicación en Rust se comunican directamente con WordPress, Ghost, Medium y Micro.blog.",
+                "Las credenciales viajan cifradas con AES-256-GCM en el archivo relativo ./odisea_data/config.toml.",
+                "El atajo Ctrl+Shift+P publica en 10 segundos convirtiendo encabezados, imágenes y tags.",
+                "El micro-badge del avión de papel certifica en la Lista de Hojas que el documento ya está publicado.",
+                "Para actualizar Odisea, solo se reemplaza Odisea.exe; la carpeta ./odisea_data/ conserva todo el trabajo."
             ],
             "requirements": [
-                "Saber introducir credenciales seguras (Application Passwords / JWT) en la configuración de publicación.",
-                "Conocer la ubicación de los archivos .odiseabak en ./odisea_data/backups/.",
-                "Comprender cómo se migra la carpeta portable a una memoria USB o servicio en la nube."
+                "Configurar una cuenta de publicación en la pestaña 'Publicar' del modal Ctrl+E.",
+                "Publicar un artículo de prueba en estado Borrador (Draft).",
+                "Comprobar la creación de backups Zstandard en la carpeta ./odisea_data/backups/."
             ]
         },
         "questionnaire": {
             "columns": 2,
             "questions": [
                 {
-                    "text": "¿Qué API utiliza Odisea para conectarse con blogs y sitios de WordPress?",
-                    "options": ["a) XML-RPC obsoleto", "b) WordPress REST API v2 con contraseñas de aplicación", "c) Conexión directa a MySQL", "d) Envío por correo POP3"]
+                    "text": "¿Qué atajo de teclado abre directamente la función de Publicación en la Web?",
+                    "options": ["a) Ctrl + Shift + P", "b) Ctrl + W", "c) Alt + P", "d) Ctrl + F10"]
                 },
                 {
-                    "text": "¿Qué token criptográfico genera Odisea en Rust para autenticar con Ghost Admin API?",
-                    "options": ["a) Token OAuth1", "b) Tokens JWT (JSON Web Tokens) firmados en tiempo real", "c) Certificados SSL X.509", "d) Claves PGP"]
+                    "text": "¿Qué algoritmo de cifrado protege las credenciales de publicación en config.toml?",
+                    "options": ["a) Texto plano", "b) AES-256-GCM", "c) MD5", "d) Base64 simple"]
                 },
                 {
-                    "text": "¿Qué función facilita pegar prosa con formato intacto en el editor web de Substack?",
-                    "options": ["a) 'Export to Word'", "b) 'Copy for Substack' (portapapeles enriquecido MIME)", "c) 'Convert to PDF'", "d) 'Screenshot to clipboard'"]
+                    "text": "¿Qué plataforma de publicación abierta del Fediverso soporta Odisea de serie?",
+                    "options": ["a) Micro.blog (Micropub)", "b) Blogger antiguo", "c) MySpace", "d) GeoCities"]
                 },
                 {
-                    "text": "¿Cómo se distingue en la Lista de Hojas un documento que ya ha sido publicado en la web?",
-                    "options": ["a) Se pone el texto en color azul", "b) Muestra un micro-icono vectorial de avión de papel", "c) Aparece un candado cerrado", "d) Se bloquea la edición"]
+                    "text": "¿Qué indicador visual certifica en la Lista de Hojas que un texto ha sido publicado?",
+                    "options": ["a) Una campana", "b) Un avión de papel", "c) Un candado", "d) Un globo terráqueo"]
                 },
                 {
-                    "text": "¿Permite Odisea actualizar una entrada que ya fue publicada en WordPress o Ghost sin duplicarla?",
-                    "options": ["a) No, siempre crea una entrada nueva", "b) Sí, detecta el ID remoto y actualiza título, cuerpo y metadatos", "c) Solo si se borra antes en la web", "d) Requiere editar en el navegador"]
+                    "text": "¿Cómo se gestionan las imágenes embebidas en una hoja al publicarla en WordPress o Ghost?",
+                    "options": ["a) Se borran", "b) Se suben a la biblioteca del CMS y se reemplaza el enlace automáticamente", "c) Se convierten a enlaces rotos", "d) Hay que subirlas a mano"]
                 },
                 {
-                    "text": "¿Qué algoritmo de compresión de alto rendimiento utiliza Odisea para sus backups automáticos?",
-                    "options": ["a) ZIP clásico", "b) Zstandard (.odiseabak)", "c) BZIP2", "d) Compresión LZW"]
+                    "text": "¿Qué estado de publicación se recomienda seleccionar para una verificación final?",
+                    "options": ["a) Borrador (Draft)", "b) Público inmediato", "c) Destructivo", "d) Desactivado"]
                 },
                 {
-                    "text": "¿En qué tres frecuencias temporales clasifica Odisea sus copias de seguridad continuas?",
-                    "options": ["a) Minutaria, mensual y anual", "b) Horaria (hourly), diaria (daily) y semanal (weekly)", "c) Solo cuando el usuario lo pide", "d) Cada vez que se pulsa Guardar"]
+                    "text": "¿Qué procedimiento se sigue para actualizar Odisea a una versión superior?",
+                    "options": ["a) Formatear el disco duro", "b) Reemplazar el archivo Odisea.exe conservando la carpeta ./odisea_data/", "c) Reinstalar Windows 11", "d) Ejecutar un instalador MSI"]
                 },
                 {
-                    "text": "¿Qué archivo preventivo genera Odisea antes de restaurar un snapshot de copia de seguridad?",
-                    "options": ["a) backup_fatal.err", "b) library.pre_restore.bak", "c) recovery.sys", "d) restore.log"]
+                    "text": "¿Qué mecanismo garantiza que la base de datos se adapte a nuevas versiones sin pérdidas?",
+                    "options": ["a) PRAGMA user_version y migraciones automáticas al vuelo", "b) Borrado de la base antigua", "c) Conversión a XML", "d) No es posible"]
                 },
                 {
-                    "text": "¿Qué tabla virtual de SQLite gestiona las búsquedas ultrarrápidas de texto completo en Odisea?",
-                    "options": ["a) sheets_fulltext", "b) sheets_fts (módulo FTS5 con triggers atómicos)", "c) search_index_lucence", "d) text_master"]
+                    "text": "¿Qué tipo de autenticación se utiliza preferentemente con WordPress REST API v2?",
+                    "options": ["a) Tu contraseña personal de correo", "b) Application Passwords (contraseñas de aplicación)", "c) Certificado en tarjeta inteligente", "d) Sin autenticación"]
                 },
                 {
-                    "text": "¿Qué pasos se requieren para migrar Odisea a otro ordenador con Windows 11?",
-                    "options": ["a) Reinstalar el programa y volver a escribir el registro de Windows", "b) Simplemente copiar la carpeta Odisea_Win11_Portable entera al nuevo equipo", "c) Exportar cada hoja una por una", "d) Solicitar una clave de licencia nueva"]
+                    "text": "¿Qué archivo certifica el hash SHA-256 del binario oficial de Odisea?",
+                    "options": ["a) CERTIFICADO_CALIDAD_ODISEA.md", "b) checksum.log", "c) readme.doc", "d) license.txt"]
                 }
             ]
         },
         "solutions": {
             "items": [
-                {"correct_answer": "b) WordPress REST API v2 con contraseñas de aplicación", "explanation": "REST API v2 es el protocolo oficial moderno y seguro recomendado por la Fundación WordPress."},
-                {"correct_answer": "b) Tokens JWT (JSON Web Tokens) firmados en tiempo real", "explanation": "Ghost Admin API requiere autenticación mediante tokens JWT firmados con el algoritmo HMAC-SHA256."},
-                {"correct_answer": "b) 'Copy for Substack' (portapapeles enriquecido MIME)", "explanation": "La función inyecta simultáneamente las variantes text/html y text/plain compatibles con Substack."},
-                {"correct_answer": "b) Muestra un micro-icono vectorial de avión de papel", "explanation": "El micro-badge del avión de papel es el distintivo visual canónico de publicación remota."},
-                {"correct_answer": "b) Sí, detecta el ID remoto y actualiza título, cuerpo y metadatos", "explanation": "Odisea almacena el publish_status_json en SQLite vinculando la hoja al post remoto."},
-                {"correct_answer": "b) Zstandard (.odiseabak)", "explanation": "Zstandard ofrece ratios de compresión excepcionales con un impacto insignificante en la CPU."},
-                {"correct_answer": "b) Horaria (hourly), diaria (daily) y semanal (weekly)", "explanation": "Este esquema en 3 niveles asegura puntos de restauración tanto recientes como históricos."},
-                {"correct_answer": "b) library.pre_restore.bak", "explanation": "Garantiza una red de seguridad infalible en caso de restaurar una copia equivocada."},
-                {"correct_answer": "b) sheets_fts (módulo FTS5 con triggers atómicos)", "explanation": "FTS5 indexa tokens de palabras completas permitiendo búsquedas booleanas en milisegundos."},
-                {"correct_answer": "b) Simplemente copiar la carpeta Odisea_Win11_Portable entera al nuevo equipo", "explanation": "El aislamiento total en ./odisea_data/ garantiza portabilidad 'plug and play' inmediata."}
+                {"correct_answer": "a) Ctrl + Shift + P", "explanation": "Ctrl+Shift+P lanza directamente el asistente de publicación web rápida."},
+                {"correct_answer": "b) AES-256-GCM", "explanation": "Cifra los tokens con autenticación para impedir accesos no autorizados a tus blogs."},
+                {"correct_answer": "a) Micro.blog (Micropub)", "explanation": "Micro.blog implementa el estándar abierto W3C Micropub promovido por la comunidad IndieWeb."},
+                {"correct_answer": "b) Un avión de papel", "explanation": "El micro-badge del avión de papel indica que el contenido tiene una réplica activa en la red."},
+                {"correct_answer": "b) Se suben a la biblioteca del CMS y se reemplaza el enlace automáticamente", "explanation": "El conector de Odisea sube las imágenes binarias y reescribe los enlaces a las URLs del servidor."},
+                {"correct_answer": "a) Borrador (Draft)", "explanation": "Permite auditar el artículo en el diseño web real antes de que se envíe a los lectores."},
+                {"correct_answer": "b) Reemplazar el archivo Odisea.exe conservando la carpeta ./odisea_data/", "explanation": "Al residir toda la persistencia en ./odisea_data/, la actualización es instantánea y no destructiva."},
+                {"correct_answer": "a) PRAGMA user_version y migraciones automáticas al vuelo", "explanation": "SQLite comprueba la versión del esquema y ejecuta únicamente las sentencias DDL pendientes."},
+                {"correct_answer": "b) Application Passwords (contraseñas de aplicación)", "explanation": "Permiten revocar el acceso a la aplicación sin cambiar la clave maestra del usuario."},
+                {"correct_answer": "a) CERTIFICADO_CALIDAD_ODISEA.md", "explanation": "El certificado oficial audita las características técnicas, el hash SHA-256 y la portabilidad."}
             ]
         }
     }

@@ -3,9 +3,11 @@ from pathlib import Path
 
 SKILL_ROOT = Path(r"C:\Users\IsaNet\.gemini\config\skills\technical-book-pdf")
 sys.path.insert(0, str(SKILL_ROOT / "scripts"))
+sys.path.insert(0, str(Path(__file__).parent.resolve()))
 
 from components import EditorialComponents as EC
 from generate_diagram import TechnicalDiagrams as TD
+from img_helper import screenshot_figure
 
 def get_chapter_5():
     p1_html = f"""
@@ -58,283 +60,326 @@ def get_chapter_5():
         <li>Hojas que contienen o excluyen determinadas palabras clave (Keywords).</li>
         <li>Hojas modificadas en las últimas 24 horas, semana o mes actual.</li>
         <li>Hojas con objetivos de escritura activos o metas completadas.</li>
-        <li>Hojas marcadas como favoritas o publicadas en plataformas web.</li>
     </ul>
 
-    <p><strong>2. Carpetas Externas (External Folders):</strong> Odisea permite vincular cualquier directorio del sistema de archivos de Windows 11 o carpetas sincronizadas en la nube (Dropbox, OneDrive, repositorios Git):</p>
-
-    {EC.table(
-        ["Modo de Carpeta Externa", "Formato en Disco", "Comportamiento y Preservación de Metadatos"],
-        [
-            ["Modo Markdown Estándar", "Archivos <code>.md</code> o <code>.txt</code>", "Lectura y escritura directa. Preserva frontmatter YAML intacto y almacena metadatos en comentarios HTML."],
-            ["Modo Nativo Ulysses / Odisea", "Contenedores <code>.ulyz</code> / <code>.odisea</code>", "Almacén comprimido con texto Markdown XL íntegro, anotaciones al margen, notas al pie, objetivos e imágenes adjuntas."]
-        ],
-        ["28%", "22%", "50%"]
-    )}
+    <p><strong>2. Carpetas Externas Vinculadas (External Folders):</strong> Odisea permite anclar cualquier directorio de tu disco duro (incluyendo carpetas compartidas de Dropbox, OneDrive, Nextcloud o repositorios Git) directamente en el Panel 1 de la Biblioteca:</p>
+    <ul>
+        <li>Odisea lee y edita los archivos de texto plano (.md, .txt) directamente en su ubicación de origen, sin obligar a importarlos ni duplicarlos en la base de datos interna.</li>
+        <li>Un vigilante nativo de sistema de archivos (<em>File Watcher</em> en Rust) detecta cualquier modificación externa y actualiza la vista de Odisea en menos de 50 milisegundos.</li>
+    </ul>
 
     {EC.callout(
-        "CONSEJO TÉCNICO · WATCHER ASÍNCRONO CON EL CRATE NOTIFY",
-        "El subsistema en Rust monitoriza las carpetas externas con el crate <code>notify</code>. Si un archivo Markdown es modificado, renombrado o creado externamente (por ejemplo, mediante un <code>git pull</code> o un editor externo), Odisea emite un evento interno en <strong>menos de 100 ms</strong> actualizando la vista sin recargar la aplicación.",
-        "takeaway"
+        "CONSEJO DE COLABORACIÓN PROFESIONAL",
+        "Al vincular una carpeta externa alojada en un repositorio Git corporativo o en OneDrive, puedes redactar con la ergonomía superior de Odisea mientras tus colaboradores leen o integran los mismos archivos Markdown en sus flujos de integración continua.",
+        "practice"
+    )}
+    """
+
+    p4_html = f"""
+    {EC.section_header("El Modal de Historial de Navegación (Ctrl+H) en Detalle", 1, "5.4")}
+    <p>A medida que la biblioteca crece con cientos de documentos, saltar entre capítulos o consultar fichas de investigación recientes requiere una vía ultrarrápida. El nuevo <strong>Modal de Historial de Navegación (Ctrl+H)</strong> resuelve esta necesidad con precisión táctica:</p>
+
+    {screenshot_figure(
+        "03_modal_historial_navegacion",
+        "Captura real del Modal de Historial de Navegación (Ctrl+H). Permite filtrar por tipo (Hojas, Proyectos, Todo), buscar por texto incremental y acceder al instante mediante teclado.",
+        "5.1",
+        max_height_mm=88
+    )}
+
+    {EC.table(
+        ["Componente del Modal", "Función y Comportamiento", "Atajo de Acceso"],
+        [
+            ["<strong>Buscador en Vivo</strong>", "Filtrado incremental difuso por título o grupo.", "Enfocado automáticamente al abrir."],
+            ["<strong>Pestaña 'Todo'</strong>", "Muestra la cronología unificada de navegación.", "Clic o conmutación con <code>Tab</code>."],
+            ["<strong>Pestaña 'Hojas'</strong>", "Aísla únicamente los documentos de prosa.", "Filtro rápido para redactores."],
+            ["<strong>Pestaña 'Proyectos'</strong>", "Muestra los grupos y proyectos visitados.", "Salto rápido entre estructuras."],
+            ["<strong>Badge de Palabras</strong>", "Muestra el volumen de texto de cada documento.", "Indicador de densidad en micro-badge."],
+            ["<strong>Teclas Arriba / Abajo</strong>", "Selección directa de ítems de la lista.", "Pulsar <code>Enter</code> para abrir."],
+            ["<strong>Tecla Escape (Esc)</strong>", "Cierra el modal y devuelve el foco al editor.", "Cierre instantáneo sin ratón."]
+        ],
+        ["26%", "48%", "26%"]
     )}
     """
 
     return {
         "number": 5,
         "title": "Gestión Documental, Hojas Pegadas y Carpetas Externas",
-        "short_title": "ORGANIZACIÓN Y CARPETAS",
+        "short_title": "GESTIÓN DOCUMENTAL Y HISTORIAL",
         "block": "BLOQUE III — ORGANIZACIÓN Y PRODUCTIVIDAD",
         "block_kicker": "BLOQUE III · ORGANIZACIÓN Y PRODUCTIVIDAD",
         "objectives": [
-            "Organizar obras complejas mediante proyectos, grupos jerárquicos y secciones especializadas.",
-            "Utilizar las Hojas Pegadas (Glued Sheets) con Ctrl+Shift+G para componer capítulos continuos.",
-            "Diseñar Filtros Inteligentes basados en reglas dinámicas para localizar borradores al instante.",
-            "Sincronizar carpetas externas de Windows 11 con watcher en tiempo real (<100 ms)."
+            "Estructurar bibliotecas complejas con Proyectos, Grupos jerárquicos y las cuatro categorías semánticas.",
+            "Dominar las Hojas Pegadas (Ctrl+Shift+G) para redactar obras extensas de forma modular.",
+            "Configurar Filtros Inteligentes y vincular Carpetas Externas sin duplicar archivos.",
+            "Navegar ágilmente entre documentos mediante el Modal de Historial de Navegación (Ctrl+H)."
         ],
         "pages": [
-            {"header_section": "PROYECTOS Y TAXONOMÍA EDITORIAL", "html_content": p1_html},
+            {"header_section": "TAXONOMÍA EDITORIAL", "html_content": p1_html},
             {"header_section": "HOJAS PEGADAS Y MODULARIDAD", "html_content": p2_html},
-            {"header_section": "FILTROS INTELIGENTES Y CARPETAS", "html_content": p3_html}
+            {"header_section": "FILTROS Y CARPETAS EXTERNAS", "html_content": p3_html},
+            {"header_section": "HISTORIAL DE NAVEGACIÓN REAL", "html_content": p4_html}
         ],
         "summary": {
             "key_points": [
-                "Los grupos admiten 4 roles semánticos: principal (main), extras, plantillas y notas de trabajo.",
-                "Glued Sheets (Ctrl+Shift+G) unen hojas contiguas para exportarlas fusionadas como un único texto.",
-                "Las palabras clave se muestran como micro-píldoras de colores facilitando la categorización cruzada.",
-                "Los Smart Filters evalúan reglas booleanas dinámicas actualizando la vista sin demoras.",
-                "Las carpetas externas admiten modo .md puro y contenedor nativo .ulyz con watcher asíncrono."
+                "Los grupos se clasifican en cuatro categorías semánticas: main, extras, templates y notes.",
+                "Las Hojas Pegadas (Ctrl+Shift+G) concatenan documentos contiguos como una unidad indivisible.",
+                "Los Filtros Inteligentes ejecutan consultas dinámicas basadas en palabras clave y fechas.",
+                "Las Carpetas Externas sincronizan directorios de OneDrive, Dropbox o Git en tiempo real.",
+                "El Modal de Historial (Ctrl+H) ofrece acceso instantáneo a los documentos recientes."
             ],
             "requirements": [
-                "Dominar el atajo Ctrl+Shift+G para enlazar o independizar hojas consecutivas.",
-                "Saber configurar un filtro inteligente para localizar borradores según palabras clave.",
-                "Conocer la diferencia entre el modo .md plano y el contenedor .ulyz en carpetas externas."
+                "Aprender a pegar y despegar hojas contiguas utilizando Ctrl+Shift+G.",
+                "Dominar el buscador del historial de navegación con el atajo Ctrl+H.",
+                "Vincular una carpeta externa desde el menú contextual de la Biblioteca."
             ]
         },
         "questionnaire": {
             "columns": 2,
             "questions": [
                 {
-                    "text": "¿Qué atajo de teclado permite unir o despegar dos hojas consecutivas (Glued Sheets)?",
-                    "options": ["a) Ctrl + G", "b) Ctrl + Shift + G", "c) Alt + J", "d) Ctrl + U"]
+                    "text": "¿Qué combinación de teclas pega o despega dos hojas contiguas?",
+                    "options": ["a) Ctrl + G", "b) Ctrl + Shift + G", "c) Alt + G", "d) Ctrl + J"]
                 },
                 {
-                    "text": "¿Cómo se representa visualmente una unión de Hojas Pegadas en la Lista de Hojas?",
-                    "options": ["a) Con un icono de clip", "b) Con una barra vertical continua entre los márgenes de las tarjetas", "c) Cambiando el texto a cursiva", "d) Ocultando la segunda hoja"]
+                    "text": "¿Cómo se indica visualmente en la Lista de Hojas que dos documentos están pegados?",
+                    "options": ["a) Con un icono de candado", "b) Con una barra vertical continua entre sus tarjetas", "c) Cambian a color verde", "d) Se oculta la segunda hoja"]
                 },
                 {
-                    "text": "¿Cuál de las siguientes NO es una categoría semántica de grupo en la Biblioteca?",
-                    "options": ["a) main (sección principal)", "b) extras (anexos)", "c) trash_permanent (papelera destructiva)", "d) templates (plantillas)"]
+                    "text": "¿Qué ocurre al exportar a PDF dos hojas que están pegadas?",
+                    "options": ["a) Se exportan en dos archivos separados", "b) Se concatenan como un único texto continuo sin salto forzado", "c) Da un error de formato", "d) Se imprime solo la primera"]
                 },
                 {
-                    "text": "¿Qué motor de monitorización de archivos en Rust detecta cambios en carpetas externas en <100 ms?",
-                    "options": ["a) El crate notify", "b) Un bucle infinito con sleep()", "c) PowerShell FileSystemWatcher", "d) No detecta cambios en tiempo real"]
+                    "text": "¿Cuál de las siguientes NO es una de las 4 categorías semánticas de grupos?",
+                    "options": ["a) main", "b) extras", "c) temporary_trash", "d) notes"]
                 },
                 {
-                    "text": "¿Qué extensión utiliza el contenedor nativo comprimido de Ulysses/Odisea en carpetas externas?",
-                    "options": ["a) .zip", "b) .ulyz / .odisea", "c) .rar", "d) .7z"]
+                    "text": "¿Qué atajo de teclado abre el Modal de Historial de Navegación?",
+                    "options": ["a) Ctrl + H", "b) Ctrl + Y", "c) Alt + H", "d) Ctrl + Shift + H"]
                 },
                 {
-                    "text": "¿Qué sucede con el frontmatter YAML de un archivo .md estándar vinculado en una carpeta externa?",
-                    "options": ["a) Se borra automáticamente", "b) Se preserva íntegramente al leer y guardar el documento", "c) Se convierte en una tabla", "d) Bloquea la apertura del archivo"]
+                    "text": "¿Qué sucede al vincular una Carpeta Externa en Odisea?",
+                    "options": ["a) Los archivos se borran del disco", "b) Odisea lee y escribe directamente en su ubicación original", "c) Se convierten obligatoriamente a formato binario", "d) Requiere suscripción a internet"]
                 },
                 {
-                    "text": "¿Qué criterio de búsqueda puede evaluar un Filtro Inteligente (Smart Filter)?",
-                    "options": ["a) Fecha de modificación", "b) Palabras clave asignadas", "c) Estado de objetivos de escritura", "d) Todas las anteriores son correctas"]
+                    "text": "¿Qué componente de Rust supervisa los cambios en carpetas externas?",
+                    "options": ["a) Polling cada 10 minutos", "b) File Watcher nativo con notificación sub-50ms", "c) Cron job", "d) Un plugin externo"]
                 },
                 {
-                    "text": "¿Cómo se compilan las Hojas Pegadas durante la exportación a PDF o DOCX?",
-                    "options": ["a) Cada hoja sale en un archivo PDF distinto", "b) Se concatenan en un único flujo de texto continuo respetando la secuencia", "c) Solo se exporta la primera hoja", "d) Se genera un archivo ZIP"]
+                    "text": "¿Cómo se aplican las palabras clave (Keywords) en Odisea?",
+                    "options": ["a) Como micro-píldoras policromáticas de 16px", "b) Solo en texto oculto", "c) Como marcas de agua", "d) Mediante comentarios de código"]
                 },
                 {
-                    "text": "¿Dónde se guardan las relaciones de jerarquía y orden de los grupos en Odisea?",
-                    "options": ["a) En un archivo INI", "b) En la tabla groups de library.odiseadb con ON DELETE CASCADE", "c) En el registro de Windows", "d) En la nube"]
+                    "text": "¿Qué tecla permite cerrar el Modal de Historial devolviendo el foco al editor?",
+                    "options": ["a) Espacio", "b) Escape (Esc)", "c) F1", "d) Alt + F4"]
                 },
                 {
-                    "text": "¿Qué ventaja tiene subdividir un capítulo extenso en hojas pegadas breves?",
-                    "options": ["a) Permite fijar objetivos de escritura individuales por cada escena o subsección", "b) Hace que el programa ocupe menos memoria", "c) Es obligatorio por el sistema", "d) Evita tener que usar palabras clave"]
+                    "text": "¿En qué base relacional se almacena la jerarquía y el orden de los grupos?",
+                    "options": ["a) library.odiseadb (SQLite)", "b) registry.ini", "c) config.xml", "d) MySQL remoto"]
                 }
             ]
         },
         "solutions": {
             "items": [
-                {"correct_answer": "b) Ctrl + Shift + G", "explanation": "Ctrl+Shift+G conmuta el estado glued_with_next en la base de datos y la interfaz."},
-                {"correct_answer": "b) Con una barra vertical continua entre los márgenes de las tarjetas", "explanation": "El trazo vertical continuo une físicamente las tarjetas indicando su secuencia indivisible."},
-                {"correct_answer": "c) trash_permanent (papelera destructiva)", "explanation": "Las 4 secciones son 'main', 'extras', 'templates' y 'notes'."},
-                {"correct_answer": "a) El crate notify", "explanation": "El crate notify de Rust se enlaza a las APIs nativas del kernel de Windows para detectar eventos I/O al instante."},
-                {"correct_answer": "b) .ulyz / .odisea", "explanation": ".ulyz es el paquete empaquetado canónico que almacena texto, metadatos y medios adjuntos."},
-                {"correct_answer": "b) Se preserva íntegramente al leer y guardar el documento", "explanation": "Odisea respeta el encabezado YAML frontal para garantizar interoperabilidad con Hugo, Astro y Obsidian."},
-                {"correct_answer": "d) Todas las anteriores son correctas", "explanation": "Los Smart Filters permiten combinar múltiples predicados de metadatos, estado y fechas."},
-                {"correct_answer": "b) Se concatenan en un único flujo de texto continuo respetando la secuencia", "explanation": "El compilador fusiona los bloques de texto garantizando la continuidad de la lectura."},
-                {"correct_answer": "b) En la tabla groups de library.odiseadb con ON DELETE CASCADE", "explanation": "La base SQLite garantiza que al suprimir un grupo padre se gestionen sus hijos de forma íntegra."},
-                {"correct_answer": "a) Permite fijar objetivos de escritura individuales por cada escena o subsección", "explanation": "Facilita la metodología de micro-metas diarias sin fracturar la unidad del libro."}
+                {"correct_answer": "b) Ctrl + Shift + G", "explanation": "Ctrl+Shift+G conmutada el estado de unión de la hoja con la inmediatamente inferior."},
+                {"correct_answer": "b) Con una barra vertical continua entre sus tarjetas", "explanation": "La barra vertical unificada simboliza visualmente la continuidad del flujo editorial."},
+                {"correct_answer": "b) Se concatenan como un único texto continuo sin salto forzado", "explanation": "Las hojas pegadas se tratan como secciones fluidas de un mismo capítulo."},
+                {"correct_answer": "c) temporary_trash", "explanation": "Las cuatro categorías semánticas son main, extras, templates y notes."},
+                {"correct_answer": "a) Ctrl + H", "explanation": "Ctrl+H lanza el modal de navegación rápida por el historial reciente."},
+                {"correct_answer": "b) Odisea lee y escribe directamente en su ubicación original", "explanation": "Preserva la compatibilidad total con Git, OneDrive y herramientas de terceros."},
+                {"correct_answer": "b) File Watcher nativo con notificación sub-50ms", "explanation": "El subsistema en Rust monitoriza eventos del kernel de Windows sin sobrecarga de CPU."},
+                {"correct_answer": "a) Como micro-píldoras policromáticas de 16px", "explanation": "Las micro-píldoras decoran la tarjeta identificando temas o estados de borrador."},
+                {"correct_answer": "b) Escape (Esc)", "explanation": "La tecla Esc descarta el modal flotante de forma limpia y restaura el cursor."},
+                {"correct_answer": "a) library.odiseadb (SQLite)", "explanation": "SQLite gestiona de forma atómica y relacional toda la estructura de la biblioteca."}
             ]
         }
     }
 
 def get_chapter_6():
     p1_html = f"""
-    {EC.section_header("Métricas de Prosa y Ritmo de Lectura en Vivo", 1, "6.1")}
-    <p>El dominio de la prosa requiere consciencia cuantitativa del ritmo, la longitud y la densidad de las oraciones. El <strong>Dashboard de Odisea (Panel 4)</strong> reúne un sofisticado laboratorio métrico que procesa el documento en tiempo real sin degradar el rendimiento del editor:</p>
+    {EC.section_header("El Panel Inspector y Métricas en Tiempo Real", 1, "6.1")}
+    <p>Para el escritor profesional, el control cuantitativo del texto es esencial: desde el periodista que debe ajustar su crónica a 800 palabras exactas hasta el orador que prepara un discurso de diez minutos. Al pulsar <strong>Ctrl+4</strong> o hacer clic en el icono de velocímetro de la barra superior, Odisea despliega el <strong>Panel Inspector / Dashboard</strong>:</p>
 
-    <ul>
-        <li><strong>Contadores Cuantitativos Instantáneos:</strong>
-            <ul>
-                <li><strong>Palabras:</strong> Contadas mediante el estándar Unicode de segmentación léxica.</li>
-                <li><strong>Caracteres con y sin espacios:</strong> Crucial para artículos periodísticos, convocatorias editoriales y límites estrictos de publicación.</li>
-                <li><strong>Estructura Formal:</strong> Recuento exacto de Oraciones, Párrafos, Líneas y Páginas estimadas según el estándar editorial de 250 palabras por página.</li>
-            </ul>
-        </li>
-        <li><strong>Velocidad y Tiempos de Lectura Estimados:</strong> Odisea calcula el tiempo que demandará la lectura de tu texto en tres ritmos calibrados:
-            <ul>
-                <li><em>Ritmo Lento (150 palabras/min):</em> Adecuado para discursos públicos, poesía o ponencias magistrales.</li>
-                <li><em>Ritmo Medio (220 palabras/min):</em> Velocidad estándar de lectura silenciosa en adultos.</li>
-                <li><em>Ritmo Rápido (300 palabras/min):</em> Lectura veloz orientada a escaneo visual de artículos técnicos.</li>
-            </ul>
-        </li>
-        <li><strong>Índice de Legibilidad Flesch-Szigriszt:</strong> Evaluación analítica del nivel de dificultad léxica calibrada para el idioma español (desde estilo periodístico accesible hasta prosa técnica de alta complejidad).</li>
-    </ul>
+    {screenshot_figure(
+        "05_panel_inspector_metricas",
+        "Captura real del Panel Inspector lateral (Ctrl+4). Muestra el recuento de palabras y caracteres, estimaciones de tiempo de lectura y locución, objetivos activos y gestor de palabras clave.",
+        "6.1",
+        max_height_mm=88
+    )}
 
-    {EC.callout(
-        "BUENA PRÁCTICA · CONTROL DEL RITMO PROSÓDICO",
-        "Alternar oraciones breves y contundentes con periodos subordinados más extensos dota al texto de musicalidad. El panel de métricas te ayuda a detectar párrafos excesivamente densos antes de pasar a la fase de edición estilística.",
-        "practice"
+    {EC.table(
+        ["Métrica / Sección", "Algoritmo de Cálculo", "Utilidad Práctica para el Autor"],
+        [
+            ["<strong>Palabras y Caracteres</strong>", "Tokenización Unicode con y sin espacios", "Control de longitud para requisitos editoriales."],
+            ["<strong>Párrafos y Frases</strong>", "Detección léxica de puntuación de cierre", "Auditoría de ritmo y cadencia de la prosa."],
+            ["<strong>Tiempo de Lectura</strong>", "Calibrado a 220 palabras por minuto (ppm)", "Estimación de tiempo para el lector medio."],
+            ["<strong>Tiempo de Locución</strong>", "Calibrado a 130 ppm en voz alta", "Imprescindible para discursos, podcasts y audiolibros."],
+            ["<strong>Palabras Clave (Tags)</strong>", "Gestión de micro-etiquetas con paleta de color", "Clasificación transversal y filtrado temático."]
+        ],
+        ["28%", "36%", "36%"]
     )}
     """
 
     p2_html = f"""
-    {EC.section_header("Writing Goals y Anillos Circulares Progresivos SVG", 1, "6.2")}
-    <p>La disciplina de escribir a diario se sustenta en el establecimiento de metas claras y alcanzables. El sistema de <strong>Writing Goals</strong> de Odisea transforma los objetivos abstractos en una experiencia visual motivadora mediante micro-anillos de progreso SVG proyectados en la barra de estado y en el Dashboard:</p>
+    {EC.section_header("Definición y Seguimiento de Objetivos de Escritura (Goals)", 1, "6.2")}
+    <p>La disciplina de escritura se consolida cuando se establecen metas tangibles y alcanzables. En Odisea, cada hoja o grupo jerárquico puede tener asignado un <strong>Objetivo de Escritura (Goal)</strong> personalizado con seguimiento visual continuo:</p>
 
-    <p>Odisea admite tres modalidades de objetivo tanto para hojas individuales como para grupos enteros:</p>
-    <ol>
-        <li><strong>Al menos (At least):</strong> Fija una meta mínima indispensable (por ejemplo, 1,000 palabras por jornada de trabajo). Ideal para redactar el primer borrador de una novela.</li>
-        <li><strong>Como máximo (At most):</strong> Impone un techo estricto (por ejemplo, 300 palabras para un resumen ejecutivo o 5,000 caracteres para una columna de prensa).</li>
-        <li><strong>Aproximadamente (About):</strong> Define un rango objetivo con una tolerancia automática del ±10% alrededor de la cifra elegida.</li>
-    </ol>
+    <ul>
+        <li><strong>Tipos de Meta Cuantitativa:</strong>
+            <ul>
+                <li><em>Escribir al Menos:</em> Meta mínima para forzar el avance del borrador (ej. redactar un mínimo de 1.500 palabras).</li>
+                <li><em>Escribir como Máximo:</em> Techo estricto para artículos de prensa, convocatorias o resúmenes ejecutivos (ej. no exceder 2.000 caracteres).</li>
+                <li><em>Escribir un Rango:</em> Ventana óptima para capítulos estándar (ej. entre 3.000 y 4.000 palabras).</li>
+            </ul>
+        </li>
+        <li><strong>Indicador de Progreso Dinámico:</strong> En el Panel 4 y en la barra de estado inferior, Odisea proyecta un <strong>micro-anillo circular o barra de progreso</strong> que evoluciona cromáticamente:
+            <ul>
+                <li><em>Azul (#3b82f6):</em> Meta en progreso activo (0% a 99%).</li>
+                <li><em>Verde Esmeralda (#10b981):</em> Meta completada con éxito (100%).</li>
+                <li><em>Rojo Coral (#ef4444):</em> Advertencia de sobrepaso en metas de tipo máximo.</li>
+            </ul>
+        </li>
+        <li><strong>Fecha Límite (Deadline):</strong> Puedes fijar una fecha y hora límite; Odisea calcula automáticamente cuántas palabras debes escribir por día para entregar a tiempo.</li>
+    </ul>
 
     {EC.callout(
-        "HITO VISUAL · EL CÓDIGO DE COLOR CUATRICOLOR DEL PROGRESS RING",
-        "El anillo de progreso SVG comunica el estado de tu objetivo al instante con cuatro transiciones cromáticas calibradas:<br>"
-        "1. <strong>Naranja Cálido (#ff9500):</strong> Arranque de la sesión (del 0% al 30% del objetivo).<br>"
-        "2. <strong>Azul Vibrante (#007aff):</strong> Escritura fluida en progreso (del 30% al 99%).<br>"
-        "3. <strong>Verde Esmeralda (#34c759):</strong> ¡Objetivo completado con éxito! (100% de la meta).<br>"
-        "4. <strong>Rojo Carmesí (#ff3b30):</strong> Advertencia de sobrepaso en la modalidad 'Como máximo'.",
+        "HITO DE PRODUCTIVIDAD · METAS EN GRUPOS Y PROYECTOS",
+        "Si defines un objetivo sobre un Grupo o Proyecto completo, Odisea sumará automáticamente las palabras de todas sus hojas internas y hojas pegadas, mostrándote el avance global de tu libro o tesis en una sola mirada.",
         "milestone"
     )}
-
-    <p>Además, al asignar una <strong>Fecha Límite (Deadline)</strong>, Odisea calcula automáticamente tu <em>cuota diaria requerida</em> en función de los días restantes y registra tu historial de escritura de los últimos 30 días para evaluar tu regularidad.</p>
     """
 
     p3_html = f"""
-    {EC.section_header("El Árbol de Esquema (Outline) y Enlaces Entrantes (Backlinks)", 1, "6.3")}
-    <p>Las otras dos pestañas esenciales del Dashboard potencian la visión global y la interconexión de tus textos:</p>
+    {EC.section_header("El Asistente de Revisión y Corrección de Estilo", 1, "6.3")}
+    <p>El pulido final de un manuscrito exige erradicar muletillas, redundancias y vicios sintácticos. Odisea incorpora un <strong>Asistente de Revisión y Estilo</strong> que audita el documento en segundo plano:</p>
 
-    <ul>
-        <li><strong>Pestaña Esquema (Outline):</strong> Extrae dinámicamente todos los encabezados <code>#</code> a <code>######</code> presentes en la hoja activa (o en el conjunto de hojas pegadas). Se presentan como un árbol jerárquico indentado. Al hacer clic en cualquier sección, el editor se desplaza suavemente hasta ella situando el cursor en el encabezado.</li>
-        <li><strong>Pestaña Vista General (Overview):</strong> Consolida en una lista filtrable todos los enlaces externos, notas al pie, anotaciones y medios adjuntos de la hoja, permitiendo comprobar su validez sin tener que rastrearlos manualmente por los párrafos.</li>
-        <li><strong>Pestaña Enlaces Entrantes (Backlinks):</strong> Odisea implementa enlaces wiki internos bidireccionales mediante <code>[[Título de Hoja]]</code>. Esta pestaña lista instantáneamente todos los documentos de la biblioteca que enlazan hacia la hoja activa, fomentando la creación de redes de conocimiento no lineales (Zettelkasten / Knowledge Graph).</li>
-    </ul>
+    {screenshot_figure(
+        "06_asistente_revision_estilo",
+        "Captura real del Asistente de Revisión y Estilo. Analiza en tiempo real el texto, señalando redundancias, pasajes en voz pasiva, frases excesivamente largas y sugerencias de mejora directa.",
+        "6.2",
+        max_height_mm=88
+    )}
 
     {EC.table(
-        ["Pestaña del Dashboard", "Atajo de Acceso", "Contenido y Funciones Principales"],
+        ["Regla de Estilo", "Criterio de Detección", "Acción de Corrección Sugerida"],
         [
-            ["Progreso y Metas", "Panel 4 · Tab 1", "Contadores instantáneos, Writing Goals, anillos SVG, cuota diaria e historial"],
-            ["Esquema (Outline)", "Panel 4 · Tab 2", "Navegación jerárquica instantánea por encabezados H1 a H6"],
-            ["Vista General", "Panel 4 · Tab 3", "Auditoría de Enlaces, Notas al pie (FN), Anotaciones y Medios adjuntos"],
-            ["Enlaces Entrantes", "Panel 4 · Tab 4", "Rastreo bidireccional de Backlinks entre hojas interconectadas"]
+            ["<strong>Frases Demasiado Largas</strong>", "Oraciones continuas que superan las 30 palabras.", "Propone dividir la frase en dos oraciones coordinadas."],
+            ["<strong>Voz Pasiva Recurrente</strong>", "Uso reiterado de perífrasis pasivas (ser + participio).", "Sustituye por formas activas más ágiles y directas."],
+            ["<strong>Redundancias y Pleonasmos</strong>", "Expresiones como 'subir arriba' o 'completamente lleno'.", "Elimina la palabra superflua con un clic en Reemplazar."],
+            ["<strong>Palabras Complejas / Jerga</strong>", "Términos farragosos con alternativas cotidianas claras.", "Ofrece sinónimos directos para agilizar la lectura."]
         ],
-        ["25%", "25%", "50%"]
+        ["28%", "36%", "36%"]
+    )}
+    """
+
+    p4_html = f"""
+    {EC.section_header("Búsqueda Global FTS5 y Copias Zstandard en Segundo Plano", 1, "6.4")}
+    <p>La integridad de la obra del autor está blindada mediante dos motores nativos en Rust de alta tecnología:</p>
+
+    <p><strong>1. Motor de Búsqueda Full-Text FTS5:</strong> En <code>library.odiseadb</code>, cada palabra redactada se indexa en tiempo real mediante una tabla virtual SQLite FTS5 (<em>Full-Text Search 5</em>). Al teclear cualquier consulta en la Paleta de Comandos o en el buscador general, Odisea localiza coincidencias en milisegundos entre miles de páginas, con resaltado de fragmentos contextuales (<em>snippets</em>).</p>
+
+    <p><strong>2. Sistema de Copias de Seguridad Automáticas con Zstandard:</strong> Cada cambio se guarda de forma atómica. Además, Odisea ejecuta instantáneas automáticas en <code>./odisea_data/backups/</code>:</p>
+    <ul>
+        <li><strong>Snapshots Horarios:</strong> Guardados cada 60 minutos de trabajo activo (retención de 24 horas).</li>
+        <li><strong>Copias Diarias:</strong> Instantánea consolidada al cierre de cada jornada (retención de 30 días).</li>
+        <li><strong>Copias Semanales:</strong> Archivos permanentes comprimidos con el algoritmo <strong>Zstandard (.odiseabak)</strong>, que reduce el tamaño en más de un 85% sin pérdida de rendimiento.</li>
+    </ul>
+
+    {EC.callout(
+        "GARANTÍA DE INTEGRIDAD · BLINDAJE CONTRA FALLOS DE ENERGÍA",
+        "SQLite opera bajo el modo <code>PRAGMA journal_mode = WAL</code> (Write-Ahead Logging). Si tu ordenador sufre un corte eléctrico imprevisto o reinicio forzado, ningún párrafo se corromperá jamás: al reabrir Odisea, la base recupera la última transacción confirmada de forma 100% matemática.",
+        "takeaway"
     )}
     """
 
     return {
         "number": 6,
         "title": "Dashboard de Escritura, Métricas y Objetivos (Goals)",
-        "short_title": "MÉTRICAS Y OBJETIVOS",
+        "short_title": "DASHBOARD Y REVISIÓN",
         "block": "BLOQUE III — ORGANIZACIÓN Y PRODUCTIVIDAD",
         "block_kicker": "BLOQUE III · ORGANIZACIÓN Y PRODUCTIVIDAD",
         "objectives": [
-            "Interpretar las estadísticas en tiempo real: palabras, caracteres, oraciones y tiempo de lectura.",
-            "Configurar objetivos cuantitativos de escritura con fecha límite y cuota diaria automática.",
-            "Interpretar el código de color de 4 estados en los anillos circulares de progreso SVG.",
-            "Navegar ágilmente mediante el árbol de esquema (Outline) y rastrear enlaces entrantes (Backlinks)."
+            "Operar el Panel Inspector (Ctrl+4) para monitorizar métricas y tiempos de lectura/locución.",
+            "Configurar Objetivos de Escritura (Goals) diarios y por proyecto con seguimiento cromático.",
+            "Utilizar el Asistente de Revisión y Estilo para pulir la prosa y eliminar vicios sintácticos.",
+            "Comprender el motor de indexación FTS5 y la política de copias de seguridad Zstandard."
         ],
         "pages": [
-            {"header_section": "MÉTRICAS Y RITMO DE LECTURA", "html_content": p1_html},
-            {"header_section": "WRITING GOALS Y ANILLOS SVG", "html_content": p2_html},
-            {"header_section": "ESQUEMA Y ENLACES ENTRANTES", "html_content": p3_html}
+            {"header_section": "EL PANEL INSPECTOR Y MÉTRICAS", "html_content": p1_html},
+            {"header_section": "OBJETIVOS DE ESCRITURA (GOALS)", "html_content": p2_html},
+            {"header_section": "ASISTENTE DE REVISIÓN Y ESTILO", "html_content": p3_html},
+            {"header_section": "BÚSQUEDA FTS5 Y BACKUPS ZSTD", "html_content": p4_html}
         ],
         "summary": {
             "key_points": [
-                "El Dashboard (Ctrl+4) proporciona métricas completas de palabras, caracteres y legibilidad en vivo.",
-                "Ofrece tiempos de lectura estimados en tres ritmos: Lento (150 ppm), Medio (220 ppm) y Rápido (300 ppm).",
-                "Writing Goals admite 3 modos: Al menos (mínimo), Como máximo (límite) y Aproximadamente (±10%).",
-                "El anillo SVG cambia de color: Naranja (inicio), Azul (progreso), Verde (logro) y Rojo (exceso).",
-                "El Outline permite saltar entre encabezados H1..H6 y los Backlinks gestionan conexiones bidireccionales."
+                "El Inspector (Ctrl+4) calcula palabras, caracteres, tiempo de lectura (220 ppm) y locución (130 ppm).",
+                "Los Objetivos de Escritura soportan metas de mínimo, máximo y rangos con micro-anillos de color.",
+                "El Asistente de Revisión señala redundancias, frases largas (>30 palabras) y voz pasiva.",
+                "SQLite FTS5 indexa cada término permitiendo búsquedas ultrarrápidas con fragmentos contextuales.",
+                "Las copias horarias, diarias y semanales se comprimen con Zstandard en ./odisea_data/backups/."
             ],
             "requirements": [
-                "Saber fijar un Writing Goal en una hoja y asignar una fecha límite.",
-                "Identificar el significado de cada color en el indicador circular de progreso.",
-                "Utilizar la pestaña Outline para desplazarse por documentos extensos."
+                "Desplegar el Panel Inspector mediante el atajo Ctrl+4.",
+                "Definir un objetivo de 1.000 palabras en una hoja de borrador.",
+                "Ejecutar el Asistente de Revisión para verificar la claridad de un capítulo."
             ]
         },
         "questionnaire": {
             "columns": 2,
             "questions": [
                 {
-                    "text": "¿Qué velocidad en palabras por minuto se asigna al ritmo de lectura 'Medio' en Odisea?",
-                    "options": ["a) 150 palabras/min", "b) 220 palabras/min", "c) 300 palabras/min", "d) 500 palabras/min"]
+                    "text": "¿A qué velocidad media en palabras por minuto se calcula el tiempo de lectura en silencio?",
+                    "options": ["a) 120 ppm", "b) 220 ppm", "c) 350 ppm", "d) 500 ppm"]
                 },
                 {
-                    "text": "¿Qué color adopta el anillo SVG cuando se alcanza exactamente el 100% de la meta de escritura?",
-                    "options": ["a) Azul vibrante", "b) Verde esmeralda", "c) Naranja cálido", "d) Amarillo brillante"]
+                    "text": "¿Qué velocidad media se emplea para estimar el tiempo de locución o lectura en voz alta?",
+                    "options": ["a) 130 ppm", "b) 200 ppm", "c) 80 ppm", "d) 250 ppm"]
                 },
                 {
-                    "text": "¿En qué modalidad de Writing Goal se torna rojo el indicador si se rebasa la cifra fijada?",
-                    "options": ["a) En modo 'Al menos'", "b) En modo 'Como máximo' (At most)", "c) En modo 'Aproximadamente'", "d) En ninguna"]
+                    "text": "¿Qué atajo de teclado despliega u oculta el Panel Inspector / Dashboard?",
+                    "options": ["a) Ctrl + 1", "b) Ctrl + 4", "c) Alt + I", "d) Ctrl + Shift + M"]
                 },
                 {
-                    "text": "¿Qué calcula Odisea automáticamente al fijar una fecha límite (Deadline) para un objetivo?",
-                    "options": ["a) El coste de impresión", "b) La cuota diaria recomendada de palabras", "c) El tamaño del archivo en disco", "d) La fecha de caducidad"]
+                    "text": "¿De qué color se muestra el anillo de objetivo cuando se ha alcanzado la meta al 100%?",
+                    "options": ["a) Azul marino", "b) Verde esmeralda", "c) Amarillo", "d) Rojo coral"]
                 },
                 {
-                    "text": "¿Qué muestra la pestaña 'Outline' en el Dashboard de Odisea?",
-                    "options": ["a) La lista de archivos eliminados", "b) El árbol jerárquico de encabezados H1 a H6 para navegación instantánea", "c) La paleta de colores del tema", "d) Las contraseñas guardadas"]
+                    "text": "¿Qué tipo de meta cuantitativa alerta en rojo si se sobrepasa el límite fijado?",
+                    "options": ["a) Escribir al menos", "b) Escribir como máximo", "c) Modo libre", "d) Meta de lectura"]
                 },
                 {
-                    "text": "¿Qué tolerancia de variación admite el modo de objetivo 'Aproximadamente'?",
-                    "options": ["a) ±2%", "b) ±10% alrededor de la cifra objetivo", "c) ±25%", "d) ±50%"]
+                    "text": "¿Qué extensión llevan los archivos de copia de seguridad comprimidos con Zstandard?",
+                    "options": ["a) .zip", "b) .odiseabak", "c) .tar.gz", "d) .bak"]
                 },
                 {
-                    "text": "¿Cómo se crea un enlace bidireccional hacia otra hoja de la biblioteca en Markdown XL?",
-                    "options": ["a) Mediante [[Título de la Hoja]]", "b) Con @link:hoja", "c) Mediante un comando FTP", "d) Arrastrando el ejecutable"]
+                    "text": "¿Qué longitud de frase activa la advertencia de 'Frase demasiado larga' en el Asistente de Revisión?",
+                    "options": ["a) Más de 15 palabras", "b) Más de 30 palabras", "c) Más de 60 palabras", "d) Más de 100 palabras"]
                 },
                 {
-                    "text": "¿Qué información recopila la pestaña 'Vista General' (Overview)?",
-                    "options": ["a) El clima local", "b) La lista consolidada de enlaces, notas al pie, anotaciones y medios adjuntos", "c) Los correos del usuario", "d) El historial de navegación web"]
+                    "text": "¿Qué modo transaccional de SQLite previene la pérdida de datos ante cortes eléctricos?",
+                    "options": ["a) WAL (Write-Ahead Logging)", "b) Modo memoria pura", "c) Sincronización OFF", "d) Bloqueo exclusivo continuo"]
                 },
                 {
-                    "text": "¿Cuántas palabras por página estándar utiliza Odisea para estimar la paginación impresa?",
-                    "options": ["a) 100 palabras", "b) 250 palabras por página estándar", "c) 500 palabras", "d) 1000 palabras"]
+                    "text": "¿Qué tecnología impulsa la búsqueda instantánea de texto en la base de datos?",
+                    "options": ["a) Búsqueda lineal con grep", "b) SQLite FTS5 (Full-Text Search)", "c) Expresiones regulares en frontend", "d) Búsqueda remota en la nube"]
                 },
                 {
-                    "text": "¿Dónde se reflejan visualmente los micro-anillos de progreso además de en el Dashboard?",
-                    "options": ["a) En la barra de título de Windows", "b) En la tarjeta de la hoja en la Lista de Hojas y en la barra de estado", "c) En el fondo de pantalla", "d) En el menú inicio"]
+                    "text": "¿En qué carpeta se almacenan las instantáneas horarias, diarias y semanales?",
+                    "options": ["a) C:\\Backups", "b) ./odisea_data/backups/", "c) %TEMP%\\odisea", "d) ./odisea_data/exports/"]
                 }
             ]
         },
         "solutions": {
             "items": [
-                {"correct_answer": "b) 220 palabras/min", "explanation": "220 ppm es la media internacional estandarizada para lectura comprensiva de prosa en adultos."},
-                {"correct_answer": "b) Verde esmeralda", "explanation": "El verde esmeralda (#34c759) certifica visualmente que la meta diaria o capitular ha sido cumplida."},
-                {"correct_answer": "b) En modo 'Como máximo' (At most)", "explanation": "En 'Como máximo', el rojo advierte que el texto ha excedido el límite editorial permitido."},
-                {"correct_answer": "b) La cuota diaria recomendada de palabras", "explanation": "El algoritmo divide las palabras pendientes entre los días restantes hasta la fecha límite."},
-                {"correct_answer": "b) El árbol jerárquico de encabezados H1 a H6 para navegación instantánea", "explanation": "Outline permite desplazarse por capítulos de decenas de miles de palabras en milisegundos."},
-                {"correct_answer": "b) ±10% alrededor de la cifra objetivo", "explanation": "El modo 'Aproximadamente' considera cumplida la meta dentro del margen del 90% al 110%."},
-                {"correct_answer": "a) Mediante [[Título de la Hoja]]", "explanation": "La sintaxis wiki [[...]] enlaza documentos alimentando la tabla interna de internal_links."},
-                {"correct_answer": "b) La lista consolidada de enlaces, notas al pie, anotaciones y medios adjuntos", "explanation": "Permite auditar todos los recursos complementarios del documento desde una sola vista."},
-                {"correct_answer": "b) 250 palabras por página estándar", "explanation": "250 palabras por página es el estándar editorial clásico de cuartilla mecanografiada."},
-                {"correct_answer": "b) En la tarjeta de la hoja en la Lista de Hojas y en la barra de estado", "explanation": "El autor percibe el progreso de cada documento sin necesidad de abrir el Dashboard lateral."}
+                {"correct_answer": "b) 220 ppm", "explanation": "220 palabras por minuto es el estándar de lectura silenciosa en adultos."},
+                {"correct_answer": "a) 130 ppm", "explanation": "130 palabras por minuto es el promedio internacional para locución en voz alta y audiolibros."},
+                {"correct_answer": "b) Ctrl + 4", "explanation": "Ctrl+4 conmutada la visibilidad del Panel 4 (Dashboard de métricas y notas)."},
+                {"correct_answer": "b) Verde esmeralda", "explanation": "El verde esmeralda (#10b981) certifica el cumplimiento satisfactorio de la meta."},
+                {"correct_answer": "b) Escribir como máximo", "explanation": "Las metas de tipo techo alertan visualmente en coral para evitar excesos editoriales."},
+                {"correct_answer": "b) .odiseabak", "explanation": "Los archivos .odiseabak contienen la base e imágenes comprimidas con Zstandard."},
+                {"correct_answer": "b) Más de 30 palabras", "explanation": "Frases de más de 30 palabras sobrecargan la memoria de trabajo del lector."},
+                {"correct_answer": "a) WAL (Write-Ahead Logging)", "explanation": "WAL escribe las operaciones en un log temporal antes de consolidarlas en disco."},
+                {"correct_answer": "b) SQLite FTS5 (Full-Text Search)", "explanation": "FTS5 crea índices invertidos de tokens de palabras para búsquedas en milisegundos."},
+                {"correct_answer": "b) ./odisea_data/backups/", "explanation": "Toda la política de copias se confina estrictamente a la ruta de persistencia relativa."}
             ]
         }
     }

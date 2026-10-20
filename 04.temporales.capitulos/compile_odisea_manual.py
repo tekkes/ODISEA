@@ -40,12 +40,24 @@ def main():
 
     # Pre-calculate TOC page numbers for accuracy in the printed table of contents
     # Cover = 1, Frontmatter = 2, TOC = 3
-    # Each chapter: divider (1) + pages (3) + summary (1) + questionnaire (1) + solutions (1) = 7 pages
     current_page = 4
+    ch_idx = 0
     for block in book["toc"]["blocks"]:
         for item in block["chapters"]:
             item["page"] = str(current_page)
-            current_page += 7 # next chapter starts 7 pages later
+            if ch_idx < len(book["chapters"]):
+                ch = book["chapters"][ch_idx]
+                ch_pages = 1 + len(ch.get("pages", []))
+                if ch.get("summary"):
+                    ch_pages += 1
+                if ch.get("questionnaire"):
+                    ch_pages += 1
+                if ch.get("solutions"):
+                    ch_pages += 1
+                current_page += ch_pages
+            else:
+                current_page += 8
+            ch_idx += 1
 
     json_path = TEMP_DIR / "manual_odisea_completo.json"
     with open(json_path, "w", encoding="utf-8") as f:

@@ -13,7 +13,8 @@ export const HistoryModal: React.FC<HistoryModalProps> = ({ isOpen, onClose }) =
   const [filterType, setFilterType] = useState<'all' | 'sheet' | 'project'>('all');
 
   const filteredHistory = useMemo(() => {
-    return history.filter((item) => {
+    const list = Array.isArray(history) ? history : [];
+    return list.filter((item) => {
       const matchesType = filterType === 'all' || item.item_type === filterType;
       const q = searchQuery.toLowerCase().trim();
       const matchesSearch =
